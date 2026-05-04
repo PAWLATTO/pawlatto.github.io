@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pawlatto | Pet Food Delivery</title>
+
+  <title>Pawlatto | Premium Pet Food Delivery</title>
 
   <style>
 
@@ -15,172 +16,323 @@
       font-family:Arial, Helvetica, sans-serif;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       background:#f5f5f5;
       color:#222;
     }
 
+    /* HEADER */
+
     header{
-      background:#111827;
-      color:white;
-      padding:20px 10%;
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      z-index:1000;
+      background:rgba(17,24,39,0.85);
+      backdrop-filter:blur(10px);
+
       display:flex;
       justify-content:space-between;
       align-items:center;
+
+      padding:20px 8%;
     }
 
     .logo{
+      color:white;
       font-size:30px;
       font-weight:bold;
+      letter-spacing:1px;
     }
 
     nav a{
       color:white;
       text-decoration:none;
-      margin-left:20px;
+      margin-left:25px;
       font-size:15px;
+      transition:0.3s;
     }
 
+    nav a:hover{
+      color:#22c55e;
+    }
+
+    /* HERO SLIDER */
+
     .hero{
-      background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-      url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1400&auto=format&fit=crop');
+      position:relative;
+      height:100vh;
+      overflow:hidden;
+    }
+
+    .slides{
+      position:absolute;
+      width:100%;
+      height:100%;
+    }
+
+    .slide{
+      position:absolute;
+      width:100%;
+      height:100%;
+      opacity:0;
+      animation:fade 20s infinite;
       background-size:cover;
       background-position:center;
-      height:85vh;
+    }
+
+    .slide::before{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.55);
+    }
+
+    .slide1{
+      background-image:url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1600&auto=format&fit=crop');
+      animation-delay:0s;
+    }
+
+    .slide2{
+      background-image:url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1600&auto=format&fit=crop');
+      animation-delay:5s;
+    }
+
+    .slide3{
+      background-image:url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1600&auto=format&fit=crop');
+      animation-delay:10s;
+    }
+
+    .slide4{
+      background-image:url('https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=1600&auto=format&fit=crop');
+      animation-delay:15s;
+    }
+
+    @keyframes fade{
+
+      0%{
+        opacity:0;
+      }
+
+      5%{
+        opacity:1;
+      }
+
+      25%{
+        opacity:1;
+      }
+
+      30%{
+        opacity:0;
+      }
+
+      100%{
+        opacity:0;
+      }
+
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:10;
+
+      height:100%;
       display:flex;
-      align-items:center;
+      flex-direction:column;
       justify-content:center;
+      align-items:center;
+
       text-align:center;
       color:white;
       padding:20px;
     }
 
     .hero-content h1{
-      font-size:55px;
+      font-size:65px;
       margin-bottom:20px;
+      max-width:900px;
     }
 
     .hero-content p{
-      font-size:20px;
-      margin-bottom:30px;
-      line-height:1.6;
+      font-size:22px;
+      line-height:1.7;
+      max-width:750px;
+      margin-bottom:35px;
     }
 
     .btn{
       display:inline-block;
       background:#22c55e;
       color:white;
-      padding:15px 30px;
-      border-radius:8px;
+      padding:16px 34px;
+      border-radius:10px;
       text-decoration:none;
       font-weight:bold;
+      font-size:16px;
       transition:0.3s;
     }
 
     .btn:hover{
       background:#16a34a;
+      transform:translateY(-2px);
     }
 
+    /* COMING SOON */
+
     .coming-soon{
-      padding:90px 10%;
-      text-align:center;
+      padding:100px 8%;
       background:white;
+      text-align:center;
     }
 
     .coming-soon h2{
-      font-size:42px;
+      font-size:45px;
       margin-bottom:20px;
     }
 
     .coming-soon p{
-      max-width:700px;
+      max-width:800px;
       margin:auto;
       font-size:18px;
       line-height:1.8;
       color:#555;
     }
 
-    .coming-boxes{
-      margin-top:50px;
+    .cards{
+      margin-top:60px;
+
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:25px;
     }
 
-    .coming-card{
+    .card{
       background:#f3f4f6;
-      padding:35px;
-      border-radius:15px;
+      padding:40px 30px;
+      border-radius:18px;
+      transition:0.3s;
     }
 
-    .coming-card h3{
-      margin-bottom:10px;
-      font-size:22px;
+    .card:hover{
+      transform:translateY(-5px);
     }
 
-    .coming-card p{
-      font-size:15px;
+    .card h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .card p{
+      font-size:16px;
       color:#666;
+      line-height:1.7;
     }
 
-    .features{
-      padding:90px 10%;
+    /* WHY SECTION */
+
+    .why{
+      padding:100px 8%;
       background:#f9fafb;
     }
 
     .section-title{
       text-align:center;
-      font-size:42px;
-      margin-bottom:50px;
+      font-size:45px;
+      margin-bottom:60px;
     }
 
-    .feature-grid{
+    .why-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:25px;
     }
 
-    .feature-box{
+    .why-box{
       background:white;
-      padding:35px;
-      border-radius:15px;
+      padding:40px 30px;
+      border-radius:18px;
       text-align:center;
-      box-shadow:0 5px 15px rgba(0,0,0,0.06);
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+      transition:0.3s;
     }
 
-    .feature-box h3{
+    .why-box:hover{
+      transform:translateY(-5px);
+    }
+
+    .why-box h3{
       margin-bottom:15px;
+      font-size:23px;
     }
 
-    .feature-box p{
+    .why-box p{
       color:#666;
-      line-height:1.6;
+      line-height:1.7;
     }
 
-    footer{
+    /* CTA */
+
+    .cta{
+      padding:100px 8%;
       background:#111827;
       color:white;
       text-align:center;
-      padding:30px;
     }
+
+    .cta h2{
+      font-size:45px;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:35px;
+      color:#d1d5db;
+      font-size:18px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0f172a;
+      color:#9ca3af;
+      text-align:center;
+      padding:30px;
+      font-size:14px;
+    }
+
+    /* MOBILE */
 
     @media(max-width:768px){
 
-      .hero-content h1{
-        font-size:38px;
-      }
-
-      .hero-content p{
-        font-size:18px;
+      header{
+        padding:18px 6%;
       }
 
       nav{
         display:none;
       }
 
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
       .coming-soon h2,
-      .section-title{
-        font-size:32px;
+      .section-title,
+      .cta h2{
+        font-size:34px;
       }
 
     }
@@ -198,34 +350,43 @@
 
     <nav>
       <a href="#">Home</a>
-      <a href="#coming">Products</a>
+      <a href="#coming">Coming Soon</a>
       <a href="#why">Why Us</a>
     </nav>
 
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
 
   <section class="hero">
+
+    <div class="slides">
+
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+      <div class="slide slide4"></div>
+
+    </div>
 
     <div class="hero-content">
 
       <h1>
-        Premium Pet Food Delivery
+        Premium Pet Food Delivery Built For Pet Owners
       </h1>
 
       <p>
-        Pawlatto is preparing quality pet food products for your pets.
-        We’ll be launching soon with trusted brands, fast delivery,
-        and easy WhatsApp ordering.
+        Pawlatto is preparing trusted pet food products,
+        fast delivery, and simple ordering through WhatsApp.
+        Join our channel and be first to know when we launch.
       </p>
 
       <a
         class="btn"
-        href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20updates%20when%20products%20launch"
+        href="https://whatsapp.com/channel/0029vbSq9kE50UiMAyzYj0a"
         target="_blank"
       >
-        Join WhatsApp Updates
+        Join Pawlatto Channel
       </a>
 
     </div>
@@ -239,71 +400,109 @@
     <h2>Products Coming Soon</h2>
 
     <p>
-      Pawlatto is currently preparing stock and building a smooth delivery
-      experience for pet owners. We’ll soon offer trusted pet food brands,
-      affordable pricing, and fast ordering directly through WhatsApp.
+      We are currently sourcing quality pet food products and
+      preparing a smooth delivery experience for pet owners.
+      Pawlatto will soon offer trusted brands, affordable pricing,
+      and fast WhatsApp ordering.
     </p>
 
-    <div class="coming-boxes">
+    <div class="cards">
 
-      <div class="coming-card">
-        <h3>Dog Food</h3>
-        <p>Premium dog food options launching soon.</p>
+      <div class="card">
+        <h3>Premium Dog Food</h3>
+
+        <p>
+          Carefully selected food products for dogs of all sizes.
+        </p>
       </div>
 
-      <div class="coming-card">
-        <h3>Treats</h3>
-        <p>Healthy and tasty treats for your pets.</p>
+      <div class="card">
+        <h3>Healthy Treats</h3>
+
+        <p>
+          Delicious treats and reward snacks coming soon.
+        </p>
       </div>
 
-      <div class="coming-card">
+      <div class="card">
         <h3>Fast Delivery</h3>
-        <p>Reliable delivery around your area.</p>
+
+        <p>
+          Reliable delivery designed for busy pet owners.
+        </p>
       </div>
 
     </div>
 
   </section>
 
-  <!-- WHY CHOOSE US -->
+  <!-- WHY US -->
 
-  <section class="features" id="why">
+  <section class="why" id="why">
 
     <h2 class="section-title">
       Why Choose Pawlatto?
     </h2>
 
-    <div class="feature-grid">
+    <div class="why-grid">
 
-      <div class="feature-box">
+      <div class="why-box">
         <h3>Trusted Products</h3>
+
         <p>
-          We focus on quality pet food from trusted suppliers and brands.
+          Pawlatto focuses on quality products from trusted suppliers.
         </p>
       </div>
 
-      <div class="feature-box">
+      <div class="why-box">
         <h3>Easy Ordering</h3>
+
         <p>
-          Order quickly through WhatsApp with simple communication.
+          Order directly through WhatsApp with simple communication.
         </p>
       </div>
 
-      <div class="feature-box">
-        <h3>Fast Delivery</h3>
+      <div class="why-box">
+        <h3>Fast Support</h3>
+
         <p>
-          Convenient delivery designed for busy pet owners.
+          Quick assistance and updates for pet owners.
         </p>
       </div>
 
-      <div class="feature-box">
-        <h3>Built For Pet Owners</h3>
+      <div class="why-box">
+        <h3>Built For Convenience</h3>
+
         <p>
-          Pawlatto is focused on making pet shopping simpler and faster.
+          A simpler way to get pet products delivered to your door.
         </p>
       </div>
 
     </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>
+      Join The Pawlatto Journey
+    </h2>
+
+    <p>
+      Follow our WhatsApp channel for launch updates,
+      upcoming products, delivery announcements,
+      and exclusive early offers.
+    </p>
+
+    <a
+      class="btn"
+      href="https://whatsapp.com/channel/0029vbSq9kE50UiMAyzYj0a"
+      target="_blank"
+    >
+      Join WhatsApp Channel
+    </a>
 
   </section>
 
@@ -311,9 +510,7 @@
 
   <footer>
 
-    <p>
-      © 2026 Pawlatto. All Rights Reserved.
-    </p>
+    © 2026 Pawlatto. All Rights Reserved.
 
   </footer>
 
