@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pawlatto</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐾 Pawlatto</h1>
+  <p>Premium Pet Products</p>
+
+  <div class="product">
+    <h2>Dog Food</h2>
+    <p>Healthy & Affordable</p>
+    <button onclick="orderNow()">Order on WhatsApp</button>
+  </div>
+
+  <script>
+    function orderNow() {
+      window.location.href = "https://wa.me/0812563111?text=Hi%20I%20want%20to%20order%20from%20Pawlatto";
+    }
+  </script>
+
+</body>
+</html>
