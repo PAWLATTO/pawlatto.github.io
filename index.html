@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
   <title>Pawlatto | Pet Food Delivery</title>
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -28,7 +30,7 @@
     }
 
     .logo{
-      font-size:28px;
+      font-size:30px;
       font-weight:bold;
     }
 
@@ -40,11 +42,11 @@
     }
 
     .hero{
-      background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
       url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1400&auto=format&fit=crop');
       background-size:cover;
       background-position:center;
-      height:80vh;
+      height:85vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -61,6 +63,7 @@
     .hero-content p{
       font-size:20px;
       margin-bottom:30px;
+      line-height:1.6;
     }
 
     .btn{
@@ -78,72 +81,80 @@
       background:#16a34a;
     }
 
-    .products{
-      padding:80px 10%;
+    .coming-soon{
+      padding:90px 10%;
+      text-align:center;
+      background:white;
+    }
+
+    .coming-soon h2{
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .coming-soon p{
+      max-width:700px;
+      margin:auto;
+      font-size:18px;
+      line-height:1.8;
+      color:#555;
+    }
+
+    .coming-boxes{
+      margin-top:50px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .coming-card{
+      background:#f3f4f6;
+      padding:35px;
+      border-radius:15px;
+    }
+
+    .coming-card h3{
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .coming-card p{
+      font-size:15px;
+      color:#666;
+    }
+
+    .features{
+      padding:90px 10%;
+      background:#f9fafb;
     }
 
     .section-title{
       text-align:center;
-      font-size:40px;
+      font-size:42px;
       margin-bottom:50px;
-    }
-
-    .product-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
-    }
-
-    .card{
-      background:white;
-      border-radius:15px;
-      overflow:hidden;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      transition:0.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-    }
-
-    .card img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-    }
-
-    .card-content{
-      padding:20px;
-    }
-
-    .card-content h3{
-      margin-bottom:10px;
-    }
-
-    .price{
-      font-size:22px;
-      color:#16a34a;
-      margin-bottom:15px;
-      font-weight:bold;
-    }
-
-    .features{
-      padding:80px 10%;
-      background:white;
     }
 
     .feature-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      margin-top:40px;
+      gap:25px;
     }
 
     .feature-box{
-      background:#f3f4f6;
-      padding:30px;
-      border-radius:12px;
+      background:white;
+      padding:35px;
+      border-radius:15px;
       text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.06);
+    }
+
+    .feature-box h3{
+      margin-bottom:15px;
+    }
+
+    .feature-box p{
+      color:#666;
+      line-height:1.6;
     }
 
     footer{
@@ -151,7 +162,6 @@
       color:white;
       text-align:center;
       padding:30px;
-      margin-top:50px;
     }
 
     @media(max-width:768px){
@@ -168,137 +178,129 @@
         display:none;
       }
 
+      .coming-soon h2,
+      .section-title{
+        font-size:32px;
+      }
+
     }
+
   </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
+
   <header>
+
     <div class="logo">Pawlatto</div>
 
     <nav>
       <a href="#">Home</a>
-      <a href="#products">Products</a>
-      <a href="#features">Why Us</a>
+      <a href="#coming">Products</a>
+      <a href="#why">Why Us</a>
     </nav>
+
   </header>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
+
   <section class="hero">
 
     <div class="hero-content">
-      <h1>Premium Pet Food Delivered Fast</h1>
+
+      <h1>
+        Premium Pet Food Delivery
+      </h1>
 
       <p>
-        Affordable dog food delivered directly to your door.
-        Order easily on WhatsApp.
+        Pawlatto is preparing quality pet food products for your pets.
+        We’ll be launching soon with trusted brands, fast delivery,
+        and easy WhatsApp ordering.
       </p>
 
       <a
         class="btn"
-        href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20to%20order"
+        href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20updates%20when%20products%20launch"
         target="_blank"
       >
-        Order On WhatsApp
+        Join WhatsApp Updates
       </a>
+
     </div>
 
   </section>
 
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
+  <!-- COMING SOON -->
 
-    <h2 class="section-title">Popular Products</h2>
+  <section class="coming-soon" id="coming">
 
-    <div class="product-grid">
+    <h2>Products Coming Soon</h2>
 
-      <!-- PRODUCT 1 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1200&auto=format&fit=crop" alt="Dog Food">
+    <p>
+      Pawlatto is currently preparing stock and building a smooth delivery
+      experience for pet owners. We’ll soon offer trusted pet food brands,
+      affordable pricing, and fast ordering directly through WhatsApp.
+    </p>
 
-        <div class="card-content">
-          <h3>Montego Classic</h3>
+    <div class="coming-boxes">
 
-          <div class="price">R35 • 500g</div>
-
-          <a
-            class="btn"
-            href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20Montego%20Classic%20500g"
-            target="_blank"
-          >
-            Order Now
-          </a>
-        </div>
+      <div class="coming-card">
+        <h3>Dog Food</h3>
+        <p>Premium dog food options launching soon.</p>
       </div>
 
-      <!-- PRODUCT 2 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop" alt="Dog Food">
-
-        <div class="card-content">
-          <h3>Royal Canin Puppy</h3>
-
-          <div class="price">R60 • 500g</div>
-
-          <a
-            class="btn"
-            href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20Royal%20Canin%20Puppy%20500g"
-            target="_blank"
-          >
-            Order Now
-          </a>
-        </div>
+      <div class="coming-card">
+        <h3>Treats</h3>
+        <p>Healthy and tasty treats for your pets.</p>
       </div>
 
-      <!-- PRODUCT 3 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1200&auto=format&fit=crop" alt="Dog Food">
-
-        <div class="card-content">
-          <h3>Hills Science Diet</h3>
-
-          <div class="price">R75 • 500g</div>
-
-          <a
-            class="btn"
-            href="https://wa.me/27712345678?text=Hi%20Pawlatto%20I%20want%20Hills%20Science%20Diet%20500g"
-            target="_blank"
-          >
-            Order Now
-          </a>
-        </div>
+      <div class="coming-card">
+        <h3>Fast Delivery</h3>
+        <p>Reliable delivery around your area.</p>
       </div>
 
     </div>
 
   </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
+  <!-- WHY CHOOSE US -->
 
-    <h2 class="section-title">Why Choose Pawlatto?</h2>
+  <section class="features" id="why">
+
+    <h2 class="section-title">
+      Why Choose Pawlatto?
+    </h2>
 
     <div class="feature-grid">
 
       <div class="feature-box">
-        <h3>Fast Delivery</h3>
-        <p>Quick delivery around your area.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Trusted Brands</h3>
-        <p>Only quality pet food brands.</p>
+        <h3>Trusted Products</h3>
+        <p>
+          We focus on quality pet food from trusted suppliers and brands.
+        </p>
       </div>
 
       <div class="feature-box">
         <h3>Easy Ordering</h3>
-        <p>Simple WhatsApp ordering process.</p>
+        <p>
+          Order quickly through WhatsApp with simple communication.
+        </p>
       </div>
 
       <div class="feature-box">
-        <h3>Affordable Prices</h3>
-        <p>Great value for pet owners.</p>
+        <h3>Fast Delivery</h3>
+        <p>
+          Convenient delivery designed for busy pet owners.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <h3>Built For Pet Owners</h3>
+        <p>
+          Pawlatto is focused on making pet shopping simpler and faster.
+        </p>
       </div>
 
     </div>
@@ -306,9 +308,15 @@
   </section>
 
   <!-- FOOTER -->
+
   <footer>
-    <p>© 2026 Pawlatto. All Rights Reserved.</p>
+
+    <p>
+      © 2026 Pawlatto. All Rights Reserved.
+    </p>
+
   </footer>
 
 </body>
 </html>
+```
