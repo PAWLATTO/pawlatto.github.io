@@ -1,4 +1,4 @@
-```css id="owp2ve"
+```css id="x9a2lc"
 *{
   margin:0;
   padding:0;
@@ -17,7 +17,6 @@ body{
 
 /* HEADER */
 
-css id="8ukjlwm"
 header{
   position:fixed;
   top:0;
@@ -25,39 +24,34 @@ header{
   width:100%;
   z-index:1000;
 
-  background:rgba(17,24,39,0.85);
+  background:rgba(17,24,39,0.88);
   backdrop-filter:blur(10px);
 
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  padding:18px 40px;
-
-  overflow:hidden;
+  padding:18px 50px;
 }
 
 .logo{
   color:white;
   font-size:32px;
-  font-weight:bold;
-  flex-shrink:0;
+  font-weight:700;
+  letter-spacing:1px;
 }
 
 nav{
   display:flex;
   align-items:center;
-  gap:20px;
-
-  flex-wrap:wrap;
-  justify-content:flex-end;
+  gap:30px;
 }
 
 nav a{
   color:white;
   text-decoration:none;
-  font-size:14px;
-  white-space:nowrap;
+  font-size:15px;
+  font-weight:500;
   transition:0.3s;
 }
 
@@ -337,9 +331,9 @@ footer{
   font-size:14px;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media(max-width:768px){
+@media(max-width:900px){
 
   header{
     padding:18px 25px;
