@@ -1,4 +1,4 @@
-```css id="f2f4oc"
+```css id="owp2ve"
 *{
   margin:0;
   padding:0;
@@ -23,6 +23,7 @@ header{
   top:0;
   left:0;
   z-index:1000;
+
   background:rgba(17,24,39,0.85);
   backdrop-filter:blur(10px);
 
@@ -30,7 +31,7 @@ header{
   justify-content:space-between;
   align-items:center;
 
-  padding:20px 8%;
+  padding:20px 60px;
 }
 
 .logo{
@@ -40,12 +41,18 @@ header{
   letter-spacing:1px;
 }
 
+nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
 nav a{
   color:white;
   text-decoration:none;
-  margin-left:25px;
   font-size:15px;
   transition:0.3s;
+  white-space:nowrap;
 }
 
 nav a:hover{
@@ -329,11 +336,15 @@ footer{
 @media(max-width:768px){
 
   header{
-    padding:18px 6%;
+    padding:18px 25px;
   }
 
   nav{
-    display:none;
+    gap:15px;
+  }
+
+  nav a{
+    font-size:13px;
   }
 
   .hero-content h1{
