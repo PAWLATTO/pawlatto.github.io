@@ -1,64 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawLatto | Pet Store</title>
 
-  <title>Pawlatto | Premium Pet Food Delivery</title>
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Premium pet food delivery built for modern pet owners. Fast delivery, trusted products, and easy WhatsApp ordering with Pawlatto." />
-
-  <link rel="stylesheet" href="style.css" />
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
+  <!-- NAVBAR -->
+  <header class="navbar">
 
-    <div class="logo">Pawlatto</div>
+    <div class="logo-section">
+      <img src="images/logo.png" alt="PawLatto Logo" class="logo">
+      <h1>PawLatto</h1>
+    </div>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#coming">Products</a>
-      <a href="#why">Why Us</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
+
+    <div class="nav-buttons">
+      <button class="cart-btn">
+        Cart (<span id="cart-count">0</span>)
+      </button>
+    </div>
 
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-
-    <div class="slides">
-      <div class="slide slide1"></div>
-      <div class="slide slide2"></div>
-      <div class="slide slide3"></div>
-      <div class="slide slide4"></div>
-    </div>
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
 
     <div class="hero-content">
-
-      <h1>Premium Pet Food Delivery For Modern Pet Owners</h1>
+      <h2>Premium Pet Essentials</h2>
 
       <p>
-        Pawlatto is building a trusted pet brand focused on quality products,
-        fast delivery, and simple WhatsApp ordering.
+        Quality products for pets that deserve the best.
       </p>
 
-      <div class="hero-buttons">
+      <a href="#shop" class="shop-now-btn">
+        Shop Now
+      </a>
+    </div>
 
-        <a class="btn" href="https://whatsapp.com/channel/0029vbSq9kE50UiMAyzYj0a" target="_blank">
-          Join WhatsApp Channel
-        </a>
+  </section>
 
-        <a class="btn secondary-btn" href="#coming">
-          Explore Products
-        </a>
+  <!-- FEATURE SECTION -->
+  <section class="features">
+
+    <div class="feature-card">
+      <h3>Fast Delivery</h3>
+      <p>Reliable delivery across South Africa.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Secure Payments</h3>
+      <p>Safe checkout powered by trusted payment systems.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Trusted Quality</h3>
+      <p>Carefully selected products for your pets.</p>
+    </div>
+
+  </section>
+
+  <!-- SHOP SECTION -->
+  <section class="shop-section" id="shop">
+
+    <div class="section-title">
+      <h2>Featured Products</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- PRODUCT 1 -->
+      <div class="product-card">
+
+        <img src="images/product1.jpg" alt="Dog Food">
+
+        <div class="product-info">
+          <h3>Premium Dog Food</h3>
+
+          <p class="product-price">R299</p>
+
+          <button class="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="product-card">
+
+        <img src="images/product2.jpg" alt="Pet Toy">
+
+        <div class="product-info">
+          <h3>Interactive Pet Toy</h3>
+
+          <p class="product-price">R149</p>
+
+          <button class="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="product-card">
+
+        <img src="images/product3.jpg" alt="Pet Bed">
+
+        <div class="product-info">
+          <h3>Luxury Pet Bed</h3>
+
+          <p class="product-price">R499</p>
+
+          <button class="add-to-cart-btn">
+            Add to Cart
+          </button>
+        </div>
 
       </div>
 
@@ -66,188 +142,129 @@
 
   </section>
 
-  <!-- FEATURE STRIP -->
-  <section class="feature-strip">
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="about">
 
-    <div class="feature-item">Fast Delivery</div>
-    <div class="feature-item">Trusted Products</div>
-    <div class="feature-item">WhatsApp Ordering</div>
-    <div class="feature-item">Premium Quality</div>
+    <div class="section-title">
+      <h2>About PawLatto</h2>
+    </div>
+
+    <div class="about-content">
+
+      <p>
+        PawLatto is a modern pet brand focused on providing quality,
+        convenience, and trusted products for pet lovers across South Africa.
+      </p>
+
+      <p>
+        Our mission is to create a professional and reliable shopping
+        experience for every pet owner.
+      </p>
+
+    </div>
 
   </section>
 
-  <!-- PRODUCTS -->
-  <section class="coming-soon" id="coming">
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="contact">
 
-    <h2>Products Coming Soon</h2>
+    <div class="section-title">
+      <h2>Contact Us</h2>
+    </div>
 
-    <p>
-      We are preparing premium pet food, treats, and accessories for your pets.
-      Pawlatto will soon bring everything directly to your door.
-    </p>
+    <div class="contact-container">
 
-    <div class="cards">
-
-      <div class="card">
-        <h3>Dog Food</h3>
-        <p>High quality nutrition for dogs of all sizes.</p>
+      <div class="contact-box">
+        <h3>Email</h3>
+        <p>support@pawlatto.com</p>
       </div>
 
-      <div class="card">
-        <h3>Pet Treats</h3>
-        <p>Healthy and tasty rewards for your pets.</p>
+      <div class="contact-box">
+        <h3>WhatsApp</h3>
+        <p>+27 00 000 0000</p>
       </div>
 
-      <div class="card">
-        <h3>Accessories</h3>
-        <p>Bowls, toys, leashes and more pet essentials.</p>
-      </div>
-
-      <div class="card">
-        <h3>Fast Delivery</h3>
-        <p>Quick and reliable delivery service.</p>
+      <div class="contact-box">
+        <h3>Location</h3>
+        <p>South Africa</p>
       </div>
 
     </div>
 
   </section>
 
-  <!-- WHY US -->
-  <section class="why" id="why">
+  <!-- FOOTER -->
+  <footer class="footer">
 
-    <h2 class="section-title">Why Choose Pawlatto?</h2>
+    <div class="footer-content">
 
-    <div class="why-grid">
+      <h2>PawLatto</h2>
 
-      <div class="why-box">
-        <h3>Trusted Quality</h3>
-        <p>We only work with reliable pet product suppliers.</p>
+      <p>
+        Premium pet essentials for modern pet owners.
+      </p>
+
+      <div class="social-links">
+
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Facebook</a>
+        <a href="#">LinkedIn</a>
+
       </div>
 
-      <div class="why-box">
-        <h3>Simple Ordering</h3>
-        <p>Order easily through WhatsApp anytime.</p>
-      </div>
-
-      <div class="why-box">
-        <h3>Fast Support</h3>
-        <p>Quick responses and customer assistance.</p>
-      </div>
-
-      <div class="why-box">
-        <h3>Convenience</h3>
-        <p>Everything delivered directly to your home.</p>
-      </div>
+      <p class="copyright">
+        © 2026 PawLatto. All Rights Reserved.
+      </p>
 
     </div>
 
-  </section>
+  </footer>
 
-  <!-- REVIEWS -->
-  <section class="reviews" id="reviews">
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cart-sidebar">
 
-    <h2 class="section-title">What Pet Owners Will Love</h2>
+    <div class="cart-header">
+      <h2>Your Cart</h2>
 
-    <div class="review-grid">
+      <button id="close-cart">
+        ✕
+      </button>
+    </div>
 
-      <div class="review-card">
-        <p>"Pawlatto feels like a premium pet brand already."</p>
-        <h4>- Customer</h4>
-      </div>
+    <div class="cart-items">
 
-      <div class="review-card">
-        <p>"Ordering through WhatsApp is super convenient."</p>
-        <h4>- Pet Owner</h4>
-      </div>
-
-      <div class="review-card">
-        <p>"I can’t wait for the official launch."</p>
-        <h4>- Supporter</h4>
-      </div>
+      <!-- JS PRODUCTS WILL LOAD HERE -->
 
     </div>
 
-  </section>
+    <div class="cart-footer">
 
-  <!-- FAQ -->
-  <section class="faq" id="faq">
+      <h3>
+        Total: R<span id="cart-total">0</span>
+      </h3>
 
-    <h2 class="section-title">FAQ</h2>
-
-    <div class="faq-container">
-
-      <div class="faq-box">
-        <h3>When are you launching?</h3>
-        <p>We are preparing products and launching soon.</p>
-      </div>
-
-      <div class="faq-box">
-        <h3>How do I order?</h3>
-        <p>Orders will be placed through WhatsApp.</p>
-      </div>
-
-      <div class="faq-box">
-        <h3>Do you deliver?</h3>
-        <p>Yes, we will deliver directly to your home.</p>
-      </div>
+      <button class="checkout-btn">
+        Proceed to Checkout
+      </button>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
 
-    <h2 class="section-title">Contact Pawlatto</h2>
-
-    <form class="contact-form" id="contactForm">
-
-      <input type="text" id="name" placeholder="Your Name" required />
-
-      <input type="email" id="email" placeholder="Your Email" required />
-
-      <textarea id="message" placeholder="Your Message" required></textarea>
-
-      <button type="submit" class="btn">Send Message</button>
-
-    </form>
-
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-
-    <h2>Join The Pawlatto Journey</h2>
-
-    <p>
-      Follow us for updates, product launches, and exclusive offers.
-    </p>
-
-    <a class="btn" href="https://whatsapp.com/channel/0029vbSq9kE50UiMAyzYj0a" target="_blank">
-      Join WhatsApp Channel
-    </a>
-
-    <div class="socials">
-
-      <a href="https://www.tiktok.com/@pawlatto" target="_blank">TikTok</a>
-      <a href="https://www.instagram.com/pawlatto/?hl=en" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=61588935396366" target="_blank">Facebook</a>
-
-    </div>
-
-  </section>
-
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/" class="whatsapp-float" target="_blank">
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a
+    href="https://wa.me/27000000000"
+    class="whatsapp-float"
+    target="_blank"
+  >
     WhatsApp
   </a>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Pawlatto. All Rights Reserved.
-  </footer>
-
-  <!-- JS WILL GO HERE LATER -->
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
 
 </body>
