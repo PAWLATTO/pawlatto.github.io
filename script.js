@@ -1,421 +1,377 @@
-// =========================
-// CART VARIABLES
-// =========================
+// ===================================
+// HERO SLIDER
+// ===================================
 
-const cartBtn = document.querySelector(".cart-btn");
-const cartSidebar = document.getElementById("cart-sidebar");
-const closeCartBtn = document.getElementById("close-cart");
-const overlay = document.getElementById("overlay");
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
 
-const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+const nextBtn =
+  document.querySelector(".next-btn");
 
-const cartItemsContainer = document.querySelector(".cart-items");
+const prevBtn =
+  document.querySelector(".prev-btn");
 
-const cartCount = document.getElementById("cart-count");
-const cartTotal = document.getElementById("cart-total");
+let currentSlide = 0;
 
-const checkoutBtn = document.querySelector(".checkout-btn");
+// ===================================
+// SHOW SLIDE FUNCTION
+// ===================================
 
-// =========================
-// CART DATA
-// =========================
+function showSlide(index){
 
-let cart = [];
+  // REMOVE ACTIVE CLASSES
 
-// =========================
-// OPEN CART
-// =========================
+  slides.forEach((slide) => {
+    slide.classList.remove("active");
+  });
 
-cartBtn.addEventListener("click", () => {
-  cartSidebar.classList.add("active");
-  overlay.classList.add("active");
-});
+  dots.forEach((dot) => {
+    dot.classList.remove("active-dot");
+  });
 
-// =========================
-// CLOSE CART
-// =========================
+  // ADD ACTIVE CLASS
 
-closeCartBtn.addEventListener("click", closeCart);
+  slides[index].classList.add("active");
 
-overlay.addEventListener("click", closeCart);
+  dots[index].classList.add("active-dot");
 
-function closeCart() {
-  cartSidebar.classList.remove("active");
-  overlay.classList.remove("active");
 }
 
-// =========================
-// ADD PRODUCTS TO CART
-// =========================
+// ===================================
+// NEXT SLIDE
+// ===================================
 
-addToCartButtons.forEach((button, index) => {
+function nextSlide(){
 
-  button.addEventListener("click", () => {
+  currentSlide++;
 
-    const productCard =
-      button.closest(".product-card");
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
+  }
 
-    const productName =
-      productCard.querySelector("h3").innerText;
+  showSlide(currentSlide);
 
-    const productPriceText =
-      productCard.querySelector(".product-price").innerText;
+}
 
-    const productPrice =
-      parseInt(
-        productPriceText.replace("R", "")
-      );
+// ===================================
+// PREVIOUS SLIDE
+// ===================================
 
-    const productImage =
-      productCard.querySelector("img").src;
+function previousSlide(){
 
-    addToCart(
-      productName,
-      productPrice,
-      productImage
-    );
+  currentSlide--;
+
+  if(currentSlide < 0){
+    currentSlide = slides.length - 1;
+  }
+
+  showSlide(currentSlide);
+
+}
+
+// ===================================
+// BUTTON EVENTS
+// ===================================
+
+nextBtn.addEventListener("click", () => {
+  nextSlide();
+});
+
+prevBtn.addEventListener("click", () => {
+  previousSlide();
+});
+
+// ===================================
+// DOT EVENTS
+// ===================================
+
+dots.forEach((dot, index) => {
+
+  dot.addEventListener("click", () => {
+
+    currentSlide = index;
+
+    showSlide(currentSlide);
 
   });
 
 });
 
-// =========================
-// ADD TO CART FUNCTION
-// =========================
+// ===================================
+// AUTO SLIDE
+// ===================================
 
-function addToCart(name, price, image) {
+setInterval(() => {
 
-  const existingProduct =
-    cart.find(item => item.name === name);
+  nextSlide();
 
-  if(existingProduct){
+}, 5000);
 
-    existingProduct.quantity += 1;
+// ===================================
+// NAVBAR SCROLL EFFECT
+// ===================================
+
+const navbar =
+  document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 50){
+
+    navbar.classList.add("scrolled");
 
   } else {
 
-    cart.push({
-      name,
-      price,
-      image,
-      quantity: 1
-    });
+    navbar.classList.remove("scrolled");
 
   }
 
-  updateCartUI();
+});
 
-  openCartAfterAdd();
+// ===================================
+// SMOOTH SCROLL
+// ===================================
 
-}
+const navLinks =
+  document.querySelectorAll(".nav-links a");
 
-// =========================
-// OPEN CART AFTER ADD
-// =========================
+navLinks.forEach((link) => {
 
-function openCartAfterAdd(){
+  link.addEventListener("click", (e) => {
 
-  cartSidebar.classList.add("active");
-  overlay.classList.add("active");
+    e.preventDefault();
 
-}
+    const targetId =
+      link.getAttribute("href");
 
-// =========================
-// UPDATE CART UI
-// =========================
+    const targetSection =
+      document.querySelector(targetId);
 
-function updateCartUI(){
+    window.scrollTo({
 
-  cartItemsContainer.innerHTML = "";
+      top:
+      targetSection.offsetTop - 80,
 
-  let total = 0;
-  let totalItems = 0;
-
-  cart.forEach((item, index) => {
-
-    total += item.price * item.quantity;
-
-    totalItems += item.quantity;
-
-    const cartItem = document.createElement("div");
-
-    cartItem.classList.add("cart-item");
-
-    cartItem.innerHTML = `
-
-      <div class="cart-product">
-
-        <img
-          src="${item.image}"
-          alt="${item.name}"
-          class="cart-product-image"
-        >
-
-        <div class="cart-product-info">
-
-          <h4>${item.name}</h4>
-
-          <p>R${item.price}</p>
-
-          <div class="quantity-controls">
-
-            <button
-              class="quantity-btn decrease"
-              data-index="${index}"
-            >
-              -
-            </button>
-
-            <span>${item.quantity}</span>
-
-            <button
-              class="quantity-btn increase"
-              data-index="${index}"
-            >
-              +
-            </button>
-
-          </div>
-
-        </div>
-
-        <button
-          class="remove-btn"
-          data-index="${index}"
-        >
-          ✕
-        </button>
-
-      </div>
-
-    `;
-
-    cartItemsContainer.appendChild(cartItem);
-
-  });
-
-  cartTotal.innerText = total;
-
-  cartCount.innerText = totalItems;
-
-  activateCartButtons();
-
-}
-
-// =========================
-// ACTIVATE BUTTONS
-// =========================
-
-function activateCartButtons(){
-
-  // REMOVE BUTTONS
-
-  const removeButtons =
-    document.querySelectorAll(".remove-btn");
-
-  removeButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const index =
-        button.getAttribute("data-index");
-
-      removeFromCart(index);
+      behavior: "smooth"
 
     });
 
   });
 
-  // INCREASE BUTTONS
+});
 
-  const increaseButtons =
-    document.querySelectorAll(".increase");
+// ===================================
+// EMAIL FORM
+// ===================================
 
-  increaseButtons.forEach(button => {
+const notifyForm =
+  document.querySelector(".notify-form");
 
-    button.addEventListener("click", () => {
+notifyForm.addEventListener("submit", (e) => {
 
-      const index =
-        button.getAttribute("data-index");
+  e.preventDefault();
 
-      cart[index].quantity += 1;
+  const emailInput =
+    notifyForm.querySelector("input");
 
-      updateCartUI();
+  const emailValue =
+    emailInput.value.trim();
 
-    });
+  if(emailValue === ""){
 
-  });
-
-  // DECREASE BUTTONS
-
-  const decreaseButtons =
-    document.querySelectorAll(".decrease");
-
-  decreaseButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      const index =
-        button.getAttribute("data-index");
-
-      if(cart[index].quantity > 1){
-
-        cart[index].quantity -= 1;
-
-      } else {
-
-        cart.splice(index, 1);
-
-      }
-
-      updateCartUI();
-
-    });
-
-  });
-
-}
-
-// =========================
-// REMOVE FROM CART
-// =========================
-
-function removeFromCart(index){
-
-  cart.splice(index, 1);
-
-  updateCartUI();
-
-}
-
-// =========================
-// CHECKOUT BUTTON
-// =========================
-
-checkoutBtn.addEventListener("click", () => {
-
-  if(cart.length === 0){
-
-    alert("Your cart is empty.");
+    alert("Please enter your email.");
 
     return;
 
   }
 
+  // SUCCESS MESSAGE
+
   alert(
-    "Checkout system coming soon with PayFast integration."
+    "Thank you for joining PawLatto!"
   );
+
+  // CLEAR INPUT
+
+  emailInput.value = "";
 
 });
 
-// =========================
-// SAVE CART TO LOCAL STORAGE
-// =========================
+// ===================================
+// HERO FADE ANIMATION
+// ===================================
 
-function saveCart(){
+window.addEventListener("load", () => {
 
-  localStorage.setItem(
-    "pawlattoCart",
-    JSON.stringify(cart)
-  );
+  const heroContent =
+    document.querySelectorAll(".hero-content");
 
-}
+  heroContent.forEach((content) => {
 
-// =========================
-// LOAD CART FROM LOCAL STORAGE
-// =========================
-
-function loadCart(){
-
-  const savedCart =
-    localStorage.getItem("pawlattoCart");
-
-  if(savedCart){
-
-    cart = JSON.parse(savedCart);
-
-    updateCartUI();
-
-  }
-
-}
-
-// =========================
-// AUTO SAVE WHEN CART UPDATES
-// =========================
-
-const originalUpdateCartUI = updateCartUI;
-
-updateCartUI = function(){
-
-  originalUpdateCartUI();
-
-  saveCart();
-
-};
-
-// =========================
-// LOAD CART ON PAGE LOAD
-// =========================
-
-loadCart();
-
-// =========================
-// MOBILE NAVIGATION
-// =========================
-
-const navLinks =
-  document.querySelectorAll(".nav-links a");
-
-navLinks.forEach(link => {
-
-  link.addEventListener("click", () => {
-
-    closeCart();
-
-  });
-
-});
-
-// =========================
-// SMOOTH PRODUCT BUTTON ANIMATION
-// =========================
-
-addToCartButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    button.innerText = "Added ✓";
+    content.style.opacity = "0";
+    content.style.transform = "translateY(30px)";
 
     setTimeout(() => {
 
-      button.innerText = "Add to Cart";
+      content.style.transition =
+        "1s ease";
 
-    }, 1500);
+      content.style.opacity = "1";
+
+      content.style.transform =
+        "translateY(0px)";
+
+    }, 300);
 
   });
 
 });
 
-// =========================
-// SCROLL NAVBAR EFFECT
-// =========================
+// ===================================
+// COMING SOON CARD HOVER EFFECT
+// ===================================
+
+const comingCards =
+  document.querySelectorAll(".coming-card");
+
+comingCards.forEach((card) => {
+
+  card.addEventListener("mouseenter", () => {
+
+    card.style.transform =
+      "translateY(-10px) scale(1.02)";
+
+  });
+
+  card.addEventListener("mouseleave", () => {
+
+    card.style.transform =
+      "translateY(0px) scale(1)";
+
+  });
+
+});
+
+// ===================================
+// FEATURE BOX ANIMATION
+// ===================================
+
+const featureBoxes =
+  document.querySelectorAll(".feature-box");
 
 window.addEventListener("scroll", () => {
 
-  const navbar =
-    document.querySelector(".navbar");
+  featureBoxes.forEach((box) => {
 
-  if(window.scrollY > 50){
+    const boxTop =
+      box.getBoundingClientRect().top;
 
-    navbar.style.boxShadow =
-      "0 4px 20px rgba(0,0,0,0.1)";
+    if(boxTop < window.innerHeight - 100){
 
-  } else {
+      box.style.opacity = "1";
 
-    navbar.style.boxShadow =
-      "0 2px 10px rgba(0,0,0,0.05)";
+      box.style.transform =
+        "translateY(0px)";
 
-  }
+    }
+
+  });
+
+});
+
+// INITIAL STATE
+
+featureBoxes.forEach((box) => {
+
+  box.style.opacity = "0";
+
+  box.style.transform =
+    "translateY(40px)";
+
+  box.style.transition =
+    "0.8s ease";
+
+});
+
+// ===================================
+// CONTACT CARD ANIMATION
+// ===================================
+
+const contactCards =
+  document.querySelectorAll(".contact-card");
+
+contactCards.forEach((card, index) => {
+
+  card.style.opacity = "0";
+
+  card.style.transform =
+    "translateY(40px)";
+
+  card.style.transition =
+    `0.8s ease ${index * 0.2}s`;
+
+});
+
+window.addEventListener("scroll", () => {
+
+  contactCards.forEach((card) => {
+
+    const cardTop =
+      card.getBoundingClientRect().top;
+
+    if(cardTop < window.innerHeight - 100){
+
+      card.style.opacity = "1";
+
+      card.style.transform =
+        "translateY(0px)";
+
+    }
+
+  });
+
+});
+
+// ===================================
+// FOOTER LINK HOVER EFFECT
+// ===================================
+
+const footerLinks =
+  document.querySelectorAll(".footer-box a");
+
+footerLinks.forEach((link) => {
+
+  link.addEventListener("mouseenter", () => {
+
+    link.style.transform =
+      "translateX(5px)";
+
+  });
+
+  link.addEventListener("mouseleave", () => {
+
+    link.style.transform =
+      "translateX(0px)";
+
+  });
+
+});
+
+// ===================================
+// PAGE LOAD EFFECT
+// ===================================
+
+window.addEventListener("load", () => {
+
+  document.body.style.opacity = "0";
+
+  setTimeout(() => {
+
+    document.body.style.transition =
+      "1s ease";
+
+    document.body.style.opacity = "1";
+
+  }, 100);
 
 });
