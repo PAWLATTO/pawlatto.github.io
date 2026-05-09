@@ -1,140 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawLatto | Pet Store</title>
 
-  <!-- GOOGLE FONTS -->
+<head>
+
+  <!-- BASIC -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- WEBSITE TITLE -->
+  <title>PawLatto | Premium Pet Essentials</title>
+
+  <!-- GOOGLE FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+  <!-- ===================================
+       NAVBAR
+  ==================================== -->
+
   <header class="navbar">
 
-    <div class="logo-section">
-      <img src="images/logo.png" alt="PawLatto Logo" class="logo">
-      <h1>PawLatto</h1>
+    <!-- LOGO -->
+    <div class="logo-container">
+
+      <img
+        src="images/logo.png"
+        alt="PawLatto Logo"
+        class="logo"
+      >
+
     </div>
 
+    <!-- NAVIGATION -->
     <nav>
+
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+        <li>
+          <a href="#home">Home</a>
+        </li>
+
+        <li>
+          <a href="#products">Products</a>
+        </li>
+
+        <li>
+          <a href="#about">About</a>
+        </li>
+
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+
       </ul>
+
     </nav>
 
-    <div class="nav-buttons">
-      <button class="cart-btn">
-        Cart (<span id="cart-count">0</span>)
-      </button>
-    </div>
+    <!-- WHATSAPP BUTTON -->
+    <a
+      href="https://wa.me/27812563111"
+      target="_blank"
+      class="nav-whatsapp-btn"
+    >
+      WhatsApp
+    </a>
 
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
+  <!-- ===================================
+       HERO SLIDER
+  ==================================== -->
 
-    <div class="hero-content">
-      <h2>Premium Pet Essentials</h2>
+  <section class="hero-slider" id="home">
 
-      <p>
-        Quality products for pets that deserve the best.
-      </p>
+    <!-- SLIDE 1 -->
+    <div
+      class="slide active"
+      style="background-image: url('images/slide1.jpg');"
+    >
 
-      <a href="#shop" class="shop-now-btn">
-        Shop Now
-      </a>
+      <div class="dark-overlay"></div>
+
+      <div class="hero-content">
+
+        <h1>
+          Premium Pet Essentials
+        </h1>
+
+        <p>
+          Quality products for pets
+          that deserve the best.
+        </p>
+
+        <a href="#products" class="hero-btn">
+          Coming Soon
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div
+      class="slide"
+      style="background-image: url('images/slide2.jpg');"
+    >
+
+      <div class="dark-overlay"></div>
+
+      <div class="hero-content">
+
+        <h1>
+          Modern Pet Lifestyle
+        </h1>
+
+        <p>
+          Built for pet lovers across South Africa.
+        </p>
+
+        <a href="#about" class="hero-btn">
+          Learn More
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div
+      class="slide"
+      style="background-image: url('images/slide3.jpg');"
+    >
+
+      <div class="dark-overlay"></div>
+
+      <div class="hero-content">
+
+        <h1>
+          Trusted By Pet Lovers
+        </h1>
+
+        <p>
+          PawLatto is preparing something amazing.
+        </p>
+
+        <a href="#contact" class="hero-btn">
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDER BUTTONS -->
+
+    <button class="slider-btn prev-btn">
+      ❮
+    </button>
+
+    <button class="slider-btn next-btn">
+      ❯
+    </button>
+
+    <!-- DOTS -->
+
+    <div class="slider-dots">
+
+      <span class="dot active-dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+
     </div>
 
   </section>
 
-  <!-- FEATURE SECTION -->
-  <section class="features">
+  <!-- ===================================
+       PRODUCTS COMING SOON
+  ==================================== -->
 
-    <div class="feature-card">
-      <h3>Fast Delivery</h3>
-      <p>Reliable delivery across South Africa.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Secure Payments</h3>
-      <p>Safe checkout powered by trusted payment systems.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>Trusted Quality</h3>
-      <p>Carefully selected products for your pets.</p>
-    </div>
-
-  </section>
-
-  <!-- SHOP SECTION -->
-  <section class="shop-section" id="shop">
+  <section class="products-section" id="products">
 
     <div class="section-title">
-      <h2>Featured Products</h2>
+
+      <span class="paw-emoji">
+        🐾
+      </span>
+
+      <h2>
+        Products Coming Soon
+      </h2>
+
+      <p>
+        We’re preparing a premium collection
+        of products for your pets.
+      </p>
+
     </div>
 
-    <div class="products-grid">
+    <!-- PRODUCT PLACEHOLDERS -->
 
-      <!-- PRODUCT 1 -->
-      <div class="product-card">
+    <div class="coming-soon-grid">
 
-        <img src="images/product1.jpg" alt="Dog Food">
+      <!-- CARD 1 -->
+      <div class="coming-card">
 
-        <div class="product-info">
-          <h3>Premium Dog Food</h3>
-
-          <p class="product-price">R299</p>
-
-          <button class="add-to-cart-btn">
-            Add to Cart
-          </button>
+        <div class="coming-icon">
+          🐾
         </div>
+
+        <h3>Coming Soon</h3>
 
       </div>
 
-      <!-- PRODUCT 2 -->
-      <div class="product-card">
+      <!-- CARD 2 -->
+      <div class="coming-card">
 
-        <img src="images/product2.jpg" alt="Pet Toy">
-
-        <div class="product-info">
-          <h3>Interactive Pet Toy</h3>
-
-          <p class="product-price">R149</p>
-
-          <button class="add-to-cart-btn">
-            Add to Cart
-          </button>
+        <div class="coming-icon">
+          🐾
         </div>
+
+        <h3>Coming Soon</h3>
 
       </div>
 
-      <!-- PRODUCT 3 -->
-      <div class="product-card">
+      <!-- CARD 3 -->
+      <div class="coming-card">
 
-        <img src="images/product3.jpg" alt="Pet Bed">
-
-        <div class="product-info">
-          <h3>Luxury Pet Bed</h3>
-
-          <p class="product-price">R499</p>
-
-          <button class="add-to-cart-btn">
-            Add to Cart
-          </button>
+        <div class="coming-icon">
+          🐾
         </div>
+
+        <h3>Coming Soon</h3>
 
       </div>
 
@@ -142,78 +250,274 @@
 
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ===================================
+       FEATURES SECTION
+  ==================================== -->
+
+  <section class="features-section">
+
+    <!-- FEATURE 1 -->
+    <div class="feature-box">
+
+      <div class="feature-icon">
+        🚚
+      </div>
+
+      <h3>
+        Fast Delivery
+      </h3>
+
+      <p>
+        Reliable delivery across South Africa.
+      </p>
+
+    </div>
+
+    <!-- FEATURE 2 -->
+    <div class="feature-box">
+
+      <div class="feature-icon">
+        🔒
+      </div>
+
+      <h3>
+        Secure Payments
+      </h3>
+
+      <p>
+        Safe checkout with trusted payment systems.
+      </p>
+
+    </div>
+
+    <!-- FEATURE 3 -->
+    <div class="feature-box">
+
+      <div class="feature-icon">
+        🐾
+      </div>
+
+      <h3>
+        Trusted Quality
+      </h3>
+
+      <p>
+        Carefully selected products for your pets.
+      </p>
+
+    </div>
+
+    <!-- FEATURE 4 -->
+    <div class="feature-box">
+
+      <div class="feature-icon">
+        🎧
+      </div>
+
+      <h3>
+        Customer Support
+      </h3>
+
+      <p>
+        We’re here whenever you need us.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================
+       ABOUT SECTION
+  ==================================== -->
+
   <section class="about-section" id="about">
 
-    <div class="section-title">
-      <h2>About PawLatto</h2>
+    <!-- IMAGE -->
+    <div class="about-image">
+
+      <img
+        src="images/about.jpg"
+        alt="Pets"
+      >
+
     </div>
 
-    <div class="about-content">
+    <!-- TEXT -->
+    <div class="about-text">
+
+      <span class="paw-emoji">
+        🐾
+      </span>
+
+      <h2>
+        Join The PawLatto Family
+      </h2>
 
       <p>
-        PawLatto is a modern pet brand focused on providing quality,
-        convenience, and trusted products for pet lovers across South Africa.
+        PawLatto is building a trusted modern
+        pet lifestyle brand focused on quality,
+        care, and convenience.
       </p>
 
-      <p>
-        Our mission is to create a professional and reliable shopping
-        experience for every pet owner.
-      </p>
+      <!-- EMAIL FORM -->
+
+      <form class="notify-form">
+
+        <input
+          type="email"
+          placeholder="Enter your email"
+          required
+        >
+
+        <button type="submit">
+          Notify Me
+        </button>
+
+      </form>
 
     </div>
 
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- ===================================
+       CONTACT SECTION
+  ==================================== -->
+
   <section class="contact-section" id="contact">
 
     <div class="section-title">
-      <h2>Contact Us</h2>
+
+      <span class="paw-emoji">
+        🐾
+      </span>
+
+      <h2>
+        Contact Us
+      </h2>
+
+      <p>
+        Reach out to PawLatto anytime.
+      </p>
+
     </div>
 
     <div class="contact-container">
 
-      <div class="contact-box">
-        <h3>Email</h3>
-        <p>support@pawlatto.com</p>
+      <!-- WHATSAPP -->
+
+      <div class="contact-card">
+
+        <h3>
+          WhatsApp
+        </h3>
+
+        <p>
+          081 256 3111
+        </p>
+
       </div>
 
-      <div class="contact-box">
-        <h3>WhatsApp</h3>
-        <p>+27 00 000 0000</p>
+      <!-- LOCATION -->
+
+      <div class="contact-card">
+
+        <h3>
+          Location
+        </h3>
+
+        <p>
+          South Africa
+        </p>
+
       </div>
 
-      <div class="contact-box">
-        <h3>Location</h3>
-        <p>South Africa</p>
+      <!-- EMAIL -->
+
+      <div class="contact-card">
+
+        <h3>
+          Email
+        </h3>
+
+        <p>
+          support@pawlatto.com
+        </p>
+
       </div>
 
     </div>
 
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===================================
+       FOOTER
+  ==================================== -->
+
   <footer class="footer">
 
-    <div class="footer-content">
+    <div class="footer-container">
 
-      <h2>PawLatto</h2>
+      <!-- FOOTER LOGO -->
 
-      <p>
-        Premium pet essentials for modern pet owners.
-      </p>
+      <div class="footer-box">
 
-      <div class="social-links">
+        <img
+          src="images/logo.png"
+          alt="PawLatto Logo"
+          class="footer-logo"
+        >
 
-        <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
-        <a href="#">Facebook</a>
-        <a href="#">LinkedIn</a>
+        <p>
+          Premium pet essentials
+          for pets that deserve the best.
+        </p>
 
       </div>
 
-      <p class="copyright">
+      <!-- QUICK LINKS -->
+
+      <div class="footer-box">
+
+        <h3>
+          Quick Links
+        </h3>
+
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+
+      </div>
+
+      <!-- SOCIAL LINKS -->
+
+      <div class="footer-box">
+
+        <h3>
+          Follow Us
+        </h3>
+
+        <a href="#">
+          Instagram
+        </a>
+
+        <a href="#">
+          Facebook
+        </a>
+
+        <a href="#">
+          TikTok
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="footer-bottom">
+
+      <p>
         © 2026 PawLatto. All Rights Reserved.
       </p>
 
@@ -221,47 +525,16 @@
 
   </footer>
 
-  <!-- CART SIDEBAR -->
-  <div class="cart-sidebar" id="cart-sidebar">
+  <!-- ===================================
+       FLOATING WHATSAPP BUTTON
+  ==================================== -->
 
-    <div class="cart-header">
-      <h2>Your Cart</h2>
-
-      <button id="close-cart">
-        ✕
-      </button>
-    </div>
-
-    <div class="cart-items">
-
-      <!-- JS PRODUCTS WILL LOAD HERE -->
-
-    </div>
-
-    <div class="cart-footer">
-
-      <h3>
-        Total: R<span id="cart-total">0</span>
-      </h3>
-
-      <button class="checkout-btn">
-        Proceed to Checkout
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- OVERLAY -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- WHATSAPP FLOAT BUTTON -->
   <a
-    href="https://wa.me/27000000000"
-    class="whatsapp-float"
+    href="https://wa.me/27812563111"
     target="_blank"
+    class="floating-whatsapp"
   >
-    WhatsApp
+    Chat on WhatsApp
   </a>
 
   <!-- JAVASCRIPT -->
