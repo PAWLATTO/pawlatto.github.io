@@ -22,7 +22,7 @@ let currentSlide = 0;
 
 function showSlide(index){
 
-  // REMOVE ACTIVE CLASSES
+  // REMOVE ACTIVE
 
   slides.forEach((slide) => {
 
@@ -36,7 +36,7 @@ function showSlide(index){
 
   });
 
-  // ADD ACTIVE CLASSES
+  // ADD ACTIVE
 
   slides[index].classList.add("active");
 
@@ -178,7 +178,7 @@ navLinks.forEach((link) => {
 });
 
 // ===================================
-// EMAIL FORM
+// EMAIL NOTIFY FORM
 // ===================================
 
 const notifyForm =
@@ -206,7 +206,7 @@ notifyForm.addEventListener("submit", (e) => {
 
   }
 
-  // SUCCESS MESSAGE
+  // SUCCESS
 
   alert(
     "Thank you for joining the PawLatto family!"
@@ -219,7 +219,69 @@ notifyForm.addEventListener("submit", (e) => {
 });
 
 // ===================================
-// HERO FADE EFFECT
+// TERMS POPUP
+// ===================================
+
+const termsPopup =
+document.getElementById("termsPopup");
+
+const acceptTerms =
+document.getElementById("acceptTerms");
+
+const learnMore =
+document.getElementById("learnMore");
+
+// ACCEPT TERMS
+
+acceptTerms.addEventListener("click", () => {
+
+  // SAVE ACCEPTANCE
+
+  localStorage.setItem(
+    "pawlattoTermsAccepted",
+    "true"
+  );
+
+  // HIDE POPUP
+
+  termsPopup.style.display = "none";
+
+});
+
+// CHECK IF ACCEPTED BEFORE
+
+if(
+  localStorage.getItem(
+    "pawlattoTermsAccepted"
+  ) === "true"
+){
+
+  termsPopup.style.display = "none";
+
+}
+
+// ===================================
+// LEARN MORE BUTTON
+// ===================================
+
+learnMore.addEventListener("click", () => {
+
+  alert(
+
+`PawLatto Terms & Conditions
+
+• Products are subject to availability.
+• Delivery times may vary.
+• Payments are processed securely.
+• PawLatto reserves the right to update products and pricing.
+• By using this website you agree to our policies.`
+
+  );
+
+});
+
+// ===================================
+// HERO CONTENT FADE
 // ===================================
 
 window.addEventListener("load", () => {
@@ -251,36 +313,38 @@ window.addEventListener("load", () => {
 });
 
 // ===================================
-// FEATURE BOX ANIMATION
+// SCROLL ANIMATIONS
 // ===================================
 
-const featureBoxes =
-document.querySelectorAll(".feature-box");
+const animatedItems =
+document.querySelectorAll(
+  ".product-card, .feature-box, .contact-card"
+);
 
-featureBoxes.forEach((box) => {
+animatedItems.forEach((item) => {
 
-  box.style.opacity = "0";
+  item.style.opacity = "0";
 
-  box.style.transform =
+  item.style.transform =
   "translateY(40px)";
 
-  box.style.transition =
+  item.style.transition =
   "0.8s ease";
 
 });
 
 window.addEventListener("scroll", () => {
 
-  featureBoxes.forEach((box) => {
+  animatedItems.forEach((item) => {
 
-    const boxTop =
-    box.getBoundingClientRect().top;
+    const itemTop =
+    item.getBoundingClientRect().top;
 
-    if(boxTop < window.innerHeight - 100){
+    if(itemTop < window.innerHeight - 100){
 
-      box.style.opacity = "1";
+      item.style.opacity = "1";
 
-      box.style.transform =
+      item.style.transform =
       "translateY(0px)";
 
     }
@@ -290,91 +354,15 @@ window.addEventListener("scroll", () => {
 });
 
 // ===================================
-// TERMS SECTION ANIMATION
+// HOVER EFFECTS
 // ===================================
 
-const termsBoxes =
-document.querySelectorAll(".terms-box");
+const cards =
+document.querySelectorAll(
+  ".product-card, .feature-box, .contact-card"
+);
 
-termsBoxes.forEach((box, index) => {
-
-  box.style.opacity = "0";
-
-  box.style.transform =
-  "translateY(40px)";
-
-  box.style.transition =
-  `0.8s ease ${index * 0.15}s`;
-
-});
-
-window.addEventListener("scroll", () => {
-
-  termsBoxes.forEach((box) => {
-
-    const boxTop =
-    box.getBoundingClientRect().top;
-
-    if(boxTop < window.innerHeight - 100){
-
-      box.style.opacity = "1";
-
-      box.style.transform =
-      "translateY(0px)";
-
-    }
-
-  });
-
-});
-
-// ===================================
-// CONTACT CARD ANIMATION
-// ===================================
-
-const contactCards =
-document.querySelectorAll(".contact-card");
-
-contactCards.forEach((card, index) => {
-
-  card.style.opacity = "0";
-
-  card.style.transform =
-  "translateY(40px)";
-
-  card.style.transition =
-  `0.8s ease ${index * 0.2}s`;
-
-});
-
-window.addEventListener("scroll", () => {
-
-  contactCards.forEach((card) => {
-
-    const cardTop =
-    card.getBoundingClientRect().top;
-
-    if(cardTop < window.innerHeight - 100){
-
-      card.style.opacity = "1";
-
-      card.style.transform =
-      "translateY(0px)";
-
-    }
-
-  });
-
-});
-
-// ===================================
-// COMING SOON HOVER EFFECT
-// ===================================
-
-const comingCards =
-document.querySelectorAll(".coming-card");
-
-comingCards.forEach((card) => {
+cards.forEach((card) => {
 
   card.addEventListener("mouseenter", () => {
 
@@ -393,7 +381,7 @@ comingCards.forEach((card) => {
 });
 
 // ===================================
-// FOOTER LINK EFFECT
+// FOOTER LINKS EFFECT
 // ===================================
 
 const footerLinks =
