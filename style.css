@@ -1,5 +1,5 @@
 /* ===================================
-   GLOBAL STYLES
+   GLOBAL
 =================================== */
 
 *{
@@ -24,25 +24,24 @@ body{
 =================================== */
 
 .navbar{
-  width: 100%;
-  height: 90px;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-  padding: 0 7%;
+  width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  position: fixed;
-  top: 0;
-  left: 0;
+  padding: 20px 7%;
 
   z-index: 1000;
 
   transition: 0.4s ease;
 
   background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .navbar.scrolled{
@@ -50,10 +49,37 @@ body{
   box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
-.logo{
-  width: 85px;
-  object-fit: contain;
+/* ===================================
+   TEXT LOGO
+=================================== */
+
+.text-logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  line-height: 1;
 }
+
+.text-logo h2{
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  transition: 0.4s ease;
+}
+
+.text-logo span{
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.navbar.scrolled .text-logo h2{
+  color: #222;
+}
+
+/* ===================================
+   NAV LINKS
+=================================== */
 
 .nav-links{
   display: flex;
@@ -67,6 +93,7 @@ body{
   text-decoration: none;
   color: white;
   font-weight: 500;
+
   transition: 0.3s ease;
 }
 
@@ -78,13 +105,17 @@ body{
   color: #c69b6d;
 }
 
-.nav-whatsapp-btn{
-  padding: 13px 25px;
+/* ===================================
+   NAV BUTTON
+=================================== */
+
+.nav-btn{
+  text-decoration: none;
 
   background: #c69b6d;
   color: white;
 
-  text-decoration: none;
+  padding: 14px 30px;
 
   border-radius: 50px;
 
@@ -93,13 +124,13 @@ body{
   transition: 0.3s ease;
 }
 
-.nav-whatsapp-btn:hover{
+.nav-btn:hover{
   background: #b6895c;
   transform: translateY(-3px);
 }
 
 /* ===================================
-   HERO SECTION
+   HERO SLIDER
 =================================== */
 
 .hero-slider{
@@ -107,9 +138,12 @@ body{
   height: 100vh;
 
   position: relative;
-
   overflow: hidden;
 }
+
+/* ===================================
+   SLIDES
+=================================== */
 
 .slide{
   position: absolute;
@@ -120,20 +154,20 @@ body{
   top: 0;
   left: 0;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   opacity: 0;
   visibility: hidden;
 
   transition: 1s ease;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-size: cover;
   background-position: center;
 }
 
-/* FREE STOCK PHOTOS */
+/* HERO IMAGES */
 
 .slide:nth-child(1){
   background-image:
@@ -155,17 +189,25 @@ body{
   visibility: visible;
 }
 
-.dark-overlay{
+/* ===================================
+   OVERLAY
+=================================== */
+
+.overlay{
   position: absolute;
 
   width: 100%;
   height: 100%;
 
-  background: rgba(0,0,0,0.45);
-
   top: 0;
   left: 0;
+
+  background: rgba(0,0,0,0.45);
 }
+
+/* ===================================
+   HERO CONTENT
+=================================== */
 
 .hero-content{
   position: relative;
@@ -175,15 +217,16 @@ body{
 
   color: white;
 
-  max-width: 800px;
+  max-width: 850px;
 
   padding: 20px;
 }
 
 .hero-content h1{
   font-size: 5rem;
-  margin-bottom: 20px;
   line-height: 1.1;
+
+  margin-bottom: 20px;
 }
 
 .hero-content p{
@@ -196,12 +239,12 @@ body{
 .hero-btn{
   display: inline-block;
 
-  padding: 16px 38px;
-
   background: #c69b6d;
   color: white;
 
   text-decoration: none;
+
+  padding: 16px 38px;
 
   border-radius: 50px;
 
@@ -223,7 +266,6 @@ body{
   position: absolute;
 
   top: 50%;
-
   transform: translateY(-50%);
 
   width: 55px;
@@ -237,7 +279,7 @@ body{
 
   color: white;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 
   cursor: pointer;
 
@@ -294,7 +336,15 @@ body{
 }
 
 /* ===================================
-   SECTION TITLES
+   SECTIONS
+=================================== */
+
+section{
+  padding: 120px 7%;
+}
+
+/* ===================================
+   SECTION TITLE
 =================================== */
 
 .section-title{
@@ -302,37 +352,32 @@ body{
   margin-bottom: 60px;
 }
 
+.section-title span{
+  display: block;
+  font-size: 2rem;
+
+  margin-bottom: 10px;
+}
+
 .section-title h2{
   font-size: 3rem;
+
   margin-bottom: 15px;
 }
 
 .section-title p{
+  color: #666;
   max-width: 650px;
   margin: auto;
-
-  color: #666;
 
   line-height: 1.8;
 }
 
-.paw-emoji{
-  display: block;
-
-  font-size: 2rem;
-
-  margin-bottom: 15px;
-}
-
 /* ===================================
-   PRODUCTS SECTION
+   PRODUCTS
 =================================== */
 
-.products-section{
-  padding: 120px 7%;
-}
-
-.coming-soon-grid{
+.products-grid{
   display: grid;
 
   grid-template-columns:
@@ -341,12 +386,12 @@ body{
   gap: 30px;
 }
 
-.coming-card{
+.product-card{
   background: white;
 
   padding: 80px 30px;
 
-  border-radius: 25px;
+  border-radius: 30px;
 
   text-align: center;
 
@@ -355,27 +400,25 @@ body{
   transition: 0.4s ease;
 }
 
-.coming-card:hover{
+.product-card:hover{
   transform: translateY(-10px);
 }
 
-.coming-icon{
+.product-icon{
   font-size: 3rem;
+
   margin-bottom: 20px;
 }
 
-.coming-card h3{
+.product-card h3{
   font-size: 1.4rem;
-  color: #444;
 }
 
 /* ===================================
-   FEATURES SECTION
+   FEATURES
 =================================== */
 
 .features-section{
-  padding: 120px 7%;
-
   background: white;
 
   display: grid;
@@ -389,9 +432,9 @@ body{
 .feature-box{
   background: #f8f4ef;
 
-  padding: 45px 30px;
+  padding: 50px 30px;
 
-  border-radius: 25px;
+  border-radius: 30px;
 
   text-align: center;
 
@@ -404,12 +447,14 @@ body{
 
 .feature-icon{
   font-size: 2.5rem;
+
   margin-bottom: 20px;
 }
 
 .feature-box h3{
-  margin-bottom: 15px;
   font-size: 1.4rem;
+
+  margin-bottom: 15px;
 }
 
 .feature-box p{
@@ -422,8 +467,6 @@ body{
 =================================== */
 
 .about-section{
-  padding: 120px 7%;
-
   display: grid;
 
   grid-template-columns:
@@ -434,26 +477,54 @@ body{
   gap: 60px;
 }
 
-.about-image img{
-  width: 100%;
-  border-radius: 30px;
+.about-paw{
+  font-size: 2rem;
+  display: block;
+
+  margin-bottom: 15px;
 }
 
 .about-text h2{
   font-size: 3rem;
+
   margin-bottom: 25px;
 }
 
 .about-text p{
   color: #666;
+
   line-height: 1.9;
 
   margin-bottom: 25px;
 }
 
+/* ===================================
+   ABOUT IMAGE
+=================================== */
+
+.about-image{
+  width: 100%;
+  height: 550px;
+
+  border-radius: 30px;
+
+  background-image:
+  url('https://images.unsplash.com/photo-1517849845537-4d257902454a');
+
+  background-size: cover;
+  background-position: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===================================
+   EMAIL FORM
+=================================== */
+
 .notify-form{
   display: flex;
   gap: 15px;
+
   flex-wrap: wrap;
 }
 
@@ -474,14 +545,14 @@ body{
 }
 
 .notify-form button{
-  padding: 18px 35px;
-
   border: none;
-
-  border-radius: 50px;
 
   background: #c69b6d;
   color: white;
+
+  padding: 18px 35px;
+
+  border-radius: 50px;
 
   font-weight: 600;
 
@@ -495,56 +566,10 @@ body{
 }
 
 /* ===================================
-   TERMS SECTION
+   CONTACT
 =================================== */
 
-.terms-section{
-  padding: 120px 7%;
-  background: white;
-}
-
-.terms-container{
-  display: grid;
-
-  grid-template-columns:
-  repeat(auto-fit, minmax(260px,1fr));
-
-  gap: 30px;
-}
-
-.terms-box{
-  background: #f8f4ef;
-
-  padding: 40px 30px;
-
-  border-radius: 25px;
-
-  transition: 0.4s ease;
-}
-
-.terms-box:hover{
-  transform: translateY(-8px);
-}
-
-.terms-box h3{
-  margin-bottom: 18px;
-  font-size: 1.3rem;
-}
-
-.terms-box p{
-  color: #666;
-  line-height: 1.8;
-}
-
-/* ===================================
-   CONTACT SECTION
-=================================== */
-
-.contact-section{
-  padding: 120px 7%;
-}
-
-.contact-container{
+.contact-grid{
   display: grid;
 
   grid-template-columns:
@@ -558,7 +583,7 @@ body{
 
   padding: 50px 30px;
 
-  border-radius: 25px;
+  border-radius: 30px;
 
   text-align: center;
 
@@ -572,8 +597,9 @@ body{
 }
 
 .contact-card h3{
-  margin-bottom: 15px;
   font-size: 1.4rem;
+
+  margin-bottom: 15px;
 }
 
 .contact-card p{
@@ -591,19 +617,19 @@ body{
   padding-top: 90px;
 }
 
-.footer-container{
-  padding: 0 7% 70px;
-
+.footer-content{
   display: grid;
 
   grid-template-columns:
   repeat(auto-fit, minmax(250px,1fr));
 
   gap: 40px;
+
+  padding: 0 7% 70px;
 }
 
-.footer-logo{
-  width: 100px;
+.footer-box h2,
+.footer-box h3{
   margin-bottom: 20px;
 }
 
@@ -612,18 +638,14 @@ body{
   line-height: 1.8;
 }
 
-.footer-box h3{
-  margin-bottom: 20px;
-}
-
 .footer-box a{
   display: block;
 
-  margin-bottom: 12px;
+  color: #bbb;
 
   text-decoration: none;
 
-  color: #bbb;
+  margin-bottom: 12px;
 
   transition: 0.3s ease;
 }
@@ -642,6 +664,71 @@ body{
 
 .footer-bottom p{
   color: #888;
+}
+
+/* ===================================
+   TERMS POPUP
+=================================== */
+
+.terms-popup{
+  position: fixed;
+
+  left: 30px;
+  bottom: 30px;
+
+  width: 360px;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 25px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  z-index: 2000;
+}
+
+.terms-popup p{
+  color: #555;
+  line-height: 1.7;
+
+  margin-bottom: 20px;
+}
+
+.terms-buttons{
+  display: flex;
+  gap: 12px;
+}
+
+#acceptTerms{
+  border: none;
+
+  background: #c69b6d;
+  color: white;
+
+  padding: 12px 24px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+#learnMore{
+  border: none;
+
+  background: #eee;
+  color: #222;
+
+  padding: 12px 24px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-weight: 600;
 }
 
 /* ===================================
@@ -687,7 +774,7 @@ body{
   }
 
   .about-text h2{
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 
 }
@@ -695,13 +782,10 @@ body{
 @media(max-width: 768px){
 
   .navbar{
-    height: auto;
+    flex-direction: column;
+    gap: 20px;
 
     padding: 20px 5%;
-
-    flex-direction: column;
-
-    gap: 20px;
   }
 
   .nav-links{
@@ -726,16 +810,19 @@ body{
     font-size: 2rem;
   }
 
+  .terms-popup{
+    width: calc(100% - 40px);
+
+    left: 20px;
+    bottom: 20px;
+  }
+
 }
 
 @media(max-width: 500px){
 
   .hero-content h1{
     font-size: 2.3rem;
-  }
-
-  .hero-btn{
-    padding: 14px 28px;
   }
 
   .notify-form{
