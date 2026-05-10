@@ -2,19 +2,22 @@
 // HERO SLIDER
 // ===================================
 
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+const slides =
+document.querySelectorAll(".slide");
+
+const dots =
+document.querySelectorAll(".dot");
 
 const nextBtn =
-  document.querySelector(".next-btn");
+document.querySelector(".next-btn");
 
 const prevBtn =
-  document.querySelector(".prev-btn");
+document.querySelector(".prev-btn");
 
 let currentSlide = 0;
 
 // ===================================
-// SHOW SLIDE FUNCTION
+// SHOW SLIDE
 // ===================================
 
 function showSlide(index){
@@ -22,14 +25,18 @@ function showSlide(index){
   // REMOVE ACTIVE CLASSES
 
   slides.forEach((slide) => {
+
     slide.classList.remove("active");
+
   });
 
   dots.forEach((dot) => {
+
     dot.classList.remove("active-dot");
+
   });
 
-  // ADD ACTIVE CLASS
+  // ADD ACTIVE CLASSES
 
   slides[index].classList.add("active");
 
@@ -46,7 +53,9 @@ function nextSlide(){
   currentSlide++;
 
   if(currentSlide >= slides.length){
+
     currentSlide = 0;
+
   }
 
   showSlide(currentSlide);
@@ -62,7 +71,9 @@ function previousSlide(){
   currentSlide--;
 
   if(currentSlide < 0){
+
     currentSlide = slides.length - 1;
+
   }
 
   showSlide(currentSlide);
@@ -74,11 +85,15 @@ function previousSlide(){
 // ===================================
 
 nextBtn.addEventListener("click", () => {
+
   nextSlide();
+
 });
 
 prevBtn.addEventListener("click", () => {
+
   previousSlide();
+
 });
 
 // ===================================
@@ -112,7 +127,7 @@ setInterval(() => {
 // ===================================
 
 const navbar =
-  document.querySelector(".navbar");
+document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
 
@@ -120,7 +135,9 @@ window.addEventListener("scroll", () => {
 
     navbar.classList.add("scrolled");
 
-  } else {
+  }
+
+  else{
 
     navbar.classList.remove("scrolled");
 
@@ -133,7 +150,7 @@ window.addEventListener("scroll", () => {
 // ===================================
 
 const navLinks =
-  document.querySelectorAll(".nav-links a");
+document.querySelectorAll(".nav-links a");
 
 navLinks.forEach((link) => {
 
@@ -142,10 +159,10 @@ navLinks.forEach((link) => {
     e.preventDefault();
 
     const targetId =
-      link.getAttribute("href");
+    link.getAttribute("href");
 
     const targetSection =
-      document.querySelector(targetId);
+    document.querySelector(targetId);
 
     window.scrollTo({
 
@@ -165,21 +182,25 @@ navLinks.forEach((link) => {
 // ===================================
 
 const notifyForm =
-  document.querySelector(".notify-form");
+document.querySelector(".notify-form");
 
 notifyForm.addEventListener("submit", (e) => {
 
   e.preventDefault();
 
   const emailInput =
-    notifyForm.querySelector("input");
+  notifyForm.querySelector("input");
 
   const emailValue =
-    emailInput.value.trim();
+  emailInput.value.trim();
+
+  // VALIDATION
 
   if(emailValue === ""){
 
-    alert("Please enter your email.");
+    alert(
+      "Please enter your email address."
+    );
 
     return;
 
@@ -188,7 +209,7 @@ notifyForm.addEventListener("submit", (e) => {
   // SUCCESS MESSAGE
 
   alert(
-    "Thank you for joining PawLatto!"
+    "Thank you for joining the PawLatto family!"
   );
 
   // CLEAR INPUT
@@ -198,55 +219,32 @@ notifyForm.addEventListener("submit", (e) => {
 });
 
 // ===================================
-// HERO FADE ANIMATION
+// HERO FADE EFFECT
 // ===================================
 
 window.addEventListener("load", () => {
 
   const heroContent =
-    document.querySelectorAll(".hero-content");
+  document.querySelectorAll(".hero-content");
 
   heroContent.forEach((content) => {
 
     content.style.opacity = "0";
-    content.style.transform = "translateY(30px)";
+
+    content.style.transform =
+    "translateY(30px)";
 
     setTimeout(() => {
 
       content.style.transition =
-        "1s ease";
+      "1s ease";
 
       content.style.opacity = "1";
 
       content.style.transform =
-        "translateY(0px)";
+      "translateY(0px)";
 
     }, 300);
-
-  });
-
-});
-
-// ===================================
-// COMING SOON CARD HOVER EFFECT
-// ===================================
-
-const comingCards =
-  document.querySelectorAll(".coming-card");
-
-comingCards.forEach((card) => {
-
-  card.addEventListener("mouseenter", () => {
-
-    card.style.transform =
-      "translateY(-10px) scale(1.02)";
-
-  });
-
-  card.addEventListener("mouseleave", () => {
-
-    card.style.transform =
-      "translateY(0px) scale(1)";
 
   });
 
@@ -257,21 +255,33 @@ comingCards.forEach((card) => {
 // ===================================
 
 const featureBoxes =
-  document.querySelectorAll(".feature-box");
+document.querySelectorAll(".feature-box");
+
+featureBoxes.forEach((box) => {
+
+  box.style.opacity = "0";
+
+  box.style.transform =
+  "translateY(40px)";
+
+  box.style.transition =
+  "0.8s ease";
+
+});
 
 window.addEventListener("scroll", () => {
 
   featureBoxes.forEach((box) => {
 
     const boxTop =
-      box.getBoundingClientRect().top;
+    box.getBoundingClientRect().top;
 
     if(boxTop < window.innerHeight - 100){
 
       box.style.opacity = "1";
 
       box.style.transform =
-        "translateY(0px)";
+      "translateY(0px)";
 
     }
 
@@ -279,17 +289,42 @@ window.addEventListener("scroll", () => {
 
 });
 
-// INITIAL STATE
+// ===================================
+// TERMS SECTION ANIMATION
+// ===================================
 
-featureBoxes.forEach((box) => {
+const termsBoxes =
+document.querySelectorAll(".terms-box");
+
+termsBoxes.forEach((box, index) => {
 
   box.style.opacity = "0";
 
   box.style.transform =
-    "translateY(40px)";
+  "translateY(40px)";
 
   box.style.transition =
-    "0.8s ease";
+  `0.8s ease ${index * 0.15}s`;
+
+});
+
+window.addEventListener("scroll", () => {
+
+  termsBoxes.forEach((box) => {
+
+    const boxTop =
+    box.getBoundingClientRect().top;
+
+    if(boxTop < window.innerHeight - 100){
+
+      box.style.opacity = "1";
+
+      box.style.transform =
+      "translateY(0px)";
+
+    }
+
+  });
 
 });
 
@@ -298,17 +333,17 @@ featureBoxes.forEach((box) => {
 // ===================================
 
 const contactCards =
-  document.querySelectorAll(".contact-card");
+document.querySelectorAll(".contact-card");
 
 contactCards.forEach((card, index) => {
 
   card.style.opacity = "0";
 
   card.style.transform =
-    "translateY(40px)";
+  "translateY(40px)";
 
   card.style.transition =
-    `0.8s ease ${index * 0.2}s`;
+  `0.8s ease ${index * 0.2}s`;
 
 });
 
@@ -317,14 +352,14 @@ window.addEventListener("scroll", () => {
   contactCards.forEach((card) => {
 
     const cardTop =
-      card.getBoundingClientRect().top;
+    card.getBoundingClientRect().top;
 
     if(cardTop < window.innerHeight - 100){
 
       card.style.opacity = "1";
 
       card.style.transform =
-        "translateY(0px)";
+      "translateY(0px)";
 
     }
 
@@ -333,25 +368,50 @@ window.addEventListener("scroll", () => {
 });
 
 // ===================================
-// FOOTER LINK HOVER EFFECT
+// COMING SOON HOVER EFFECT
+// ===================================
+
+const comingCards =
+document.querySelectorAll(".coming-card");
+
+comingCards.forEach((card) => {
+
+  card.addEventListener("mouseenter", () => {
+
+    card.style.transform =
+    "translateY(-10px) scale(1.03)";
+
+  });
+
+  card.addEventListener("mouseleave", () => {
+
+    card.style.transform =
+    "translateY(0px) scale(1)";
+
+  });
+
+});
+
+// ===================================
+// FOOTER LINK EFFECT
 // ===================================
 
 const footerLinks =
-  document.querySelectorAll(".footer-box a");
+document.querySelectorAll(".footer-box a");
 
 footerLinks.forEach((link) => {
 
   link.addEventListener("mouseenter", () => {
 
     link.style.transform =
-      "translateX(5px)";
+    "translateX(5px)";
 
   });
 
   link.addEventListener("mouseleave", () => {
 
     link.style.transform =
-      "translateX(0px)";
+    "translateX(0px)";
 
   });
 
@@ -368,7 +428,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
 
     document.body.style.transition =
-      "1s ease";
+    "1s ease";
 
     document.body.style.opacity = "1";
 
