@@ -22,8 +22,6 @@ let currentSlide = 0;
 
 function showSlide(index){
 
-  // REMOVE ACTIVE
-
   slides.forEach((slide) => {
 
     slide.classList.remove("active");
@@ -35,8 +33,6 @@ function showSlide(index){
     dot.classList.remove("active-dot");
 
   });
-
-  // ADD ACTIVE
 
   slides[index].classList.add("active");
 
@@ -123,7 +119,7 @@ setInterval(() => {
 }, 5000);
 
 // ===================================
-// NAVBAR SCROLL EFFECT
+// NAVBAR SCROLL
 // ===================================
 
 const navbar =
@@ -178,7 +174,7 @@ navLinks.forEach((link) => {
 });
 
 // ===================================
-// EMAIL NOTIFY FORM
+// EMAIL FORM
 // ===================================
 
 const notifyForm =
@@ -194,8 +190,6 @@ notifyForm.addEventListener("submit", (e) => {
   const emailValue =
   emailInput.value.trim();
 
-  // VALIDATION
-
   if(emailValue === ""){
 
     alert(
@@ -206,13 +200,9 @@ notifyForm.addEventListener("submit", (e) => {
 
   }
 
-  // SUCCESS
-
   alert(
     "Thank you for joining the PawLatto family!"
   );
-
-  // CLEAR INPUT
 
   emailInput.value = "";
 
@@ -231,24 +221,16 @@ document.getElementById("acceptTerms");
 const learnMore =
 document.getElementById("learnMore");
 
-// ACCEPT TERMS
-
 acceptTerms.addEventListener("click", () => {
-
-  // SAVE ACCEPTANCE
 
   localStorage.setItem(
     "pawlattoTermsAccepted",
     "true"
   );
 
-  // HIDE POPUP
-
   termsPopup.style.display = "none";
 
 });
-
-// CHECK IF ACCEPTED BEFORE
 
 if(
   localStorage.getItem(
@@ -259,10 +241,6 @@ if(
   termsPopup.style.display = "none";
 
 }
-
-// ===================================
-// LEARN MORE BUTTON
-// ===================================
 
 learnMore.addEventListener("click", () => {
 
@@ -277,38 +255,6 @@ learnMore.addEventListener("click", () => {
 • By using this website you agree to our policies.`
 
   );
-
-});
-
-// ===================================
-// HERO CONTENT FADE
-// ===================================
-
-window.addEventListener("load", () => {
-
-  const heroContent =
-  document.querySelectorAll(".hero-content");
-
-  heroContent.forEach((content) => {
-
-    content.style.opacity = "0";
-
-    content.style.transform =
-    "translateY(30px)";
-
-    setTimeout(() => {
-
-      content.style.transition =
-      "1s ease";
-
-      content.style.opacity = "1";
-
-      content.style.transform =
-      "translateY(0px)";
-
-    }, 300);
-
-  });
 
 });
 
@@ -354,34 +300,229 @@ window.addEventListener("scroll", () => {
 });
 
 // ===================================
-// HOVER EFFECTS
+// CART SYSTEM
 // ===================================
 
-const cards =
-document.querySelectorAll(
-  ".product-card, .feature-box, .contact-card"
-);
+const cartBtn =
+document.getElementById("cartBtn");
 
-cards.forEach((card) => {
+const cartSidebar =
+document.getElementById("cartSidebar");
 
-  card.addEventListener("mouseenter", () => {
+const closeCart =
+document.getElementById("closeCart");
 
-    card.style.transform =
-    "translateY(-10px) scale(1.03)";
+const cartItemsContainer =
+document.getElementById("cartItems");
 
-  });
+const cartTotal =
+document.getElementById("cartTotal");
 
-  card.addEventListener("mouseleave", () => {
+const cartCount =
+document.getElementById("cartCount");
 
-    card.style.transform =
-    "translateY(0px) scale(1)";
+const addCartButtons =
+document.querySelectorAll(".add-cart-btn");
+
+// ===================================
+// OPEN CART
+// ===================================
+
+cartBtn.addEventListener("click", () => {
+
+  cartSidebar.classList.add("active");
+
+});
+
+// ===================================
+// CLOSE CART
+// ===================================
+
+closeCart.addEventListener("click", () => {
+
+  cartSidebar.classList.remove("active");
+
+});
+
+// ===================================
+// CART ARRAY
+// ===================================
+
+let cart = [];
+
+// LOAD SAVED CART
+
+if(localStorage.getItem("pawlattoCart")){
+
+  cart =
+  JSON.parse(
+    localStorage.getItem("pawlattoCart")
+  );
+
+  updateCart();
+
+}
+
+// ===================================
+// ADD TO CART
+// ===================================
+
+addCartButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    const productCard =
+    button.parentElement;
+
+    const name =
+    productCard.dataset.name;
+
+    const price =
+    parseInt(productCard.dataset.price);
+
+    cart.push({
+
+      name,
+      price
+
+    });
+
+    updateCart();
 
   });
 
 });
 
 // ===================================
-// FOOTER LINKS EFFECT
+// UPDATE CART
+// ===================================
+
+function updateCart(){
+
+  cartItemsContainer.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+
+    total += item.price;
+
+    const cartItem =
+    document.createElement("div");
+
+    cartItem.classList.add("cart-item");
+
+    cartItem.innerHTML = `
+
+      <div class="cart-item-info">
+
+        <h4>${item.name}</h4>
+
+        <p>R${item.price}</p>
+
+      </div>
+
+      <button
+        class="remove-item"
+        data-index="${index}"
+      >
+        Remove
+      </button>
+
+    `;
+
+    cartItemsContainer.appendChild(cartItem);
+
+  });
+
+  cartTotal.innerText =
+  `R${total}`;
+
+  cartCount.innerText =
+  cart.length;
+
+  localStorage.setItem(
+    "pawlattoCart",
+    JSON.stringify(cart)
+  );
+
+  // REMOVE BUTTONS
+
+  const removeButtons =
+  document.querySelectorAll(".remove-item");
+
+  removeButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const index =
+      button.dataset.index;
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    });
+
+  });
+
+}
+
+// ===================================
+// PAYFAST CHECKOUT
+// ===================================
+
+const checkoutBtn =
+document.getElementById("checkoutBtn");
+
+checkoutBtn.addEventListener("click", () => {
+
+  if(cart.length === 0){
+
+    alert(
+      "Your cart is empty."
+    );
+
+    return;
+
+  }
+
+  let total = 0;
+
+  cart.forEach((item) => {
+
+    total += item.price;
+
+  });
+
+  // PAYFAST DETAILS
+
+  const merchantId =
+  "34900767";
+
+  const merchantKey =
+  "sfvvofpzaciwk";
+
+  // PRODUCT DESCRIPTION
+
+  let itemDescription =
+  cart.map((item) => item.name)
+  .join(", ");
+
+  // PAYFAST URL
+
+  const paymentUrl =
+  `https://www.payfast.co.za/eng/process?merchant_id=${merchantId}&merchant_key=${merchantKey}&amount=${total}&item_name=PawLatto Order&item_description=${encodeURIComponent(itemDescription)}`;
+
+  // REDIRECT
+
+  window.location.href =
+  paymentUrl;
+
+});
+
+// ===================================
+// FOOTER LINK EFFECTS
 // ===================================
 
 const footerLinks =
