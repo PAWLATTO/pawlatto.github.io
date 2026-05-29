@@ -32,7 +32,7 @@
 
   <header class="navbar">
 
-    <!-- TEXT LOGO -->
+    <!-- LOGO -->
 
     <div class="text-logo">
 
@@ -72,15 +72,33 @@
 
     </nav>
 
-    <!-- WHATSAPP -->
+    <!-- RIGHT SIDE -->
 
-    <a
-      href="https://wa.me/27812563111"
-      target="_blank"
-      class="nav-btn"
-    >
-      WhatsApp
-    </a>
+    <div class="nav-right">
+
+      <!-- CART -->
+
+      <button class="cart-btn" id="cartBtn">
+
+        🛒 Cart
+
+        <span id="cartCount">
+          0
+        </span>
+
+      </button>
+
+      <!-- WHATSAPP -->
+
+      <a
+        href="https://wa.me/27812563111"
+        target="_blank"
+        class="nav-btn"
+      >
+        WhatsApp
+      </a>
+
+    </div>
 
   </header>
 
@@ -108,7 +126,7 @@
         </p>
 
         <a href="#products" class="hero-btn">
-          Products Coming Soon
+          Shop Now
         </a>
 
       </div>
@@ -200,21 +218,25 @@
       </span>
 
       <h2>
-        Products Coming Soon
+        Featured Products
       </h2>
 
       <p>
-        PawLatto is preparing premium
-        pet essentials for launch.
+        Explore premium pet essentials
+        designed for comfort, style, and care.
       </p>
 
     </div>
 
     <div class="products-grid">
 
-      <!-- CARD -->
+      <!-- PRODUCT 1 -->
 
-      <div class="product-card">
+      <div
+        class="product-card"
+        data-name="Premium Accessories"
+        data-price="199"
+      >
 
         <div class="product-icon">
           🐶
@@ -224,11 +246,23 @@
           Premium Accessories
         </h3>
 
+        <p class="product-price">
+          R199
+        </p>
+
+        <button class="add-cart-btn">
+          Add To Cart
+        </button>
+
       </div>
 
-      <!-- CARD -->
+      <!-- PRODUCT 2 -->
 
-      <div class="product-card">
+      <div
+        class="product-card"
+        data-name="Pet Lifestyle Products"
+        data-price="349"
+      >
 
         <div class="product-icon">
           🐱
@@ -238,11 +272,23 @@
           Pet Lifestyle Products
         </h3>
 
+        <p class="product-price">
+          R349
+        </p>
+
+        <button class="add-cart-btn">
+          Add To Cart
+        </button>
+
       </div>
 
-      <!-- CARD -->
+      <!-- PRODUCT 3 -->
 
-      <div class="product-card">
+      <div
+        class="product-card"
+        data-name="Luxury Pet Essentials"
+        data-price="499"
+      >
 
         <div class="product-icon">
           🐾
@@ -251,6 +297,14 @@
         <h3>
           Luxury Pet Essentials
         </h3>
+
+        <p class="product-price">
+          R499
+        </p>
+
+        <button class="add-cart-btn">
+          Add To Cart
+        </button>
 
       </div>
 
@@ -319,8 +373,6 @@
   ==================================== -->
 
   <section class="about-section" id="about">
-
-    <!-- LEFT -->
 
     <div class="about-text">
 
@@ -393,8 +445,6 @@
 
     <div class="contact-grid">
 
-      <!-- CARD -->
-
       <div class="contact-card">
 
         <h3>
@@ -407,8 +457,6 @@
 
       </div>
 
-      <!-- CARD -->
-
       <div class="contact-card">
 
         <h3>
@@ -420,8 +468,6 @@
         </p>
 
       </div>
-
-      <!-- CARD -->
 
       <div class="contact-card">
 
@@ -462,7 +508,7 @@
 
       </div>
 
-      <!-- LINKS -->
+      <!-- QUICK LINKS -->
 
       <div class="footer-box">
 
@@ -475,7 +521,15 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
 
-        <br><br>
+      </div>
+
+      <!-- LEGAL -->
+
+      <div class="footer-box">
+
+        <h3>
+          Legal
+        </h3>
 
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms & Conditions</a>
@@ -514,6 +568,45 @@
   </footer>
 
   <!-- ===================================
+       CART SIDEBAR
+  ==================================== -->
+
+  <div class="cart-sidebar" id="cartSidebar">
+
+    <div class="cart-header">
+
+      <h2>
+        Your Cart
+      </h2>
+
+      <button id="closeCart">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems">
+
+    </div>
+
+    <div class="cart-footer">
+
+      <h3>
+        Total:
+        <span id="cartTotal">
+          R0
+        </span>
+      </h3>
+
+      <button id="checkoutBtn">
+        Checkout With PayFast
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ===================================
        TERMS POPUP
   ==================================== -->
 
@@ -538,9 +631,7 @@
 
   </div>
 
-  <!-- ===================================
-       FLOATING WHATSAPP
-  ==================================== -->
+  <!-- FLOATING WHATSAPP -->
 
   <a
     href="https://wa.me/27812563111"
