@@ -228,87 +228,13 @@
 
     </div>
 
-    <div class="products-grid">
+   <div class="products-grid" id="productsGrid">
 
-      <!-- PRODUCT 1 -->
+  <div class="loading-products">
+    Loading Products...
+  </div>
 
-      <div
-        class="product-card"
-        data-name="Premium Accessories"
-        data-price="199"
-      >
-
-        <div class="product-icon">
-          🐶
-        </div>
-
-        <h3>
-          Premium Accessories
-        </h3>
-
-        <p class="product-price">
-          R199
-        </p>
-
-        <button class="add-cart-btn">
-          Add To Cart
-        </button>
-
-      </div>
-
-      <!-- PRODUCT 2 -->
-
-      <div
-        class="product-card"
-        data-name="Pet Lifestyle Products"
-        data-price="349"
-      >
-
-        <div class="product-icon">
-          🐱
-        </div>
-
-        <h3>
-          Pet Lifestyle Products
-        </h3>
-
-        <p class="product-price">
-          R349
-        </p>
-
-        <button class="add-cart-btn">
-          Add To Cart
-        </button>
-
-      </div>
-
-      <!-- PRODUCT 3 -->
-
-      <div
-        class="product-card"
-        data-name="Luxury Pet Essentials"
-        data-price="499"
-      >
-
-        <div class="product-icon">
-          🐾
-        </div>
-
-        <h3>
-          Luxury Pet Essentials
-        </h3>
-
-        <p class="product-price">
-          R499
-        </p>
-
-        <button class="add-cart-btn">
-          Add To Cart
-        </button>
-
-      </div>
-
-    </div>
+   </div>
 
   </section>
 
@@ -590,7 +516,14 @@
     </div>
 
     <div class="cart-footer">
-
+      
+ <p>
+    Delivery:
+    <span id="deliveryFee">
+      R80
+    </span>
+  </p>
+      
       <h3>
         Total:
         <span id="cartTotal">
@@ -599,7 +532,7 @@
       </h3>
 
       <button id="checkoutBtn">
-        Checkout With PayFast
+        Secure Checkout
       </button>
 
     </div>
