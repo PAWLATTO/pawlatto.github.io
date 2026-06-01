@@ -368,12 +368,18 @@ function updateCart(){
 
   cartItemsContainer.innerHTML = "";
 
-  let total = 0;
+ let total = 0;
 
-  cart.forEach((item, index) => {
+cart.forEach((item) => {
 
-    total += item.price;
+  total += item.price;
 
+});
+
+const deliveryFee = 80;
+
+total += deliveryFee;
+  
     const cartItem =
     document.createElement("div");
 
@@ -402,8 +408,10 @@ function updateCart(){
 
   });
 
-  cartTotal.innerText =
-  `R${total}`;
+  const deliveryFee = 80;
+
+cartTotal.innerText =
+`R${total + deliveryFee}`;
 
   cartCount.innerText =
   cart.length;
