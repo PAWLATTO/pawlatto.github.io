@@ -321,9 +321,6 @@ document.getElementById("cartTotal");
 const cartCount =
 document.getElementById("cartCount");
 
-const addCartButtons =
-document.querySelectorAll(".add-cart-btn");
-
 // ===================================
 // OPEN CART
 // ===================================
@@ -362,36 +359,6 @@ if(localStorage.getItem("pawlattoCart")){
   updateCart();
 
 }
-
-// ===================================
-// ADD TO CART
-// ===================================
-
-addCartButtons.forEach((button) => {
-
-  button.addEventListener("click", () => {
-
-    const productCard =
-    button.parentElement;
-
-    const name =
-    productCard.dataset.name;
-
-    const price =
-    parseInt(productCard.dataset.price);
-
-    cart.push({
-
-      name,
-      price
-
-    });
-
-    updateCart();
-
-  });
-
-});
 
 // ===================================
 // UPDATE CART
@@ -495,14 +462,6 @@ checkoutBtn.addEventListener("click", () => {
 
   });
 
-  // PAYFAST DETAILS
-
-  const merchantId =
-  "34900767";
-
-  const merchantKey =
-  "sfvvofpzaciwk";
-
   // PRODUCT DESCRIPTION
 
   let itemDescription =
@@ -545,6 +504,135 @@ footerLinks.forEach((link) => {
   });
 
 });
+
+// ===================================
+// LOAD PRODUCTS FROM GOOGLE SHEETS
+// ===================================
+
+const productsGrid =
+document.getElementById("productsGrid");
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyfpepdb0KLnbuO3xnnRfU3V-sux3kN2exh5vaA8ItWeS5sHwhUL9vQuw-yhTVkNron/exec";
+
+async function loadProducts(){
+
+  try{
+
+    const response =
+    await fetch(API_URL);
+
+    const products =
+    await response.json();
+
+    productsGrid.innerHTML = "";
+
+    products.forEach((product) => {
+
+      if(
+        product.status &&
+        product.status.toLowerCase() === "active"
+      ){
+
+        const card =
+        document.createElement("div");
+
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            class="product-image"
+          >
+
+          <h3>
+            ${product.name}
+          </h3>
+
+          <p class="product-description">
+            ${product.description}
+          </p>
+
+          <p class="product-stock">
+            Stock: ${product.quantity}
+          </p>
+
+          <p class="product-price">
+            R${product.price}
+          </p>
+
+          <button
+            class="add-cart-btn"
+            data-id="${product.id}"
+            data-name="${product.name}"
+            data-price="${product.price}"
+          >
+            Add To Cart
+          </button>
+
+        `;
+
+        productsGrid.appendChild(card);
+
+      }
+
+    });
+
+    initializeCartButtons();
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    productsGrid.innerHTML =
+
+    `<p>Unable to load products.</p>`;
+
+  }
+
+}
+
+loadProducts();
+
+// ===================================
+// DYNAMIC CART BUTTONS
+// ===================================
+
+function initializeCartButtons(){
+
+  const buttons =
+  document.querySelectorAll(".add-cart-btn");
+
+  buttons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const name =
+      button.dataset.name;
+
+      const price =
+      parseFloat(
+        button.dataset.price
+      );
+
+      cart.push({
+
+        name,
+        price
+
+      });
+
+      updateCart();
+
+    });
+
+  });
+
+}
 
 // ===================================
 // PAGE LOAD EFFECT
