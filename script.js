@@ -368,18 +368,12 @@ function updateCart(){
 
   cartItemsContainer.innerHTML = "";
 
- let total = 0;
+  let subtotal = 0;
 
-cart.forEach((item) => {
+  cart.forEach((item, index) => {
 
-  total += item.price;
+    subtotal += item.price;
 
-});
-
-const deliveryFee = 80;
-
-total += deliveryFee;
-  
     const cartItem =
     document.createElement("div");
 
@@ -410,8 +404,11 @@ total += deliveryFee;
 
   const deliveryFee = 80;
 
-cartTotal.innerText =
-`R${total + deliveryFee}`;
+  const total =
+  subtotal + deliveryFee;
+
+  cartTotal.innerText =
+  `R${total}`;
 
   cartCount.innerText =
   cart.length;
@@ -420,8 +417,6 @@ cartTotal.innerText =
     "pawlattoCart",
     JSON.stringify(cart)
   );
-
-  // REMOVE BUTTONS
 
   const removeButtons =
   document.querySelectorAll(".remove-item");
@@ -444,19 +439,69 @@ cartTotal.innerText =
 }
 
 // ===================================
-// PAYFAST CHECKOUT
+// CHECKOUT MODAL
 // ===================================
 
 const checkoutBtn =
 document.getElementById("checkoutBtn");
 
+const checkoutModal =
+document.getElementById("checkoutModal");
+
+const submitOrderBtn =
+document.getElementById("submitOrderBtn");
+
+const closeCheckoutModal =
+document.getElementById("closeCheckoutModal");
+
+// OPEN MODAL
+
 checkoutBtn.addEventListener("click", () => {
 
   if(cart.length === 0){
 
-    alert(
-      "Your cart is empty."
-    );
+    alert("Your cart is empty.");
+
+    return;
+
+  }
+
+  checkoutModal.style.display = "flex";
+
+});
+
+// CLOSE MODAL
+
+closeCheckoutModal.addEventListener("click", () => {
+
+  checkoutModal.style.display = "none";
+
+});
+
+// SUBMIT ORDER
+
+submitOrderBtn.addEventListener("click", async () => {
+
+  const customerName =
+  document.getElementById("customerName").value;
+
+  const customerPhone =
+  document.getElementById("customerPhone").value;
+
+  const customerEmail =
+  document.getElementById("customerEmail").value;
+
+  const customerAddress =
+  document.getElementById("customerAddress").value;
+
+  if(
+    !customerName ||
+    !customerPhone ||
+    !customerEmail ||
+    !customerAddress
+  ){
+
+    alert("Please complete all fields.");
 
     return;
 
@@ -470,18 +515,51 @@ checkoutBtn.addEventListener("click", () => {
 
   });
 
-  // PRODUCT DESCRIPTION
+  total += 80;
 
-  let itemDescription =
-  cart.map((item) => item.name)
+  const orderData = {
+
+    customerName,
+    customerPhone,
+    customerEmail,
+    customerAddress,
+
+    items: cart,
+
+    total
+
+  };
+
+  try{
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(orderData)
+      }
+    );
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+  const merchantId =
+  "34900767";
+
+  const merchantKey =
+  "sfvvofpzaciwk";
+
+  const itemDescription =
+  cart.map(item => item.name)
   .join(", ");
-
-  // PAYFAST URL
 
   const paymentUrl =
   `https://www.payfast.co.za/eng/process?merchant_id=${merchantId}&merchant_key=${merchantKey}&amount=${total}&item_name=PawLatto Order&item_description=${encodeURIComponent(itemDescription)}`;
-
-  // REDIRECT
 
   window.location.href =
   paymentUrl;
