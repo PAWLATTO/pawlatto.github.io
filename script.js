@@ -613,7 +613,12 @@ async function loadProducts(){
 
     console.log(products);
 
+    console.log(productsGrid);
+
     productsGrid.innerHTML = "";
+
+    console.log("Products received:", products);
+console.log("Products grid:", productsGrid);
 
     products.forEach((product) => {
 
@@ -649,6 +654,8 @@ async function loadProducts(){
       `;
 
       productsGrid.appendChild(card);
+
+      console.log("Card added:", card);
 
     });
 
