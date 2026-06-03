@@ -599,7 +599,7 @@ const productsGrid =
 document.getElementById("productsGrid");
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbyfpepdb0KLnbuO3xnnRfU3V-sux3kN2exh5vaA8ItWeS5sHwhUL9vQuw-yhTVkNron/exec";
+"https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec";
 
 async function loadProducts(){
 
@@ -611,58 +611,44 @@ async function loadProducts(){
     const products =
     await response.json();
 
+    console.log(products);
+
     productsGrid.innerHTML = "";
 
     products.forEach((product) => {
 
-      if(
-        product.status &&
-        product.status.toLowerCase() === "active"
-      ){
+      const card =
+      document.createElement("div");
 
-        const card =
-        document.createElement("div");
+      card.classList.add("product-card");
 
-        card.classList.add("product-card");
+      card.innerHTML = `
 
-        card.innerHTML = `
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          class="product-image"
+        >
 
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-            class="product-image"
-          >
+        <h3>${product.name}</h3>
 
-          <h3>
-            ${product.name}
-          </h3>
+        <p>${product.description}</p>
 
-          <p class="product-description">
-            ${product.description}
-          </p>
+        <p>Stock: ${product.quantity}</p>
 
-          <p class="product-stock">
-            Stock: ${product.quantity}
-          </p>
+        <p>R${product.price}</p>
 
-          <p class="product-price">
-            R${product.price}
-          </p>
+        <button
+          class="add-cart-btn"
+          data-name="${product.name}"
+          data-price="${product.price}"
+        >
+          Add To Cart
+        </button>
 
-          <button
-            class="add-cart-btn"
-            data-id="${product.id}"
-            data-name="${product.name}"
-            data-price="${product.price}"
-          >
-            Add To Cart
-          </button>
+      `;
 
-        `;
-
-        productsGrid.appendChild(card);
-
-      }
+      productsGrid.appendChild(card);
 
     });
 
@@ -672,11 +658,10 @@ async function loadProducts(){
 
   catch(error){
 
-    console.error(error);
+    console.error("PRODUCT ERROR:", error);
 
     productsGrid.innerHTML =
-
-    `<p>Unable to load products.</p>`;
+    "<p>Unable to load products.</p>";
 
   }
 
