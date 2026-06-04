@@ -605,77 +605,46 @@ async function loadProducts(){
 
   try{
 
-    const response =
-    await fetch(API_URL);
+    const response = await fetch(API_URL);
 
-    const products =
-    await response.json();
+    const products = await response.json();
 
-    console.log(products);
+    console.log("PRODUCTS:", products);
 
-    console.log(productsGrid);
+    console.log("GRID:", productsGrid);
 
     productsGrid.innerHTML = "";
 
-    console.log("Products received:", products);
-console.log("Products grid:", productsGrid);
-
     products.forEach((product) => {
 
-      const card =
-      document.createElement("div");
+      console.log("ADDING:", product);
 
-      card.classList.add("product-card");
+      const card = document.createElement("div");
+
+      card.style.background = "white";
+      card.style.padding = "20px";
+      card.style.margin = "20px";
+      card.style.border = "2px solid red";
 
       card.innerHTML = `
-
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          class="product-image"
-        >
-
         <h3>${product.name}</h3>
-
         <p>${product.description}</p>
-
-        <p>Stock: ${product.quantity}</p>
-
         <p>R${product.price}</p>
-
-        <button
-          class="add-cart-btn"
-          data-name="${product.name}"
-          data-price="${product.price}"
-        >
-          Add To Cart
-        </button>
-
       `;
 
       productsGrid.appendChild(card);
 
-      console.log("Card added:", card);
-
     });
-
-    initializeCartButtons();
 
   }
 
   catch(error){
 
-    console.error("PRODUCT ERROR:", error);
-
-    productsGrid.innerHTML =
-    "<p>Unable to load products.</p>";
+    console.error(error);
 
   }
 
 }
-
-loadProducts();
-
 // ===================================
 // DYNAMIC CART BUTTONS
 // ===================================
