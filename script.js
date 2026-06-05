@@ -606,45 +606,58 @@ async function loadProducts(){
   try{
 
     const response = await fetch(API_URL);
-
     const products = await response.json();
-
-    console.log("PRODUCTS:", products);
-
-    console.log("GRID:", productsGrid);
 
     productsGrid.innerHTML = "";
 
     products.forEach((product) => {
 
-      console.log("ADDING:", product);
-
       const card = document.createElement("div");
 
-      card.style.background = "white";
-      card.style.padding = "20px";
-      card.style.margin = "20px";
-      card.style.border = "2px solid red";
+      card.classList.add("product-card");
 
       card.innerHTML = `
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          class="product-image"
+        >
+
         <h3>${product.name}</h3>
+
         <p>${product.description}</p>
+
+        <p>Stock: ${product.quantity}</p>
+
         <p>R${product.price}</p>
+
+        <button
+          class="add-cart-btn"
+          data-name="${product.name}"
+          data-price="${product.price}"
+        >
+          Add To Cart
+        </button>
+
       `;
 
       productsGrid.appendChild(card);
 
     });
 
+    initializeCartButtons();
+
   }
 
   catch(error){
 
-    console.error(error);
+    console.error("PRODUCT ERROR:", error);
 
   }
 
 }
+
 // ===================================
 // DYNAMIC CART BUTTONS
 // ===================================
