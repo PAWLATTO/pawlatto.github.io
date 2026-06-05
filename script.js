@@ -699,3 +699,11 @@ window.addEventListener("load", () => {
   }, 100);
 
 });
+
+// ===================================
+// START WEBSITE
+// ===================================
+
+loadProducts();
+
+updateCart();
