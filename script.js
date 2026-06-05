@@ -657,7 +657,6 @@ async function loadProducts(){
   }
 
 }
-
 // ===================================
 // DYNAMIC CART BUTTONS
 // ===================================
