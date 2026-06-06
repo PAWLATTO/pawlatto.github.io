@@ -562,8 +562,8 @@ submitOrderBtn.addEventListener("click", async () => {
   const paymentUrl =
   `https://www.payfast.co.za/eng/process?merchant_id=${merchantId}&merchant_key=${merchantKey}&amount=${total}&item_name=PawLatto Order&item_description=${encodeURIComponent(itemDescription)}`;
 
-  window.location.href =
-  paymentUrl;
+localStorage.removeItem("pawlattoCart");
+cart = [];
 
 });
 
