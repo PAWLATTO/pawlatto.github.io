@@ -402,10 +402,11 @@ function updateCart(){
 
   });
 
-  const deliveryFee = 80;
+  const deliveryFee =
+cart.length > 0 ? 80 : 0;
 
-  const total =
-  subtotal + deliveryFee;
+const total =
+subtotal + deliveryFee;
 
   cartTotal.innerText =
   `R${total}`;
