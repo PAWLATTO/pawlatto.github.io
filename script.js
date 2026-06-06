@@ -565,6 +565,8 @@ submitOrderBtn.addEventListener("click", async () => {
 localStorage.removeItem("pawlattoCart");
 cart = [];
 
+window.location.href = paymentUrl;
+
 });
 
 // ===================================
