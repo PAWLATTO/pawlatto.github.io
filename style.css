@@ -492,10 +492,29 @@ section{
 
 .product-image{
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin-bottom: 20px;
+  max-width: 220px;
+  height: 220px;
+  object-fit: contain;
+
+  display: block;
+  margin: 0 auto 25px;
+
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image{
+  transform: scale(1.05);
+}
+
+.product-card{
+  max-width: 380px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: hidden;
 }
 
 /* ===================================
@@ -1037,22 +1056,38 @@ section{
    RESPONSIVE
 =================================== */
 
-@media(max-width: 768px){
+@media(max-width:768px){
+
+  .product-image{
+    max-width: 180px;
+    height: 180px;
+  }
 
   .navbar{
     padding: 15px 5%;
+    flex-wrap: wrap;
+  }
+   
+   .nav-links{
+  width: 100%;
+  justify-content: center;
+}
+   
+  .nav-links{
+    gap: 12px;
+    font-size: 0.9rem;
   }
 
-  .nav-links{
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
+  .text-logo h2{
+    font-size: 1.5rem;
   }
 
   .nav-right{
     flex-direction: row;
     justify-content: center;
     gap: 10px;
+     width: 100%;
+  margin-top: 10px;
   }
 
   .cart-btn,
@@ -1069,6 +1104,10 @@ section{
   .hero-content p{
     font-size: 1rem;
   }
+
+   .hero-slider{
+  height: 85vh;
+}
 
   .section-title h2{
     font-size: 2rem;
@@ -1090,6 +1129,13 @@ section{
     max-height: 90vh;
     overflow-y: auto;
     padding: 25px;
+    border-radius: 20px;
+  }
+
+  .terms-popup{
+    width: calc(100% - 30px);
+    left: 15px;
+    bottom: 15px;
   }
 
 }
