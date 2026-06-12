@@ -750,22 +750,13 @@ function openProductDetails(index){
 
     <div class="product-gallery">
 
-      <img
-        src="${product.image1}"
-        class="detail-image"
-      >
+${product.image1 ? `<img src="${product.image1}" class="detail-image">` : ""}
 
-      <img
-        src="${product.image2}"
-        class="detail-image"
-      >
+${product.image2 ? `<img src="${product.image2}" class="detail-image">` : ""}
 
-      <img
-        src="${product.image3}"
-        class="detail-image"
-      >
+${product.image3 ? `<img src="${product.image3}" class="detail-image">` : ""}
 
-    </div>
+</div>
 
     <h2>${product.name}</h2>
 
