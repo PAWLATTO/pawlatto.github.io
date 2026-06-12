@@ -626,7 +626,7 @@ async function loadProducts(){
       card.innerHTML = `
 
         <img
-          src="${product.image}"
+          src="${product.image1}"
           alt="${product.name}"
           class="product-image"
         >
@@ -743,6 +743,16 @@ document.getElementById("closeProductModal");
 
 function openProductDetails(index){
 
+  <div class="product-gallery">
+
+<img src="${product.image1}" class="detail-image">
+
+<img src="${product.image2}" class="detail-image">
+
+<img src="${product.image3}" class="detail-image">
+
+</div>
+
   const product =
   allProducts[index];
 
@@ -762,13 +772,15 @@ function openProductDetails(index){
 
     <p><strong>Price:</strong> R${product.price}</p>
 
-    <p><strong>Stock:</strong> ${product.stock}</p>
+<p><strong>Stock:</strong> ${product.stock}</p>
 
-    <p><strong>Dimensions:</strong> ${product.dimensions}</p>
+<p><strong>Dimensions:</strong> ${product.dimensions}</p>
 
-    <p><strong>Delivery:</strong> ${product.delivery}</p>
+<p><strong>Material:</strong> ${product.material}</p>
 
-    <p>${product.details}</p>
+<p><strong>Delivery:</strong> ${product.delivery}</p>
+
+<p>${product.details}</p>
 
   `;
 
