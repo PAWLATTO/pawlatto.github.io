@@ -748,29 +748,38 @@ function openProductDetails(index){
 
   productModalBody.innerHTML = `
 
-    <img
-      src="${product.image}"
-      style="
-      width:100%;
-      max-width:300px;
-      display:block;
-      margin:auto;
-      "
-    >
+    <div class="product-gallery">
+
+      <img
+        src="${product.image1}"
+        class="detail-image"
+      >
+
+      <img
+        src="${product.image2}"
+        class="detail-image"
+      >
+
+      <img
+        src="${product.image3}"
+        class="detail-image"
+      >
+
+    </div>
 
     <h2>${product.name}</h2>
 
     <p><strong>Price:</strong> R${product.price}</p>
 
-<p><strong>Stock:</strong> ${product.stock}</p>
+    <p><strong>Stock:</strong> ${product.stock}</p>
 
-<p><strong>Dimensions:</strong> ${product.dimensions}</p>
+    <p><strong>Dimensions:</strong> ${product.dimensions}</p>
 
-<p><strong>Material:</strong> ${product.material}</p>
+    <p><strong>Material:</strong> ${product.material}</p>
 
-<p><strong>Delivery:</strong> ${product.delivery}</p>
+    <p><strong>Delivery:</strong> ${product.delivery}</p>
 
-<p>${product.details}</p>
+    <p>${product.details}</p>
 
   `;
 
