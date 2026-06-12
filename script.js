@@ -743,16 +743,6 @@ document.getElementById("closeProductModal");
 
 function openProductDetails(index){
 
-  <div class="product-gallery">
-
-<img src="${product.image1}" class="detail-image">
-
-<img src="${product.image2}" class="detail-image">
-
-<img src="${product.image3}" class="detail-image">
-
-</div>
-
   const product =
   allProducts[index];
 
