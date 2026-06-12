@@ -604,12 +604,16 @@ document.getElementById("productsGrid");
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec";
 
+let allProducts = [];
+
 async function loadProducts(){
 
   try{
 
     const response = await fetch(API_URL);
     const products = await response.json();
+
+    allProducts = products;
 
     productsGrid.innerHTML = "";
 
@@ -629,19 +633,24 @@ async function loadProducts(){
 
         <h3>${product.name}</h3>
 
-        <p>${product.description}</p>
+<p class="product-price">
+R${product.price}
+</p>
 
-        <p>Stock: ${product.quantity}</p>
+<button
+class="add-cart-btn"
+data-name="${product.name}"
+data-price="${product.price}"
+>
+Add To Cart
+</button>
 
-        <p>R${product.price}</p>
-
-        <button
-          class="add-cart-btn"
-          data-name="${product.name}"
-          data-price="${product.price}"
-        >
-          Add To Cart
-        </button>
+<button
+class="view-details-btn"
+onclick="openProductDetails(${allProducts.indexOf(product)})"
+>
+View Details
+</button>
 
       `;
 
@@ -722,3 +731,53 @@ window.addEventListener("load", () => {
 loadProducts();
 
 updateCart();
+
+const productModal =
+document.getElementById("productModal");
+
+const productModalBody =
+document.getElementById("productModalBody");
+
+const closeProductModal =
+document.getElementById("closeProductModal");
+
+function openProductDetails(index){
+
+  const product =
+  allProducts[index];
+
+  productModalBody.innerHTML = `
+
+    <img
+      src="${product.image}"
+      style="
+      width:100%;
+      max-width:300px;
+      display:block;
+      margin:auto;
+      "
+    >
+
+    <h2>${product.name}</h2>
+
+    <p><strong>Price:</strong> R${product.price}</p>
+
+    <p><strong>Stock:</strong> ${product.stock}</p>
+
+    <p><strong>Dimensions:</strong> ${product.dimensions}</p>
+
+    <p><strong>Delivery:</strong> ${product.delivery}</p>
+
+    <p>${product.details}</p>
+
+  `;
+
+  productModal.classList.add("active");
+
+}
+
+closeProductModal.addEventListener("click", () => {
+
+  productModal.classList.remove("active");
+
+});
