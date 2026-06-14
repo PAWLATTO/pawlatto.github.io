@@ -1220,3 +1220,132 @@ section{
 
   padding: 10px;
 }
+
+/* ==========================
+   PRODUCT DETAILS MODAL
+========================== */
+
+.product-details{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.product-info h2{
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.product-rating{
+  display: inline-block;
+  background: #fff8e6;
+  color: #d89a00;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.product-price-large{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c69b6d;
+  margin-bottom: 20px;
+}
+
+.product-description{
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.product-benefits{
+  margin-bottom: 25px;
+}
+
+.product-benefits li{
+  list-style: none;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.product-benefits li::before{
+  content: "✓";
+  color: #4CAF50;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.product-actions{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.modal-cart-btn{
+  background: #c69b6d;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-buy-btn{
+  background: #222;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-cart-btn:hover,
+.modal-buy-btn:hover{
+  transform: translateY(-2px);
+}
+
+/* ==========================
+   PRODUCT CARD IMPROVEMENTS
+========================== */
+
+.product-card{
+  position: relative;
+}
+
+.product-image{
+  background: #fafafa;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.product-rating-badge{
+  display: inline-block;
+  background: #fff8e6;
+  color: #d89a00;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.view-details-btn{
+  background: transparent;
+  border: 2px solid #c69b6d;
+  color: #c69b6d;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.view-details-btn:hover{
+  background: #c69b6d;
+  color: white;
+}
