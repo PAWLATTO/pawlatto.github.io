@@ -364,85 +364,70 @@ if(localStorage.getItem("pawlattoCart")){
 // UPDATE CART
 // ===================================
 
-card.innerHTML = `
+function updateCart(){
 
-  <img
-    src="${product.image1}"
-    alt="${product.name}"
-    class="product-image"
-  >
+  cartItemsContainer.innerHTML = "";
 
-  <h3>${product.name}</h3>
+  let subtotal = 0;
 
- <div class="product-rating">
+  cart.forEach((item, index) => {
 
-⭐⭐⭐⭐⭐
+    subtotal += item.price;
 
-<span>
-(${product.rating})
-</span>
+    const cartItem =
+    document.createElement("div");
 
-</div>
+    cartItem.classList.add("cart-item");
 
-  <p class="product-price">
-    R${product.price}
-  </p>
+    cartItem.innerHTML = `
+      <div class="cart-item-info">
+        <h4>${item.name}</h4>
+        <p>R${item.price}</p>
+      </div>
 
-  <button
-    class="add-cart-btn"
-    data-name="${product.name}"
-    data-price="${product.price}"
-  >
-    Add To Cart
-  </button>
-
-  <button
-    class="view-details-btn"
-    onclick="openProductDetails(${allProducts.indexOf(product)})"
-  >
-    View Product Details
-  </button>
-
-`;
+      <button
+        class="remove-item"
+        data-index="${index}"
+      >
+        Remove
+      </button>
+    `;
 
     cartItemsContainer.appendChild(cartItem);
 
   });
 
   const deliveryFee =
-cart.length > 0 ? 80 : 0;
+  cart.length > 0 ? 80 : 0;
 
-const total =
-subtotal + deliveryFee;
+  const total =
+  subtotal + deliveryFee;
 
-  cartTotal.innerText =
-  `R${total}`;
+  cartTotal.innerText = `R${total}`;
 
-  cartCount.innerText =
-  cart.length;
+  cartCount.innerText = cart.length;
 
   localStorage.setItem(
     "pawlattoCart",
     JSON.stringify(cart)
   );
 
-  const removeButtons =
-  document.querySelectorAll(".remove-item");
+  document
+    .querySelectorAll(".remove-item")
+    .forEach((button) => {
 
-  removeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
 
-    button.addEventListener("click", () => {
+        const index =
+        button.dataset.index;
 
-      const index =
-      button.dataset.index;
+        cart.splice(index, 1);
 
-      cart.splice(index, 1);
+        updateCart();
 
-      updateCart();
+      });
 
     });
-
-  });
 
 }
 
@@ -630,11 +615,11 @@ async function loadProducts(){
 
       card.classList.add("product-card");
 
-       <div class="product-badge">
-    Best Seller
-  </div>
-
       card.innerHTML = `
+
+<div class="product-badge">
+⭐ Best Seller
+</div>
 
         <img
           src="${product.image1}"
@@ -643,6 +628,13 @@ async function loadProducts(){
         >
 
         <h3>${product.name}</h3>
+
+        <div class="product-rating">
+⭐⭐⭐⭐⭐
+<span>
+(${product.rating || "4.9"})
+</span>
+</div>
 
 <p class="product-price">
 R${product.price}
@@ -653,14 +645,14 @@ class="add-cart-btn"
 data-name="${product.name}"
 data-price="${product.price}"
 >
-Add To Cart
+🛒 Add To Cart
 </button>
 
 <button
 class="view-details-btn"
 onclick="openProductDetails(${allProducts.indexOf(product)})"
 >
-View Details
+👀 View Details
 </button>
 
       `;
@@ -808,15 +800,17 @@ function openProductDetails(index){
 
 </div>
 
-    <div class="product-benefits">
+   <div class="product-benefits">
 
-      <p>✅ In Stock</p>
+  <p>✅ In Stock & Ready To Ship</p>
 
-      <p>🚚 ${product.delivery}</p>
+  <p>🚚 Fast Delivery Nationwide</p>
 
-      <p>🔒 Secure Checkout</p>
+  <p>⭐ Rated ${product.rating || "4.9"}/5</p>
 
-    </div>
+  <p>🔒 Secure Checkout</p>
+
+</div>
 
     <div class="product-description">
 
