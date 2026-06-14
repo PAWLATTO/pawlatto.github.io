@@ -364,39 +364,46 @@ if(localStorage.getItem("pawlattoCart")){
 // UPDATE CART
 // ===================================
 
-function updateCart(){
+card.innerHTML = `
 
-  cartItemsContainer.innerHTML = "";
+  <img
+    src="${product.image1}"
+    alt="${product.name}"
+    class="product-image"
+  >
 
-  let subtotal = 0;
+  <h3>${product.name}</h3>
 
-  cart.forEach((item, index) => {
+ <div class="product-rating">
 
-    subtotal += item.price;
+⭐⭐⭐⭐⭐
 
-    const cartItem =
-    document.createElement("div");
+<span>
+(${product.rating})
+</span>
 
-    cartItem.classList.add("cart-item");
+</div>
 
-    cartItem.innerHTML = `
+  <p class="product-price">
+    R${product.price}
+  </p>
 
-      <div class="cart-item-info">
+  <button
+    class="add-cart-btn"
+    data-name="${product.name}"
+    data-price="${product.price}"
+  >
+    Add To Cart
+  </button>
 
-        <h4>${item.name}</h4>
+  <button
+    class="view-details-btn"
+    onclick="openProductDetails(${allProducts.indexOf(product)})"
+  >
+    View Product Details
+  </button>
 
-        <p>R${item.price}</p>
-
-      </div>
-
-      <button
-        class="remove-item"
-        data-index="${index}"
-      >
-        Remove
-      </button>
-
-    `;
+`;
 
     cartItemsContainer.appendChild(cartItem);
 
@@ -623,6 +630,10 @@ async function loadProducts(){
 
       card.classList.add("product-card");
 
+       <div class="product-badge">
+    Best Seller
+  </div>
+
       card.innerHTML = `
 
         <img
@@ -743,34 +754,109 @@ document.getElementById("closeProductModal");
 
 function openProductDetails(index){
 
-  const product =
-  allProducts[index];
+  const product = allProducts[index];
 
   productModalBody.innerHTML = `
 
+    <div class="product-main-image-container">
+
+      <img
+        src="${product.image1}"
+        id="mainProductImage"
+        class="main-product-image"
+      >
+
+    </div>
+
     <div class="product-gallery">
 
-${product.image1 ? `<img src="${product.image1}" class="detail-image">` : ""}
+      <img
+        src="${product.image1}"
+        class="detail-image"
+        onclick="changeMainImage('${product.image1}')"
+      >
 
-${product.image2 ? `<img src="${product.image2}" class="detail-image">` : ""}
+      <img
+        src="${product.image2}"
+        class="detail-image"
+        onclick="changeMainImage('${product.image2}')"
+      >
 
-${product.image3 ? `<img src="${product.image3}" class="detail-image">` : ""}
+      <img
+        src="${product.image3}"
+        class="detail-image"
+        onclick="changeMainImage('${product.image3}')"
+      >
+
+    </div>
+
+    <h2 class="modal-product-title">
+      ${product.name}
+    </h2>
+
+    <h3 class="modal-product-price">
+      R${product.price}
+    </h3>
+
+<div class="product-rating">
+
+⭐⭐⭐⭐⭐
+
+<span>
+(${product.rating || "4.9"})
+</span>
 
 </div>
 
-    <h2>${product.name}</h2>
+    <div class="product-benefits">
 
-    <p><strong>Price:</strong> R${product.price}</p>
+      <p>✅ In Stock</p>
 
-    <p><strong>Stock:</strong> ${product.stock}</p>
+      <p>🚚 ${product.delivery}</p>
 
-    <p><strong>Dimensions:</strong> ${product.dimensions}</p>
+      <p>🔒 Secure Checkout</p>
 
-    <p><strong>Material:</strong> ${product.material}</p>
+    </div>
 
-    <p><strong>Delivery:</strong> ${product.delivery}</p>
+    <div class="product-description">
 
-    <p>${product.details}</p>
+      <h3>
+        About This Product
+      </h3>
+
+      <p>
+        ${product.details}
+      </p>
+
+      <p>
+        <strong>Dimensions:</strong>
+        ${product.dimensions}
+      </p>
+
+      <p>
+        <strong>Material:</strong>
+        ${product.material}
+      </p>
+
+    </div>
+
+    <div class="modal-buttons">
+
+      <button
+        class="modal-add-cart-btn"
+        onclick="addModalToCart(${index})"
+      >
+        🛒 Add To Cart
+      </button>
+
+      <button
+        class="modal-buy-now-btn"
+        onclick="buyNow(${index})"
+      >
+        ⚡ Buy Now
+      </button>
+
+    </div>
 
   `;
 
@@ -778,8 +864,48 @@ ${product.image3 ? `<img src="${product.image3}" class="detail-image">` : ""}
 
 }
 
-closeProductModal.addEventListener("click", () => {
+function changeMainImage(image){
+
+  document.getElementById(
+    "mainProductImage"
+  ).src = image;
+
+}
+
+function addModalToCart(index){
+
+  const product = allProducts[index];
+
+  cart.push({
+
+    name: product.name,
+
+    price: parseFloat(product.price)
+
+  });
+
+  updateCart();
+
+  alert("Added to cart.");
+
+}
+
+function buyNow(index){
+
+  const product = allProducts[index];
+
+  cart.push({
+
+    name: product.name,
+
+    price: parseFloat(product.price)
+
+  });
+
+  updateCart();
 
   productModal.classList.remove("active");
 
-});
+  cartSidebar.classList.add("active");
+
+}
