@@ -557,6 +557,11 @@ submitOrderBtn.addEventListener("click", async () => {
 localStorage.removeItem("pawlattoCart");
 cart = [];
 
+document.getElementById("customerName").value = "";
+document.getElementById("customerPhone").value = "";
+document.getElementById("customerEmail").value = "";
+document.getElementById("customerAddress").value = "";
+  
 window.location.href = paymentUrl;
 
 });
@@ -607,7 +612,8 @@ async function loadProducts(){
 
     allProducts = products;
 
-    productsGrid.innerHTML = "";
+   productsGrid.innerHTML =
+"<p>Products currently unavailable.</p>";
 
     products.forEach((product) => {
 
@@ -744,6 +750,12 @@ document.getElementById("productModalBody");
 const closeProductModal =
 document.getElementById("closeProductModal");
 
+closeProductModal.addEventListener("click", () => {
+
+  productModal.classList.remove("active");
+
+});
+
 function openProductDetails(index){
 
   const product = allProducts[index];
@@ -768,17 +780,19 @@ function openProductDetails(index){
         onclick="changeMainImage('${product.image1}')"
       >
 
-      <img
-        src="${product.image2}"
-        class="detail-image"
-        onclick="changeMainImage('${product.image2}')"
-      >
+      ${product.image2 ? `
+<img
+src="${product.image2}"
+class="detail-image"
+onclick="changeMainImage('${product.image2}')"
+>
 
-      <img
-        src="${product.image3}"
-        class="detail-image"
-        onclick="changeMainImage('${product.image3}')"
-      >
+     ${product.image3 ? `
+<img
+src="${product.image3}"
+class="detail-image"
+onclick="changeMainImage('${product.image3}')"
+>
 
     </div>
 
