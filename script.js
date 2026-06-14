@@ -771,30 +771,32 @@ function openProductDetails(index){
       >
 
     </div>
+    
+<div class="product-gallery">
 
-    <div class="product-gallery">
+  <img
+    src="${product.image1}"
+    class="detail-image"
+    onclick="changeMainImage('${product.image1}')"
+  >
 
-      <img
-        src="${product.image1}"
-        class="detail-image"
-        onclick="changeMainImage('${product.image1}')"
-      >
+  ${product.image2 ? `
+    <img
+      src="${product.image2}"
+      class="detail-image"
+      onclick="changeMainImage('${product.image2}')"
+    >
+  ` : ""}
 
-      ${product.image2 ? `
-<img
-src="${product.image2}"
-class="detail-image"
-onclick="changeMainImage('${product.image2}')"
->
+  ${product.image3 ? `
+    <img
+      src="${product.image3}"
+      class="detail-image"
+      onclick="changeMainImage('${product.image3}')"
+    >
+  ` : ""}
 
-     ${product.image3 ? `
-<img
-src="${product.image3}"
-class="detail-image"
-onclick="changeMainImage('${product.image3}')"
->
-
-    </div>
+</div>
 
     <h2 class="modal-product-title">
       ${product.name}
