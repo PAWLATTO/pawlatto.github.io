@@ -1349,3 +1349,25 @@ section{
   background: #c69b6d;
   color: white;
 }
+
+.product-badge{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  background: #c69b6d;
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 30px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  z-index: 2;
+}
+
+.product-card{
+  position: relative;
+}
