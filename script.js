@@ -321,6 +321,161 @@ document.getElementById("cartTotal");
 const cartCount =
 document.getElementById("cartCount");
 
+const customerProvince =
+document.getElementById("customerProvince");
+
+const customerCity =
+document.getElementById("customerCity");
+
+const deliveryFeeDisplay =
+document.getElementById("deliveryFeeDisplay");
+
+const deliveryFeeElement =
+document.getElementById("deliveryFee");
+
+const provinceCities = {
+
+  "Gauteng": [
+    "Centurion",
+    "Pretoria",
+    "Johannesburg",
+    "Sandton",
+    "Midrand",
+    "Randburg",
+    "Roodepoort",
+    "Benoni",
+    "Kempton Park",
+    "Boksburg",
+    "Alberton",
+    "Springs",
+    "Vereeniging",
+    "Vanderbijlpark",
+    "Soweto"
+  ],
+
+  "Western Cape": [
+    "Cape Town",
+    "Stellenbosch",
+    "Paarl",
+    "George"
+  ],
+
+  "KwaZulu-Natal": [
+    "Durban",
+    "Pietermaritzburg",
+    "Richards Bay"
+  ],
+
+  "Eastern Cape": [
+    "Gqeberha",
+    "East London",
+    "Mthatha"
+  ],
+
+  "Free State": [
+    "Bloemfontein",
+    "Welkom"
+  ],
+
+  "Limpopo": [
+    "Polokwane",
+    "Tzaneen"
+  ],
+
+  "Mpumalanga": [
+    "Mbombela",
+    "Witbank"
+  ],
+
+  "North West": [
+    "Rustenburg",
+    "Mahikeng"
+  ],
+
+  "Northern Cape": [
+    "Kimberley",
+    "Upington"
+  ]
+
+};
+
+customerProvince.addEventListener("change", () => {
+
+  const province =
+  customerProvince.value;
+
+  customerCity.innerHTML =
+  '<option value="">Select City / Town</option>';
+
+  if(!province) return;
+
+  provinceCities[province]
+  .forEach((city) => {
+
+    const option =
+    document.createElement("option");
+
+    option.value = city;
+
+    option.textContent = city;
+
+    customerCity.appendChild(option);
+
+  });
+
+});
+
+function calculateDeliveryFee(subtotal){
+
+  const province =
+  customerProvince.value;
+
+  const city =
+  customerCity.value;
+
+  if(!province || !city){
+
+    return 0;
+
+  }
+
+  // CENTURION
+
+  if(
+    province === "Gauteng" &&
+    city === "Centurion"
+  ){
+
+    if(subtotal >= 499) return 0;
+
+    if(subtotal >= 150) return 29;
+
+    return 39;
+
+  }
+
+  // REST OF GAUTENG
+
+  if(province === "Gauteng"){
+
+    if(subtotal >= 499) return 0;
+
+    if(subtotal >= 150) return 59;
+
+    return 69;
+
+  }
+
+  // NATIONAL
+
+  if(subtotal >= 499) return 0;
+
+  if(subtotal >= 150) return 89;
+
+  return 99;
+
+}
+
 // ===================================
 // OPEN CART
 // ===================================
