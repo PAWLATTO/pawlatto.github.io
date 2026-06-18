@@ -1021,20 +1021,6 @@ background:#fafafa;
   margin-bottom: 10px;
 }
 
-.checkout-content input,
-.checkout-content textarea{
-  width: 100%;
-
-  padding: 15px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 12px;
-
-  font-family: inherit;
-  font-size: 1rem;
-}
-
 .checkout-content textarea{
   min-height: 120px;
   resize: vertical;
@@ -1270,6 +1256,13 @@ background:#fafafa;
 /* ==========================
    PRODUCT DETAILS MODAL
 ========================== */
+
+.product-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
+}
 
 @media(max-width:768px){
 
