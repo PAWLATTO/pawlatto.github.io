@@ -553,7 +553,7 @@ function updateCart(){
   });
 
   const deliveryFee =
-  cart.length > 0 ? 80 : 0;
+calculateDeliveryFee(subtotal);
 
   const total =
   subtotal + deliveryFee;
@@ -562,6 +562,8 @@ function updateCart(){
 
   cartCount.innerText = cart.length;
 
+updateDeliveryDisplay();
+  
   localStorage.setItem(
     "pawlattoCart",
     JSON.stringify(cart)
@@ -639,45 +641,64 @@ submitOrderBtn.addEventListener("click", async () => {
   const customerEmail =
   document.getElementById("customerEmail").value;
 
-  const customerAddress =
-  document.getElementById("customerAddress").value;
+ const customerAddress =
+document.getElementById("streetAddress").value;
 
-  if(
-    !customerName ||
-    !customerPhone ||
-    !customerEmail ||
-    !customerAddress
-  ){
+ if(
+  !customerName ||
+  !customerPhone ||
+  !customerEmail ||
+  !customerAddress ||
+  !customerProvince.value ||
+  !customerCity.value
+)
+{
+  alert(
+    "Please complete all fields."
+  );
 
-    alert("Please complete all fields.");
+  return;
+}
 
-    return;
+ let subtotal = 0;
 
-  }
+cart.forEach((item) => {
 
-  let total = 0;
+  subtotal += item.price;
 
-  cart.forEach((item) => {
+});
 
-    total += item.price;
+const deliveryFee =
+calculateDeliveryFee(subtotal);
 
-  });
+const total =
+subtotal + deliveryFee;
 
-  total += 80;
+const customerProvinceValue =
+customerProvince.value;
+
+const customerCityValue =
+customerCity.value;
 
   const orderData = {
 
-    customerName,
-    customerPhone,
-    customerEmail,
-    customerAddress,
+  customerName,
+  customerPhone,
+  customerEmail,
+  customerAddress,
 
-    items: cart,
+  province:
+  customerProvinceValue,
 
-    total
+  city:
+  customerCityValue,
 
-  };
+  items: cart,
 
+  total
+
+};
+  
   try{
 
     await fetch(
@@ -715,11 +736,13 @@ cart = [];
 document.getElementById("customerName").value = "";
 document.getElementById("customerPhone").value = "";
 document.getElementById("customerEmail").value = "";
-document.getElementById("customerAddress").value = "";
-  
-window.location.href = paymentUrl;
+document.getElementById("streetAddress").value = "";
 
-});
+customerProvince.value = "";
+customerCity.innerHTML =
+'<option value="">Select City / Town</option>';
+
+updateCart();
 
 // ===================================
 // FOOTER LINK EFFECTS
@@ -767,8 +790,7 @@ async function loadProducts(){
 
     allProducts = products;
 
-   productsGrid.innerHTML =
-"<p>Products currently unavailable.</p>";
+  productsGrid.innerHTML = "";
 
     products.forEach((product) => {
 
@@ -908,6 +930,16 @@ document.getElementById("closeProductModal");
 closeProductModal.addEventListener("click", () => {
 
   productModal.classList.remove("active");
+
+});
+
+productModal.addEventListener("click", (e) => {
+
+  if(e.target === productModal){
+
+    productModal.classList.remove("active");
+
+  }
 
 });
 
@@ -1074,3 +1106,51 @@ function buyNow(index){
   cartSidebar.classList.add("active");
 
 }
+
+function updateDeliveryDisplay(){
+
+  let subtotal = 0;
+
+  cart.forEach((item) => {
+
+    subtotal += item.price;
+
+  });
+
+  const fee =
+  calculateDeliveryFee(subtotal);
+
+  if(fee === 0){
+
+    deliveryFeeDisplay.innerText =
+    "Delivery Fee: FREE";
+
+    deliveryFeeElement.innerText =
+    "FREE";
+
+  }
+
+  else{
+
+    deliveryFeeDisplay.innerText =
+    `Delivery Fee: R${fee}`;
+
+    deliveryFeeElement.innerText =
+    `R${fee}`;
+
+  }
+
+}
+
+customerProvince.addEventListener("change", () => {
+
+  updateCart();
+
+});
+
+customerCity.addEventListener("change", () => {
+
+  updateCart();
+
+});
+
