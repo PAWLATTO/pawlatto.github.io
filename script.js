@@ -460,11 +460,11 @@ function updateCart(){
 
   });
 
-  const deliveryFee =
+const deliveryFee =
 calculateDeliveryFee(subtotal);
 
-  const total =
-  subtotal + deliveryFee;
+const total =
+subtotal + (deliveryFee === null ? 0 : deliveryFee);
 
   cartTotal.innerText = `R${total}`;
 
@@ -580,7 +580,7 @@ const deliveryFee =
 calculateDeliveryFee(subtotal);
 
 const total =
-subtotal + deliveryFee;
+subtotal + (deliveryFee === null ? 0 : deliveryFee);
 
 const customerProvinceValue =
 customerProvince.value;
@@ -1031,25 +1031,35 @@ function updateDeliveryDisplay(){
   const fee =
   calculateDeliveryFee(subtotal);
 
-  if(fee === 0){
+  if(fee === null){
 
-    deliveryFeeDisplay.innerText =
-    "Delivery Fee: FREE";
+  deliveryFeeDisplay.innerText =
+  "Select Province & City";
 
-    deliveryFeeElement.innerText =
-    "FREE";
+  deliveryFeeElement.innerText =
+  "--";
 
-  }
+}
 
-  else{
+else if(fee === 0){
 
-    deliveryFeeDisplay.innerText =
-    `Delivery Fee: R${fee}`;
+  deliveryFeeDisplay.innerText =
+  "Delivery Fee: FREE";
 
-    deliveryFeeElement.innerText =
-    `R${fee}`;
+  deliveryFeeElement.innerText =
+  "FREE";
 
-  }
+}
+
+else{
+
+  deliveryFeeDisplay.innerText =
+  `Delivery Fee: R${fee}`;
+
+  deliveryFeeElement.innerText =
+  `R${fee}`;
+
+}
 
 }
 
