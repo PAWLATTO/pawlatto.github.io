@@ -339,11 +339,11 @@ function calculateDeliveryFee(subtotal){
   customerProvince.value;
 
   const city =
-  customerCity.value;
+  customerCity.value.trim().toLowerCase();
 
   if(!province || !city){
 
-    return 0;
+    return null;
 
   }
 
@@ -351,7 +351,7 @@ function calculateDeliveryFee(subtotal){
 
   if(
     province === "Gauteng" &&
-    city === "Centurion"
+    city === "centurion"
   ){
 
     if(subtotal >= 499) return 0;
@@ -1064,4 +1064,3 @@ customerCity.addEventListener("change", () => {
   updateCart();
 
 });
-
