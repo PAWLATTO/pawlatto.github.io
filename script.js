@@ -333,98 +333,6 @@ document.getElementById("deliveryFeeDisplay");
 const deliveryFeeElement =
 document.getElementById("deliveryFee");
 
-const provinceCities = {
-
-  "Gauteng": [
-    "Centurion",
-    "Pretoria",
-    "Johannesburg",
-    "Sandton",
-    "Midrand",
-    "Randburg",
-    "Roodepoort",
-    "Benoni",
-    "Kempton Park",
-    "Boksburg",
-    "Alberton",
-    "Springs",
-    "Vereeniging",
-    "Vanderbijlpark",
-    "Soweto"
-  ],
-
-  "Western Cape": [
-    "Cape Town",
-    "Stellenbosch",
-    "Paarl",
-    "George"
-  ],
-
-  "KwaZulu-Natal": [
-    "Durban",
-    "Pietermaritzburg",
-    "Richards Bay"
-  ],
-
-  "Eastern Cape": [
-    "Gqeberha",
-    "East London",
-    "Mthatha"
-  ],
-
-  "Free State": [
-    "Bloemfontein",
-    "Welkom"
-  ],
-
-  "Limpopo": [
-    "Polokwane",
-    "Tzaneen"
-  ],
-
-  "Mpumalanga": [
-    "Mbombela",
-    "Witbank"
-  ],
-
-  "North West": [
-    "Rustenburg",
-    "Mahikeng"
-  ],
-
-  "Northern Cape": [
-    "Kimberley",
-    "Upington"
-  ]
-
-};
-
-customerProvince.addEventListener("change", () => {
-
-  const province =
-  customerProvince.value;
-
-  customerCity.innerHTML =
-  '<option value="">Select City / Town</option>';
-
-  if(!province) return;
-
-  provinceCities[province]
-  .forEach((city) => {
-
-    const option =
-    document.createElement("option");
-
-    option.value = city;
-
-    option.textContent = city;
-
-    customerCity.appendChild(option);
-
-  });
-
-});
-
 function calculateDeliveryFee(subtotal){
 
   const province =
@@ -739,8 +647,7 @@ document.getElementById("customerEmail").value = "";
 document.getElementById("streetAddress").value = "";
 
 customerProvince.value = "";
-customerCity.innerHTML =
-'<option value="">Select City / Town</option>';
+customerCity.value = "";
 
 updateCart();
 
