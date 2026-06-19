@@ -744,6 +744,10 @@ customerCity.innerHTML =
 
 updateCart();
 
+window.location.href = paymentUrl;
+
+});
+  
 // ===================================
 // FOOTER LINK EFFECTS
 // ===================================
