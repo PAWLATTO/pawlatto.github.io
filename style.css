@@ -1277,16 +1277,6 @@ background:#fafafa;
   margin-bottom: 10px;
 }
 
-.product-rating{
-  display: inline-block;
-  background: #fff8e6;
-  color: #d89a00;
-  padding: 8px 14px;
-  border-radius: 30px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
 .product-price-large{
   font-size: 2rem;
   font-weight: 700;
@@ -1352,17 +1342,6 @@ background:#fafafa;
    PRODUCT CARD IMPROVEMENTS
 ========================== */
 
-.product-rating-badge{
-  display: inline-block;
-  background: #fff8e6;
-  color: #d89a00;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
 .view-details-btn{
   background: transparent;
   border: 2px solid #c69b6d;
@@ -1378,24 +1357,6 @@ background:#fafafa;
 .view-details-btn:hover{
   background: #c69b6d;
   color: white;
-}
-
-.product-badge{
-  position: absolute;
-  top: 15px;
-  left: 15px;
-
-  background: #c69b6d;
-  color: white;
-
-  padding: 8px 14px;
-
-  border-radius: 30px;
-
-  font-size: 0.8rem;
-  font-weight: 600;
-
-  z-index: 2;
 }
 
 .modal-add-cart-btn{
