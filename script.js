@@ -711,10 +711,6 @@ async function loadProducts(){
 
       card.innerHTML = `
 
-<div class="product-badge">
-⭐ Best Seller
-</div>
-
         <img
           src="${product.image1}"
           alt="${product.name}"
@@ -722,13 +718,6 @@ async function loadProducts(){
         >
 
         <h3>${product.name}</h3>
-
-        <div class="product-rating">
-⭐⭐⭐⭐⭐
-<span>
-(${product.rating || "4.9"})
-</span>
-</div>
 
 <p class="product-price">
 R${product.price}
@@ -904,23 +893,11 @@ function openProductDetails(index){
       R${product.price}
     </h3>
 
-<div class="product-rating">
-
-⭐⭐⭐⭐⭐
-
-<span>
-(${product.rating || "4.9"})
-</span>
-
-</div>
-
    <div class="product-benefits">
 
   <p>✅ In Stock & Ready To Ship</p>
 
   <p>🚚 Fast Delivery Nationwide</p>
-
-  <p>⭐ Rated ${product.rating || "4.9"}/5</p>
 
   <p>🔒 Secure Checkout</p>
 
