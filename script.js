@@ -524,6 +524,24 @@ checkoutBtn.addEventListener("click", () => {
 
   }
 
+  let subtotal = 0;
+
+  cart.forEach(item => {
+
+    subtotal += item.price;
+
+  });
+
+  if(subtotal < 150){
+
+    alert(
+      "Minimum order amount is R150 before delivery. Please add more items to your cart."
+    );
+
+    return;
+
+  }
+
   checkoutModal.style.display = "flex";
 
 });
