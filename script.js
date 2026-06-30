@@ -590,20 +590,22 @@ customerCity.value;
 
   const orderData = {
 
-  customerName,
-  customerPhone,
-  customerEmail,
-  customerAddress,
+customerName,
+customerPhone,
+customerEmail,
+customerAddress,
 
-  province:
-  customerProvinceValue,
+province:
+customerProvinceValue,
 
-  city:
-  customerCityValue,
+city:
+customerCityValue,
 
-  items: cart,
+items: cart,
 
-  total
+deliveryFee,
+
+total
 
 };
   
