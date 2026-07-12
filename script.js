@@ -435,7 +435,7 @@ function updateCart(){
 
   cart.forEach((item, index) => {
 
-    subtotal += item.price;
+    subtotal += item.price * item.quantity;
 
     const cartItem =
     document.createElement("div");
@@ -445,7 +445,46 @@ function updateCart(){
     cartItem.innerHTML = `
       <div class="cart-item-info">
         <h4>${item.name}</h4>
-        <p>R${item.price}</p>
+        <p>
+
+R${item.price} each
+
+</p>
+
+<div class="quantity-controls">
+
+<button
+class="decrease-qty"
+data-index="${index}"
+>
+
+−
+
+</button>
+
+<span>
+
+${item.quantity}
+
+</span>
+
+<button
+class="increase-qty"
+data-index="${index}"
+>
+
++
+
+</button>
+
+</div>
+
+<p>
+
+Subtotal:
+R${item.price * item.quantity}
+
+</p>
       </div>
 
       <button
@@ -468,7 +507,15 @@ subtotal + (deliveryFee === null ? 0 : deliveryFee);
 
   cartTotal.innerText = `R${total}`;
 
-  cartCount.innerText = cart.length;
+  let totalItems = 0;
+
+cart.forEach(item => {
+
+    totalItems += item.quantity;
+
+});
+
+cartCount.innerText = totalItems;
 
 updateDeliveryDisplay();
   
@@ -477,22 +524,63 @@ updateDeliveryDisplay();
     JSON.stringify(cart)
   );
 
-  document
-    .querySelectorAll(".remove-item")
-    .forEach((button) => {
+  // Increase Quantity
 
-      button.addEventListener("click", () => {
+document
+.querySelectorAll(".increase-qty")
+.forEach((button) => {
 
-        const index =
-        button.dataset.index;
+button.addEventListener("click", () => {
 
-        cart.splice(index, 1);
+const item =
+cart[button.dataset.index];
+
+item.quantity++;
+
+updateCart();
+
+});
+
+});
+
+// Decrease Quantity
+
+document
+.querySelectorAll(".decrease-qty")
+.forEach((button) => {
+
+button.addEventListener("click", () => {
+
+const item =
+cart[button.dataset.index];
+
+item.quantity--;
+
+if(item.quantity <= 0){
+
+cart.splice(button.dataset.index,1);
+
+}
+
+updateCart();
+
+});
+
+  });
+
+document
+.querySelectorAll(".remove-item")
+.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        cart.splice(button.dataset.index, 1);
 
         updateCart();
 
-      });
-
     });
+
+});
 
 }
 
@@ -572,7 +660,7 @@ document.getElementById("streetAddress").value;
 
 cart.forEach((item) => {
 
-  subtotal += item.price;
+  subtotal += item.price * item.quantity;
 
 });
 
@@ -700,9 +788,21 @@ const productsGrid =
 document.getElementById("productsGrid");
 
 const API_URL =
-"https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec";
+"https://script.google.com/macros/s/AKfycbz5OsVXPwzsV1lBqH8BHorpdWZ20TeWbtlV9bbZaNr_UIHODF2YKFBz132oGMshFdzg/exec";
 
 let allProducts = [];
+
+const searchInput =
+document.getElementById("searchInput");
+
+const animalFilter =
+document.getElementById("animalFilter");
+
+const categoryFilter =
+document.getElementById("categoryFilter");
+
+const sortProducts =
+document.getElementById("sortProducts");
 
 async function loadProducts(){
 
@@ -713,118 +813,53 @@ async function loadProducts(){
 
     allProducts = products;
 
-  productsGrid.innerHTML = "";
+    // Populate Animal Filter
 
-    products.forEach((product) => {
+const animals = [
+...new Set(
+products.map(p => p.animal_type)
+)
+];
 
-      const card = document.createElement("div");
+animals.sort();
 
-      card.classList.add("product-card");
+animals.forEach(animal => {
 
-      card.innerHTML = `
+if(animal){
 
-<div class="product-animal">
-
-${product.animal_type}
-
-</div>
-
-${product.featured === "Yes"
-? `<div class="featured-badge">⭐ Featured</div>`
-: ""}
-
-<img
-src="${product.image1}"
-alt="${product.image_alt_text || product.name}"
-class="product-image"
-loading="lazy"
->
-
-<h3>
-
-${product.name}
-
-</h3>
-
-<p class="product-category">
-
-${product.category}
-
-</p>
-
-${
-product.sale_price > 0
-
-? `
-
-<p class="product-price">
-
-<span class="old-price">
-
-R${product.price}
-
-</span>
-
-<span class="sale-price">
-
-R${product.sale_price}
-
-</span>
-
-</p>
-
-`
-
-: `
-
-<p class="product-price">
-
-R${product.price}
-
-</p>
-
-`
+animalFilter.innerHTML += `
+<option value="${animal}">
+${animal}
+</option>`;
 
 }
 
-<p class="stock-status">
+});
 
-${
-product.stock_quantity > 0
+// Populate Category Filter
 
-? `✅ ${product.stock_quantity} In Stock`
+const categories = [
+...new Set(
+products.map(p => p.category)
+)
+];
 
-: `❌ Out of Stock`
+categories.sort();
+
+categories.forEach(category => {
+
+if(category){
+
+categoryFilter.innerHTML += `
+<option value="${category}">
+${category}
+</option>`;
+
 }
 
-</p>
+});
 
-<button
-class="add-cart-btn"
-data-name="${product.name}"
-data-price="${product.sale_price > 0 ? product.sale_price : product.price}"
->
-
-🛒 Add To Cart
-
-</button>
-
-<button
-class="view-details-btn"
-onclick="openProductDetails(${allProducts.indexOf(product)})"
->
-
-👀 View Details
-
-</button>
-
-`;
-
-      productsGrid.appendChild(card);
-
-    });
-
-    initializeCartButtons();
+  displayProducts(products);
 
   }
 
@@ -856,14 +891,29 @@ function initializeCartButtons(){
         button.dataset.price
       );
 
-      cart.push({
+      const existingItem = cart.find(
+  item => item.name === name
+);
 
-        name,
-        price
+if(existingItem){
 
-      });
+  existingItem.quantity++;
 
-      updateCart();
+}
+
+else{
+
+  cart.push({
+
+    name,
+    price,
+    quantity: 1
+
+  });
+
+}
+
+updateCart();
 
     });
 
@@ -894,7 +944,209 @@ window.addEventListener("load", () => {
 // START WEBSITE
 // ===================================
 
+function displayProducts(products){
+
+productsGrid.innerHTML = "";
+
+products.forEach((product) => {
+
+const card = document.createElement("div");
+
+card.classList.add("product-card");
+
+card.innerHTML = `
+
+<div class="product-animal">
+
+${product.animal_type}
+
+</div>
+
+${product.featured === "Yes"
+? `<div class="featured-badge">⭐ Featured</div>`
+: ""}
+
+<img
+src="${product.image1}"
+alt="${product.image_alt_text || product.name}"
+class="product-image"
+loading="lazy"
+>
+
+<h3>${product.name}</h3>
+
+<p class="product-category">
+
+${product.category}
+
+</p>
+
+${
+Number(product.sale_price) > 0
+
+?
+
+`<p class="product-price">
+
+<span class="old-price">
+
+R${product.price}
+
+</span>
+
+<span class="sale-price">
+
+R${product.sale_price}
+
+</span>
+
+</p>`
+
+:
+
+`<p class="product-price">
+
+R${product.price}
+
+</p>`
+
+}
+
+<p class="stock-status">
+
+${
+Number(product.stock_quantity) > 0
+
+?
+
+`✅ ${product.stock_quantity} In Stock`
+
+:
+
+`❌ Out of Stock`
+
+}
+
+</p>
+
+<button
+class="add-cart-btn"
+data-name="${product.name}"
+data-price="${Number(product.sale_price) > 0 ? product.sale_price : product.price}"
+${product.stock_quantity <= 0 ? "disabled" : ""}
+>
+${product.stock_quantity <= 0 ? "Out of Stock" : "🛒 Add To Cart"}
+</button>
+
+<button
+class="view-details-btn"
+onclick="openProductDetails(${allProducts.indexOf(product)})"
+>
+
+👀 View Details
+
+</button>
+
+`;
+
+productsGrid.appendChild(card);
+
+});
+
+initializeCartButtons();
+
+}
+
 loadProducts();
+
+function filterProducts(){
+
+let filtered = [...allProducts];
+
+// SEARCH
+
+const search =
+searchInput.value.toLowerCase();
+
+filtered = filtered.filter(product =>
+
+product.name
+.toLowerCase()
+.includes(search)
+
+);
+
+// ANIMAL
+
+if(animalFilter.value !== "all"){
+
+filtered = filtered.filter(product =>
+
+product.animal_type ===
+animalFilter.value
+
+);
+
+}
+
+// CATEGORY
+
+if(categoryFilter.value !== "all"){
+
+filtered = filtered.filter(product =>
+
+product.category ===
+categoryFilter.value
+
+);
+
+}
+
+// SORT
+
+switch(sortProducts.value){
+
+case "priceLow":
+
+filtered.sort(
+(a,b)=>
+Number(a.price)-Number(b.price)
+);
+
+break;
+
+case "priceHigh":
+
+filtered.sort(
+(a,b)=>
+Number(b.price)-Number(a.price)
+);
+
+break;
+
+case "az":
+
+filtered.sort(
+(a,b)=>
+a.name.localeCompare(b.name)
+);
+
+break;
+
+case "za":
+
+filtered.sort(
+(a,b)=>
+b.name.localeCompare(a.name)
+);
+
+break;
+
+}
+
+displayProducts(filtered);
+
+}
 
 updateCart();
 
@@ -969,9 +1221,29 @@ function openProductDetails(index){
       ${product.name}
     </h2>
 
-    <h3 class="modal-product-price">
-      R${product.price}
-    </h3>
+    ${
+Number(product.sale_price) > 0
+
+?
+
+`<h3 class="modal-product-price">
+
+<span class="old-price">
+R${product.price}
+</span>
+
+<span class="sale-price">
+R${product.sale_price}
+</span>
+
+</h3>`
+
+:
+
+`<h3 class="modal-product-price">
+R${product.price}
+</h3>`
+}
 
    <div class="product-benefits">
 
@@ -1059,24 +1331,6 @@ ${product.stock_quantity <= 0 ? "disabled" : ""}
 
     </div>
 
-    <div class="modal-buttons">
-
-      <button
-        class="modal-add-cart-btn"
-        onclick="addModalToCart(${index})"
-      >
-        🛒 Add To Cart
-      </button>
-
-      <button
-        class="modal-buy-now-btn"
-        onclick="buyNow(${index})"
-      >
-        ⚡ Buy Now
-      </button>
-
-    </div>
-
   `;
 
   productModal.classList.add("active");
@@ -1093,39 +1347,71 @@ function changeMainImage(image){
 
 function addModalToCart(index){
 
-  const product = allProducts[index];
+    const product = allProducts[index];
 
-  cart.push({
+    const price = parseFloat(
+        Number(product.sale_price) > 0
+        ? product.sale_price
+        : product.price
+    );
 
-    name: product.name,
+    const existingItem = cart.find(
+        item => item.name === product.name
+    );
 
-    price: parseFloat(product.price)
+    if(existingItem){
 
-  });
+        existingItem.quantity++;
 
-  updateCart();
+    }else{
 
-  alert("Added to cart.");
+        cart.push({
+            name: product.name,
+            price: price,
+            quantity: 1
+        });
+
+    }
+
+    updateCart();
+
+    alert("Added to cart.");
 
 }
 
 function buyNow(index){
 
-  const product = allProducts[index];
+    const product = allProducts[index];
 
-  cart.push({
+    const price = parseFloat(
+        Number(product.sale_price) > 0
+        ? product.sale_price
+        : product.price
+    );
 
-    name: product.name,
+    const existingItem = cart.find(
+        item => item.name === product.name
+    );
 
-    price: parseFloat(product.price)
+    if(existingItem){
 
-  });
+        existingItem.quantity++;
 
-  updateCart();
+    }else{
 
-  productModal.classList.remove("active");
+        cart.push({
+            name: product.name,
+            price: price,
+            quantity: 1
+        });
 
-  cartSidebar.classList.add("active");
+    }
+
+    updateCart();
+
+    productModal.classList.remove("active");
+
+    cartSidebar.classList.add("active");
 
 }
 
@@ -1135,7 +1421,7 @@ function updateDeliveryDisplay(){
 
   cart.forEach((item) => {
 
-    subtotal += item.price;
+    subtotal += item.price * item.quantity;
 
   });
 
@@ -1183,5 +1469,13 @@ customerProvince.addEventListener("change", () => {
 customerCity.addEventListener("change", () => {
 
   updateCart();
-
+  
 });
+
+searchInput.addEventListener("input", filterProducts);
+
+animalFilter.addEventListener("change", filterProducts);
+
+categoryFilter.addEventListener("change", filterProducts);
+
+sortProducts.addEventListener("change", filterProducts);
