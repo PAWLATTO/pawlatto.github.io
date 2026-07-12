@@ -1537,3 +1537,95 @@ font-weight:700;
 
   flex:1;
 }
+
+/* ===================================
+   PRODUCT TOOLBAR
+=================================== */
+
+.product-toolbar{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+margin:40px 0;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.product-toolbar input,
+
+.product-toolbar select{
+
+padding:14px 18px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:15px;
+
+font-family:'Poppins',sans-serif;
+
+background:#fff;
+
+min-width:220px;
+
+transition:.3s;
+
+outline:none;
+
+}
+
+.product-toolbar input{
+
+flex:1;
+
+max-width:420px;
+
+}
+
+.product-toolbar input:focus,
+
+.product-toolbar select:focus{
+
+border-color:#C89B63;
+
+box-shadow:0 0 10px rgba(200,155,99,.2);
+
+}
+
+.product-toolbar select{
+
+cursor:pointer;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.product-toolbar{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.product-toolbar input,
+
+.product-toolbar select{
+
+width:100%;
+
+max-width:none;
+
+}
+
+}
