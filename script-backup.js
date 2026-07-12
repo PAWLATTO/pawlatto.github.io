@@ -22,8 +22,6 @@ let currentSlide = 0;
 
 function showSlide(index){
 
-  // REMOVE ACTIVE
-
   slides.forEach((slide) => {
 
     slide.classList.remove("active");
@@ -35,8 +33,6 @@ function showSlide(index){
     dot.classList.remove("active-dot");
 
   });
-
-  // ADD ACTIVE
 
   slides[index].classList.add("active");
 
@@ -123,7 +119,7 @@ setInterval(() => {
 }, 5000);
 
 // ===================================
-// NAVBAR SCROLL EFFECT
+// NAVBAR SCROLL
 // ===================================
 
 const navbar =
@@ -178,7 +174,7 @@ navLinks.forEach((link) => {
 });
 
 // ===================================
-// EMAIL NOTIFY FORM
+// EMAIL FORM
 // ===================================
 
 const notifyForm =
@@ -194,8 +190,6 @@ notifyForm.addEventListener("submit", (e) => {
   const emailValue =
   emailInput.value.trim();
 
-  // VALIDATION
-
   if(emailValue === ""){
 
     alert(
@@ -206,13 +200,9 @@ notifyForm.addEventListener("submit", (e) => {
 
   }
 
-  // SUCCESS
-
   alert(
     "Thank you for joining the PawLatto family!"
   );
-
-  // CLEAR INPUT
 
   emailInput.value = "";
 
@@ -231,24 +221,16 @@ document.getElementById("acceptTerms");
 const learnMore =
 document.getElementById("learnMore");
 
-// ACCEPT TERMS
-
 acceptTerms.addEventListener("click", () => {
-
-  // SAVE ACCEPTANCE
 
   localStorage.setItem(
     "pawlattoTermsAccepted",
     "true"
   );
 
-  // HIDE POPUP
-
   termsPopup.style.display = "none";
 
 });
-
-// CHECK IF ACCEPTED BEFORE
 
 if(
   localStorage.getItem(
@@ -259,10 +241,6 @@ if(
   termsPopup.style.display = "none";
 
 }
-
-// ===================================
-// LEARN MORE BUTTON
-// ===================================
 
 learnMore.addEventListener("click", () => {
 
@@ -277,38 +255,6 @@ learnMore.addEventListener("click", () => {
 • By using this website you agree to our policies.`
 
   );
-
-});
-
-// ===================================
-// HERO CONTENT FADE
-// ===================================
-
-window.addEventListener("load", () => {
-
-  const heroContent =
-  document.querySelectorAll(".hero-content");
-
-  heroContent.forEach((content) => {
-
-    content.style.opacity = "0";
-
-    content.style.transform =
-    "translateY(30px)";
-
-    setTimeout(() => {
-
-      content.style.transition =
-      "1s ease";
-
-      content.style.opacity = "1";
-
-      content.style.transform =
-      "translateY(0px)";
-
-    }, 300);
-
-  });
 
 });
 
@@ -354,34 +300,375 @@ window.addEventListener("scroll", () => {
 });
 
 // ===================================
-// HOVER EFFECTS
+// CART SYSTEM
 // ===================================
 
-const cards =
-document.querySelectorAll(
-  ".product-card, .feature-box, .contact-card"
-);
+const cartBtn =
+document.getElementById("cartBtn");
 
-cards.forEach((card) => {
+const cartSidebar =
+document.getElementById("cartSidebar");
 
-  card.addEventListener("mouseenter", () => {
+const closeCart =
+document.getElementById("closeCart");
 
-    card.style.transform =
-    "translateY(-10px) scale(1.03)";
+const cartItemsContainer =
+document.getElementById("cartItems");
 
-  });
+const cartTotal =
+document.getElementById("cartTotal");
 
-  card.addEventListener("mouseleave", () => {
+const cartCount =
+document.getElementById("cartCount");
 
-    card.style.transform =
-    "translateY(0px) scale(1)";
+const customerProvince =
+document.getElementById("customerProvince");
 
-  });
+const customerCity =
+document.getElementById("customerCity");
+
+const deliveryFeeDisplay =
+document.getElementById("deliveryFeeDisplay");
+
+const deliveryFeeElement =
+document.getElementById("deliveryFee");
+
+function calculateDeliveryFee(subtotal){
+
+  const province =
+  customerProvince.value;
+
+  const city =
+  customerCity.value.trim().toLowerCase();
+
+  if(!province || !city){
+
+    return null;
+
+  }
+
+  // CENTURION
+
+  if(
+    province === "Gauteng" &&
+    city === "centurion"
+  ){
+
+    if(subtotal >= 499) return 0;
+
+    if(subtotal >= 150) return 29;
+
+    return 39;
+
+  }
+
+  // REST OF GAUTENG
+
+  if(province === "Gauteng"){
+
+    if(subtotal >= 499) return 0;
+
+    if(subtotal >= 150) return 59;
+
+    return 69;
+
+  }
+
+  // NATIONAL
+
+  if(subtotal >= 499) return 0;
+
+  if(subtotal >= 150) return 89;
+
+  return 99;
+
+}
+
+// ===================================
+// OPEN CART
+// ===================================
+
+cartBtn.addEventListener("click", () => {
+
+  cartSidebar.classList.add("active");
 
 });
 
 // ===================================
-// FOOTER LINKS EFFECT
+// CLOSE CART
+// ===================================
+
+closeCart.addEventListener("click", () => {
+
+  cartSidebar.classList.remove("active");
+
+});
+
+// ===================================
+// CART ARRAY
+// ===================================
+
+let cart = [];
+
+// LOAD SAVED CART
+
+if(localStorage.getItem("pawlattoCart")){
+
+  cart =
+  JSON.parse(
+    localStorage.getItem("pawlattoCart")
+  );
+
+  updateCart();
+
+}
+
+// ===================================
+// UPDATE CART
+// ===================================
+
+function updateCart(){
+
+  cartItemsContainer.innerHTML = "";
+
+  let subtotal = 0;
+
+  cart.forEach((item, index) => {
+
+    subtotal += item.price;
+
+    const cartItem =
+    document.createElement("div");
+
+    cartItem.classList.add("cart-item");
+
+    cartItem.innerHTML = `
+      <div class="cart-item-info">
+        <h4>${item.name}</h4>
+        <p>R${item.price}</p>
+      </div>
+
+      <button
+        class="remove-item"
+        data-index="${index}"
+      >
+        Remove
+      </button>
+    `;
+
+    cartItemsContainer.appendChild(cartItem);
+
+  });
+
+const deliveryFee =
+calculateDeliveryFee(subtotal);
+
+const total =
+subtotal + (deliveryFee === null ? 0 : deliveryFee);
+
+  cartTotal.innerText = `R${total}`;
+
+  cartCount.innerText = cart.length;
+
+updateDeliveryDisplay();
+  
+  localStorage.setItem(
+    "pawlattoCart",
+    JSON.stringify(cart)
+  );
+
+  document
+    .querySelectorAll(".remove-item")
+    .forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const index =
+        button.dataset.index;
+
+        cart.splice(index, 1);
+
+        updateCart();
+
+      });
+
+    });
+
+}
+
+// ===================================
+// CHECKOUT MODAL
+// ===================================
+
+const checkoutBtn =
+document.getElementById("checkoutBtn");
+
+const checkoutModal =
+document.getElementById("checkoutModal");
+
+const submitOrderBtn =
+document.getElementById("submitOrderBtn");
+
+const closeCheckoutModal =
+document.getElementById("closeCheckoutModal");
+
+// OPEN MODAL
+
+checkoutBtn.addEventListener("click", () => {
+
+  if(cart.length === 0){
+
+    alert("Your cart is empty.");
+
+    return;
+
+  }
+
+  checkoutModal.style.display = "flex";
+
+});
+
+// CLOSE MODAL
+
+closeCheckoutModal.addEventListener("click", () => {
+
+  checkoutModal.style.display = "none";
+
+});
+
+// SUBMIT ORDER
+
+submitOrderBtn.addEventListener("click", async () => {
+
+  const customerName =
+  document.getElementById("customerName").value;
+
+  const customerPhone =
+  document.getElementById("customerPhone").value;
+
+  const customerEmail =
+  document.getElementById("customerEmail").value;
+
+ const customerAddress =
+document.getElementById("streetAddress").value;
+
+ if(
+  !customerName ||
+  !customerPhone ||
+  !customerEmail ||
+  !customerAddress ||
+  !customerProvince.value ||
+  !customerCity.value
+)
+{
+  alert(
+    "Please complete all fields."
+  );
+
+  return;
+}
+
+ let subtotal = 0;
+
+cart.forEach((item) => {
+
+  subtotal += item.price;
+
+});
+
+const deliveryFee =
+calculateDeliveryFee(subtotal);
+
+const total =
+subtotal + (deliveryFee === null ? 0 : deliveryFee);
+
+if (subtotal < 150) {
+
+  alert(
+    "Minimum order value is R150 (excluding delivery). Please add more items before placing your order."
+  );
+
+  return;
+
+}
+  
+const customerProvinceValue =
+customerProvince.value;
+
+const customerCityValue =
+customerCity.value;
+
+  const orderData = {
+
+customerName,
+customerPhone,
+customerEmail,
+customerAddress,
+
+province:
+customerProvinceValue,
+
+city:
+customerCityValue,
+
+items: cart,
+
+deliveryFee,
+
+total
+
+};
+  
+  try{
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(orderData)
+      }
+    );
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+  const merchantId =
+  "34900767";
+
+  const merchantKey =
+  "sfvvofpzaciwk";
+
+  const itemDescription =
+  cart.map(item => item.name)
+  .join(", ");
+
+  const paymentUrl =
+  `https://www.payfast.co.za/eng/process?merchant_id=${merchantId}&merchant_key=${merchantKey}&amount=${total}&item_name=PawLatto Order&item_description=${encodeURIComponent(itemDescription)}`;
+
+localStorage.removeItem("pawlattoCart");
+cart = [];
+
+document.getElementById("customerName").value = "";
+document.getElementById("customerPhone").value = "";
+document.getElementById("customerEmail").value = "";
+document.getElementById("streetAddress").value = "";
+
+customerProvince.value = "";
+customerCity.value = "";
+
+updateCart();
+
+window.location.href = paymentUrl;
+
+});
+  
+// ===================================
+// FOOTER LINK EFFECTS
 // ===================================
 
 const footerLinks =
@@ -406,6 +693,117 @@ footerLinks.forEach((link) => {
 });
 
 // ===================================
+// LOAD PRODUCTS FROM GOOGLE SHEETS
+// ===================================
+
+const productsGrid =
+document.getElementById("productsGrid");
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec";
+
+let allProducts = [];
+
+async function loadProducts(){
+
+  try{
+
+    const response = await fetch(API_URL);
+    const products = await response.json();
+
+    allProducts = products;
+
+  productsGrid.innerHTML = "";
+
+    products.forEach((product) => {
+
+      const card = document.createElement("div");
+
+      card.classList.add("product-card");
+
+      card.innerHTML = `
+
+        <img
+          src="${product.image1}"
+          alt="${product.name}"
+          class="product-image"
+        >
+
+        <h3>${product.name}</h3>
+
+<p class="product-price">
+R${product.price}
+</p>
+
+<button
+class="add-cart-btn"
+data-name="${product.name}"
+data-price="${product.price}"
+>
+🛒 Add To Cart
+</button>
+
+<button
+class="view-details-btn"
+onclick="openProductDetails(${allProducts.indexOf(product)})"
+>
+👀 View Details
+</button>
+
+      `;
+
+      productsGrid.appendChild(card);
+
+    });
+
+    initializeCartButtons();
+
+  }
+
+  catch(error){
+
+    console.error("PRODUCT ERROR:", error);
+
+  }
+
+}
+// ===================================
+// DYNAMIC CART BUTTONS
+// ===================================
+
+function initializeCartButtons(){
+
+  const buttons =
+  document.querySelectorAll(".add-cart-btn");
+
+  buttons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const name =
+      button.dataset.name;
+
+      const price =
+      parseFloat(
+        button.dataset.price
+      );
+
+      cart.push({
+
+        name,
+        price
+
+      });
+
+      updateCart();
+
+    });
+
+  });
+
+}
+
+// ===================================
 // PAGE LOAD EFFECT
 // ===================================
 
@@ -421,5 +819,247 @@ window.addEventListener("load", () => {
     document.body.style.opacity = "1";
 
   }, 100);
+
+});
+
+// ===================================
+// START WEBSITE
+// ===================================
+
+loadProducts();
+
+updateCart();
+
+const productModal =
+document.getElementById("productModal");
+
+const productModalBody =
+document.getElementById("productModalBody");
+
+const closeProductModal =
+document.getElementById("closeProductModal");
+
+closeProductModal.addEventListener("click", () => {
+
+  productModal.classList.remove("active");
+
+});
+
+productModal.addEventListener("click", (e) => {
+
+  if(e.target === productModal){
+
+    productModal.classList.remove("active");
+
+  }
+
+});
+
+function openProductDetails(index){
+
+  const product = allProducts[index];
+
+  productModalBody.innerHTML = `
+
+    <div class="product-main-image-container">
+
+      <img
+        src="${product.image1}"
+        id="mainProductImage"
+        class="main-product-image"
+      >
+
+    </div>
+    
+<div class="product-gallery">
+
+  <img
+    src="${product.image1}"
+    class="detail-image"
+    onclick="changeMainImage('${product.image1}')"
+  >
+
+  ${product.image2 ? `
+    <img
+      src="${product.image2}"
+      class="detail-image"
+      onclick="changeMainImage('${product.image2}')"
+    >
+  ` : ""}
+
+  ${product.image3 ? `
+    <img
+      src="${product.image3}"
+      class="detail-image"
+      onclick="changeMainImage('${product.image3}')"
+    >
+  ` : ""}
+
+</div>
+
+    <h2 class="modal-product-title">
+      ${product.name}
+    </h2>
+
+    <h3 class="modal-product-price">
+      R${product.price}
+    </h3>
+
+   <div class="product-benefits">
+
+  <p>✅ In Stock & Ready To Ship</p>
+
+  <p>🚚 Fast Delivery Nationwide</p>
+
+  <p>🔒 Secure Checkout</p>
+
+</div>
+
+    <div class="product-description">
+
+      <h3>
+        About This Product
+      </h3>
+
+      <p>
+        ${product.details}
+      </p>
+
+      <p>
+        <strong>Dimensions:</strong>
+        ${product.dimensions}
+      </p>
+
+      <p>
+        <strong>Material:</strong>
+        ${product.material}
+      </p>
+
+    </div>
+
+    <div class="modal-buttons">
+
+      <button
+        class="modal-add-cart-btn"
+        onclick="addModalToCart(${index})"
+      >
+        🛒 Add To Cart
+      </button>
+
+      <button
+        class="modal-buy-now-btn"
+        onclick="buyNow(${index})"
+      >
+        ⚡ Buy Now
+      </button>
+
+    </div>
+
+  `;
+
+  productModal.classList.add("active");
+
+}
+
+function changeMainImage(image){
+
+  document.getElementById(
+    "mainProductImage"
+  ).src = image;
+
+}
+
+function addModalToCart(index){
+
+  const product = allProducts[index];
+
+  cart.push({
+
+    name: product.name,
+
+    price: parseFloat(product.price)
+
+  });
+
+  updateCart();
+
+  alert("Added to cart.");
+
+}
+
+function buyNow(index){
+
+  const product = allProducts[index];
+
+  cart.push({
+
+    name: product.name,
+
+    price: parseFloat(product.price)
+
+  });
+
+  updateCart();
+
+  productModal.classList.remove("active");
+
+  cartSidebar.classList.add("active");
+
+}
+
+function updateDeliveryDisplay(){
+
+  let subtotal = 0;
+
+  cart.forEach((item) => {
+
+    subtotal += item.price;
+
+  });
+
+  const fee =
+  calculateDeliveryFee(subtotal);
+
+  if(fee === null){
+
+  deliveryFeeDisplay.innerText =
+  "Select Province & City";
+
+  deliveryFeeElement.innerText =
+  "--";
+
+}
+
+else if(fee === 0){
+
+  deliveryFeeDisplay.innerText =
+  "Delivery Fee: FREE";
+
+  deliveryFeeElement.innerText =
+  "FREE";
+
+}
+
+else{
+
+  deliveryFeeDisplay.innerText =
+  `Delivery Fee: R${fee}`;
+
+  deliveryFeeElement.innerText =
+  `R${fee}`;
+
+}
+
+}
+
+customerProvince.addEventListener("change", () => {
+
+  updateCart();
+
+});
+
+customerCity.addEventListener("change", () => {
+
+  updateCart();
 
 });
