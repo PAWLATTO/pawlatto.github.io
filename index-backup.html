@@ -10,6 +10,8 @@
   <!-- TITLE -->
   <title>PawLatto | Premium Pet Essentials</title>
 
+  <link rel="icon" type="image/png" href="LOGO.png">
+
   <!-- GOOGLE FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +34,7 @@
 
   <header class="navbar">
 
-    <!-- TEXT LOGO -->
+    <!-- LOGO -->
 
     <div class="text-logo">
 
@@ -72,15 +74,33 @@
 
     </nav>
 
-    <!-- WHATSAPP -->
+    <!-- RIGHT SIDE -->
 
-    <a
-      href="https://wa.me/27812563111"
-      target="_blank"
-      class="nav-btn"
-    >
-      WhatsApp
-    </a>
+    <div class="nav-right">
+
+      <!-- CART -->
+
+      <button class="cart-btn" id="cartBtn">
+
+        🛒 Cart
+
+        <span id="cartCount">
+          0
+        </span>
+
+      </button>
+
+      <!-- WHATSAPP -->
+
+      <a
+        href="https://wa.me/27812563111"
+        target="_blank"
+        class="nav-btn"
+      >
+        WhatsApp
+      </a>
+
+    </div>
 
   </header>
 
@@ -108,7 +128,7 @@
         </p>
 
         <a href="#products" class="hero-btn">
-          Products Coming Soon
+          Shop Now
         </a>
 
       </div>
@@ -153,8 +173,8 @@
         </h1>
 
         <p>
-          Preparing something amazing
-          for pet owners across South Africa.
+          <p>
+  Carefully selected products that pets and owners can trust.
         </p>
 
         <a href="#contact" class="hero-btn">
@@ -200,61 +220,23 @@
       </span>
 
       <h2>
-        Products Coming Soon
+        Featured Products
       </h2>
 
       <p>
-        PawLatto is preparing premium
-        pet essentials for launch.
+        Explore premium pet essentials
+        designed for comfort, style, and care.
       </p>
 
     </div>
 
-    <div class="products-grid">
+   <div class="products-grid" id="productsGrid">
 
-      <!-- CARD -->
+  <div class="loading-products">
+    Loading Products...
+  </div>
 
-      <div class="product-card">
-
-        <div class="product-icon">
-          🐶
-        </div>
-
-        <h3>
-          Premium Accessories
-        </h3>
-
-      </div>
-
-      <!-- CARD -->
-
-      <div class="product-card">
-
-        <div class="product-icon">
-          🐱
-        </div>
-
-        <h3>
-          Pet Lifestyle Products
-        </h3>
-
-      </div>
-
-      <!-- CARD -->
-
-      <div class="product-card">
-
-        <div class="product-icon">
-          🐾
-        </div>
-
-        <h3>
-          Luxury Pet Essentials
-        </h3>
-
-      </div>
-
-    </div>
+   </div>
 
   </section>
 
@@ -319,8 +301,6 @@
   ==================================== -->
 
   <section class="about-section" id="about">
-
-    <!-- LEFT -->
 
     <div class="about-text">
 
@@ -393,8 +373,6 @@
 
     <div class="contact-grid">
 
-      <!-- CARD -->
-
       <div class="contact-card">
 
         <h3>
@@ -407,8 +385,6 @@
 
       </div>
 
-      <!-- CARD -->
-
       <div class="contact-card">
 
         <h3>
@@ -420,8 +396,6 @@
         </p>
 
       </div>
-
-      <!-- CARD -->
 
       <div class="contact-card">
 
@@ -462,7 +436,7 @@
 
       </div>
 
-      <!-- LINKS -->
+      <!-- QUICK LINKS -->
 
       <div class="footer-box">
 
@@ -475,7 +449,15 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
 
-        <br><br>
+      </div>
+
+      <!-- LEGAL -->
+
+      <div class="footer-box">
+
+        <h3>
+          Legal
+        </h3>
 
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms & Conditions</a>
@@ -514,6 +496,52 @@
   </footer>
 
   <!-- ===================================
+       CART SIDEBAR
+  ==================================== -->
+
+  <div class="cart-sidebar" id="cartSidebar">
+
+    <div class="cart-header">
+
+      <h2>
+        Your Cart
+      </h2>
+
+      <button id="closeCart">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems">
+
+    </div>
+
+    <div class="cart-footer">
+      
+ <p>
+    Delivery:
+    <span id="deliveryFee">
+      R80
+    </span>
+  </p>
+      
+      <h3>
+        Total:
+        <span id="cartTotal">
+          R0
+        </span>
+      </h3>
+
+      <button id="checkoutBtn">
+        Secure Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ===================================
        TERMS POPUP
   ==================================== -->
 
@@ -538,9 +566,7 @@
 
   </div>
 
-  <!-- ===================================
-       FLOATING WHATSAPP
-  ==================================== -->
+  <!-- FLOATING WHATSAPP -->
 
   <a
     href="https://wa.me/27812563111"
@@ -552,6 +578,91 @@
 
   <!-- JAVASCRIPT -->
 
+  <!-- CHECKOUT MODAL -->
+
+<div id="checkoutModal" class="checkout-modal">
+
+  <div class="checkout-content">
+
+    <h2>Complete Your Order</h2>
+
+   <input
+  type="text"
+  id="customerName"
+  placeholder="Full Name"
+>
+
+<input
+  type="tel"
+  id="customerPhone"
+  placeholder="Phone Number"
+>
+
+<input
+  type="email"
+  id="customerEmail"
+  placeholder="Email Address"
+>
+
+<input
+  type="text"
+  id="streetAddress"
+  placeholder="Street Address & Number"
+>
+
+<input
+  type="text"
+  id="customerCity"
+  placeholder="Enter City / Town"
+  required
+>
+
+<select id="customerProvince">
+
+  <option value="">
+    Select Province
+  </option>
+
+  <option value="Gauteng">Gauteng</option>
+  <option value="Western Cape">Western Cape</option>
+  <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+  <option value="Eastern Cape">Eastern Cape</option>
+  <option value="Free State">Free State</option>
+  <option value="Limpopo">Limpopo</option>
+  <option value="Mpumalanga">Mpumalanga</option>
+  <option value="North West">North West</option>
+  <option value="Northern Cape">Northern Cape</option>
+
+</select>
+
+<div id="deliveryFeeDisplay">
+  Delivery Fee: Select Province & City
+</div>
+
+    <button id="submitOrderBtn">
+      Continue To Payment
+    </button>
+
+    <button id="closeCheckoutModal">
+      Cancel
+    </button>
+
+  </div>
+
+</div>
+
+  <div id="productModal" class="product-modal">
+
+  <div class="product-modal-content">
+
+    <span id="closeProductModal">✕</span>
+
+    <div id="productModalBody"></div>
+
+  </div>
+
+</div>
+  
   <script src="script.js"></script>
 
 </body>
