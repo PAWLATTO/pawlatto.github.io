@@ -723,34 +723,102 @@ async function loadProducts(){
 
       card.innerHTML = `
 
-        <img
-          src="${product.image1}"
-          alt="${product.name}"
-          class="product-image"
-        >
+<div class="product-animal">
 
-        <h3>${product.name}</h3>
+${product.animal_type}
+
+</div>
+
+${product.featured === "Yes"
+? `<div class="featured-badge">⭐ Featured</div>`
+: ""}
+
+<img
+src="${product.image1}"
+alt="${product.image_alt_text || product.name}"
+class="product-image"
+loading="lazy"
+>
+
+<h3>
+
+${product.name}
+
+</h3>
+
+<p class="product-category">
+
+${product.category}
+
+</p>
+
+${
+product.sale_price > 0
+
+? `
 
 <p class="product-price">
+
+<span class="old-price">
+
 R${product.price}
+
+</span>
+
+<span class="sale-price">
+
+R${product.sale_price}
+
+</span>
+
+</p>
+
+`
+
+: `
+
+<p class="product-price">
+
+R${product.price}
+
+</p>
+
+`
+
+}
+
+<p class="stock-status">
+
+${
+product.stock_quantity > 0
+
+? `✅ ${product.stock_quantity} In Stock`
+
+: `❌ Out of Stock`
+}
+
 </p>
 
 <button
 class="add-cart-btn"
 data-name="${product.name}"
-data-price="${product.price}"
+data-price="${product.sale_price > 0 ? product.sale_price : product.price}"
 >
+
 🛒 Add To Cart
+
 </button>
 
 <button
 class="view-details-btn"
 onclick="openProductDetails(${allProducts.indexOf(product)})"
 >
+
 👀 View Details
+
 </button>
 
-      `;
+`;
 
       productsGrid.appendChild(card);
 
@@ -922,18 +990,72 @@ function openProductDetails(index){
       </h3>
 
       <p>
-        ${product.details}
+        ${product.description}
       </p>
 
-      <p>
-        <strong>Dimensions:</strong>
-        ${product.dimensions}
-      </p>
+      <div class="product-specs">
 
-      <p>
-        <strong>Material:</strong>
-        ${product.material}
-      </p>
+<p><strong>Animal:</strong> ${product.animal_type}</p>
+
+<p><strong>Category:</strong> ${product.category}</p>
+
+${product.subcategory ? `
+<p><strong>Subcategory:</strong> ${product.subcategory}</p>
+` : ""}
+
+<p><strong>SKU:</strong> ${product.sku}</p>
+
+<p><strong>Weight:</strong> ${product.weight}</p>
+
+<p><strong>Dimensions:</strong> ${product.dimensions}</p>
+
+<p><strong>Material:</strong> ${product.material}</p>
+
+<p><strong>Delivery:</strong> ${product.delivery}</p>
+
+<p><strong>Warranty:</strong> ${product.warranty}</p>
+
+<p><strong>Guarantee:</strong> ${product.guarantee}</p>
+
+<p>
+
+<strong>Availability:</strong>
+
+${
+product.stock_quantity > 0
+
+? `✅ ${product.stock_quantity} In Stock`
+
+: `❌ Out of Stock`
+}
+
+</p>
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="modal-add-cart-btn"
+onclick="addModalToCart(${index})"
+${product.stock_quantity <= 0 ? "disabled" : ""}
+>
+
+🛒 Add To Cart
+
+</button>
+
+<button
+class="modal-buy-now-btn"
+onclick="buyNow(${index})"
+${product.stock_quantity <= 0 ? "disabled" : ""}
+>
+
+⚡ Buy Now
+
+</button>
+
+</div>
 
     </div>
 
