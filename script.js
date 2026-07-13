@@ -734,7 +734,7 @@ const result = await response.json();
 
 if (!result.success) {
 
-  alert("Something went wrong. Please try again.");
+  alert("Unable to start payment.");
 
   return;
 
@@ -755,12 +755,6 @@ customerCity.value = "";
 updateCart();
 
 window.location.href = result.paymentUrl;
-  
-}else{
-
-  alert("Unable to start payment.");
-
-}
 
 });
   
