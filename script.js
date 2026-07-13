@@ -722,33 +722,10 @@ total
 
   }
 
-  const merchantId =
-  "34900767";
+  // Redirect to Apps Script instead of PayFast
 
-  const merchantKey =
-  "sfvvofpzaciwk";
-
-  const itemDescription =
-  cart.map(item => item.name)
-  .join(", ");
-
-  const paymentUrl =
-  `https://www.payfast.co.za/eng/process?merchant_id=${merchantId}&merchant_key=${merchantKey}&amount=${total}&item_name=PawLatto Order&item_description=${encodeURIComponent(itemDescription)}`;
-
-localStorage.removeItem("pawlattoCart");
-cart = [];
-
-document.getElementById("customerName").value = "";
-document.getElementById("customerPhone").value = "";
-document.getElementById("customerEmail").value = "";
-document.getElementById("streetAddress").value = "";
-
-customerProvince.value = "";
-customerCity.value = "";
-
-updateCart();
-
-window.location.href = paymentUrl;
+window.location.href =
+`${API_URL}?action=pay&orderId=${orderId}`;
 
 });
   
