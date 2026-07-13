@@ -693,16 +693,13 @@ customerPhone,
 customerEmail,
 customerAddress,
 
-province:
-customerProvinceValue,
-
-city:
-customerCityValue,
+province: customerProvinceValue,
+city: customerCityValue,
 
 items: cart,
 
+subtotal,
 deliveryFee,
-
 total
 
 };
