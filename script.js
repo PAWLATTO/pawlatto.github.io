@@ -722,10 +722,38 @@ total
 
   }
 
-  // Redirect to Apps Script instead of PayFast
+  const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
+  {
+    method: "POST",
+    body: JSON.stringify(orderData)
+  }
+);
 
-window.location.href =
-`${API_URL}?action=pay&orderId=${orderId}`;
+const result = await response.json();
+
+if(result.success){
+
+  localStorage.removeItem("pawlattoCart");
+  cart = [];
+
+  document.getElementById("customerName").value = "";
+  document.getElementById("customerPhone").value = "";
+  document.getElementById("customerEmail").value = "";
+  document.getElementById("streetAddress").value = "";
+
+  customerProvince.value = "";
+  customerCity.value = "";
+
+  updateCart();
+
+  window.location.href = result.paymentUrl;
+
+}else{
+
+  alert("Unable to start payment.");
+
+}
 
 });
   
