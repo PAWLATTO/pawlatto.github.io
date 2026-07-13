@@ -704,57 +704,49 @@ total
 
 };
   
-  try{
-
-    await fetch(
-  "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
-      {
-        method: "POST",
-        body: JSON.stringify(orderData)
-      }
-    );
-
-  }
-
-  catch(error){
-
-    console.log(error);
-
-  }
+  try {
 
   const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
-  {
-    method: "POST",
-    body: JSON.stringify(orderData)
+    "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
+    {
+      method: "POST",
+      body: JSON.stringify(orderData)
+    }
+  );
+
+  const result = await response.json();
+
+  if (!result.success) {
+
+    alert("Unable to start payment.");
+
+    return;
+
   }
-);
 
-const result = await response.json();
+  localStorage.removeItem("pawlattoCart");
 
-if (!result.success) {
+  cart = [];
 
-  alert("Unable to start payment.");
+  document.getElementById("customerName").value = "";
+  document.getElementById("customerPhone").value = "";
+  document.getElementById("customerEmail").value = "";
+  document.getElementById("streetAddress").value = "";
 
-  return;
+  customerProvince.value = "";
+  customerCity.value = "";
+
+  updateCart();
+
+  window.location.href = result.paymentUrl;
+
+} catch (error) {
+
+  console.error(error);
+
+  alert("Something went wrong. Please try again.");
 
 }
-
-localStorage.removeItem("pawlattoCart");
-
-cart = [];
-
-document.getElementById("customerName").value = "";
-document.getElementById("customerPhone").value = "";
-document.getElementById("customerEmail").value = "";
-document.getElementById("streetAddress").value = "";
-
-customerProvince.value = "";
-customerCity.value = "";
-
-updateCart();
-
-window.location.href = result.paymentUrl;
 
 });
   
