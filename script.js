@@ -732,23 +732,29 @@ total
 
 const result = await response.json();
 
-if(result.success){
+if (!result.success) {
 
-  localStorage.removeItem("pawlattoCart");
-  cart = [];
+  alert("Something went wrong. Please try again.");
 
-  document.getElementById("customerName").value = "";
-  document.getElementById("customerPhone").value = "";
-  document.getElementById("customerEmail").value = "";
-  document.getElementById("streetAddress").value = "";
+  return;
 
-  customerProvince.value = "";
-  customerCity.value = "";
+}
 
-  updateCart();
+localStorage.removeItem("pawlattoCart");
 
-  window.location.href = result.paymentUrl;
+cart = [];
 
+document.getElementById("customerName").value = "";
+document.getElementById("customerPhone").value = "";
+document.getElementById("customerEmail").value = "";
+document.getElementById("streetAddress").value = "";
+
+customerProvince.value = "";
+customerCity.value = "";
+
+updateCart();
+
+window.location.href = result.paymentUrl;
 }else{
 
   alert("Unable to start payment.");
