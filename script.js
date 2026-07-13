@@ -755,6 +755,7 @@ customerCity.value = "";
 updateCart();
 
 window.location.href = result.paymentUrl;
+  
 }else{
 
   alert("Unable to start payment.");
