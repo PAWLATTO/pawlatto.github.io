@@ -710,7 +710,7 @@ total
   try{
 
     await fetch(
-      "https://script.google.com/macros/s/AKfycbwDh-iKAlnFSXJT9Ra4vKXlNq01zDfm4fVdrWpz85D1jixH_Xi_jiLs_zjTH4q00UDC/exec",
+  "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
       {
         method: "POST",
         body: JSON.stringify(orderData)
