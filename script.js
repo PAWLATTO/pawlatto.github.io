@@ -724,20 +724,6 @@ total
 
   }
 
-  localStorage.removeItem("pawlattoCart");
-
-  cart = [];
-
-  document.getElementById("customerName").value = "";
-  document.getElementById("customerPhone").value = "";
-  document.getElementById("customerEmail").value = "";
-  document.getElementById("streetAddress").value = "";
-
-  customerProvince.value = "";
-  customerCity.value = "";
-
-  updateCart();
-
   window.location.href = result.paymentUrl;
 
 } catch (error) {
