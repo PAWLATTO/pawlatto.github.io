@@ -993,9 +993,7 @@ Number(product.sale_price) > 0
 ?
 
 `
-<div class="sale-badge">
-SALE
-</div>
+<div class="sale-badge">SALE</div>
 
 <span class="old-price">
 R${product.price}
@@ -1004,13 +1002,12 @@ R${product.price}
 <span class="sale-price">
 R${product.sale_price}
 </span>
-
 `
 
 :
 
 `
-<span class="sale-price">
+<span class="price">
 R${product.price}
 </span>
 `
