@@ -75,6 +75,57 @@ placeholder="Search customer or order..."
 
 </section>
 
+<!-- Update Order Modal -->
+
+<div id="updateModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeModal" class="close">&times;</span>
+
+        <h2>Update Order</h2>
+
+        <input type="hidden" id="selectedOrderId">
+
+        <label>Payment Status</label>
+
+        <select id="paymentStatus">
+
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Failed">Failed</option>
+            <option value="Refunded">Refunded</option>
+
+        </select>
+
+        <label>Order Status</label>
+
+        <select id="orderStatus">
+
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+
+        </select>
+
+        <label>Tracking Number</label>
+
+        <input
+            type="text"
+            id="trackingNumber"
+            placeholder="Tracking Number"
+        >
+
+        <button id="saveOrderBtn">
+            Save Changes
+        </button>
+
+    </div>
+
+</div>
+    
 <script src="admin.js"></script>
 
 </body>
