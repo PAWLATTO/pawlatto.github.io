@@ -967,7 +967,7 @@ Number(product.sale_price) > 0
 
 ?
 
-`<p class="product-price">
+`<p >
 
 <span class="old-price">
 
@@ -985,11 +985,35 @@ R${product.sale_price}
 
 :
 
-`<p class="product-price">
+<div class="price-box">
 
+${
+Number(product.sale_price) > 0
+
+?
+
+`
+<span class="old-price">
 R${product.price}
+</span>
 
-</p>`
+<span class="sale-price">
+R${product.sale_price}
+</span>
+
+`
+
+:
+
+`
+<span class="sale-price">
+R${product.price}
+</span>
+`
+
+}
+
+</div>
 
 }
 
