@@ -46,23 +46,36 @@ function renderOrders(orders){
 
         ordersTable.innerHTML += `
 
-        <tr>
+<tr>
 
-            <td>${order["order id"]}</td>
+<td>${order["order id"]}</td>
 
-            <td>${order["date"]}</td>
+<td>${order["date"]}</td>
 
-            <td>${order["full name"]}</td>
+<td>${order["full name"]}</td>
 
-            <td>R${order["total"]}</td>
+<td>R${order["total"]}</td>
 
-            <td>${order["payment status"]}</td>
+<td>${order["payment status"]}</td>
 
-            <td>${order["order status"]}</td>
+<td>${order["order status"]}</td>
 
-        </tr>
+<td>
 
-        `;
+<button
+class="update-btn"
+onclick="openUpdateModal('${order["order id"]}')"
+>
+
+✏️ Update
+
+</button>
+
+</td>
+
+</tr>
+
+`;
 
     });
 
