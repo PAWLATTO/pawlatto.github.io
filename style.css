@@ -449,7 +449,7 @@ section{
 
   box-shadow:0 5px 20px rgba(0,0,0,0.05);
 
-  transition:0.4s ease;
+  transition:.3s ease;
 
   max-width:380px;
   margin:0 auto;
@@ -466,10 +466,10 @@ section{
 .product-card:hover{
 
   transform:
-  translateY(-12px);
+  translateY(-8px);
 
   box-shadow:
-  0 20px 40px rgba(0,0,0,0.1);
+  0 15px 35px rgba(0,0,0,.15);
 }
 
 .product-icon{
