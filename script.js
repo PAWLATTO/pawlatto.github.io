@@ -993,6 +993,10 @@ Number(product.sale_price) > 0
 ?
 
 `
+<div class="sale-badge">
+SALE
+</div>
+
 <span class="old-price">
 R${product.price}
 </span>
