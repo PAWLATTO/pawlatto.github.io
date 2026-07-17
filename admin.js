@@ -20,7 +20,7 @@ let allOrders = [];
 
 async function loadOrders(){
 
-    const response = await fetch(API);
+    const response = await fetch(API + "?type=orders");
 
     allOrders = await response.json();
 
