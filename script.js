@@ -965,7 +965,7 @@ ${product.category}
 <div class="price-box">
 
 ${
-Number(product.sale_price) > 0
+Number(product.sale_price) > 0 && Number(product.price) > 0
 ?
 `
 <div class="sale-badge">SALE</div>
@@ -981,7 +981,7 @@ R${product.sale_price}
 :
 `
 <span class="price">
-R${product.price}
+R${Number(product.sale_price) > 0 ? product.sale_price : product.price}
 </span>
 `
 }
