@@ -985,7 +985,7 @@ R${product.sale_price}
 
 :
 
-<div class="price-box">
+`<div class="price-box">
 
 ${
 Number(product.sale_price) > 0
@@ -1013,7 +1013,7 @@ R${product.price}
 
 }
 
-</div>
+</div>`
 
 }
 
