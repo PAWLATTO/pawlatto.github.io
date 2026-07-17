@@ -962,36 +962,11 @@ ${product.category}
 
 </p>
 
-${
-Number(product.sale_price) > 0
-
-?
-
-`<p >
-
-<span class="old-price">
-
-R${product.price}
-
-</span>
-
-<span class="sale-price">
-
-R${product.sale_price}
-
-</span>
-
-</p>`
-
-:
-
-`<div class="price-box">
+<div class="price-box">
 
 ${
 Number(product.sale_price) > 0
-
 ?
-
 `
 <div class="sale-badge">SALE</div>
 
@@ -1003,20 +978,15 @@ R${product.price}
 R${product.sale_price}
 </span>
 `
-
 :
-
 `
 <span class="price">
 R${product.price}
 </span>
 `
-
 }
 
-</div>`
-
-}
+</div>
 
 <p class="stock-status">
 
