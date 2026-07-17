@@ -1714,3 +1714,9 @@ font-weight:bold;
 z-index:10;
 
 }
+
+.price{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #c9975b;
+}
