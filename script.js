@@ -707,7 +707,7 @@ total
   try {
 
   const response = await fetch(
-    "https://script.google.com/macros/s/AKfycbzWtEsPubhMfh0OR8n-v4LH1fkoWSYI7piWa38fU5iTdzKaDxiguGKVvLZPBmdkglGP/exec",
+    "https://script.google.com/macros/s/AKfycbwKy2B_hcZi3lbGMyjFuBlESxwU1IWsQMSPOmPgO1-nJLuXQTHJIbtshBoQKvgfiq_k/exec",
     {
       method: "POST",
       body: JSON.stringify(orderData)
