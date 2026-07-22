@@ -1,5 +1,5 @@
 const API =
-"https://script.google.com/macros/s/AKfycbwKy2B_hcZi3lbGMyjFuBlESxwU1IWsQMSPOmPgO1-nJLuXQTHJIbtshBoQKvgfiq_k/exec";
+"https://script.google.com/macros/s/AKfycbwa_V829ZMpOhHVsVzcrsycFtMk8xl6KtvEtUoIbkSkgWanB8K23gDPX7sHbX6zEtH7/exec";
 
 const ordersTable =
 document.getElementById("ordersTable");
