@@ -109,3 +109,35 @@ document
 });
 
 loadOrders();
+
+// ===========================
+// UPDATE ORDER MODAL
+// ===========================
+
+const updateModal = document.getElementById("updateModal");
+
+const closeModal = document.getElementById("closeModal");
+
+function openUpdateModal(orderId){
+
+    document.getElementById("selectedOrderId").value = orderId;
+
+    updateModal.style.display = "flex";
+
+}
+
+closeModal.addEventListener("click", () => {
+
+    updateModal.style.display = "none";
+
+});
+
+window.addEventListener("click", (e) => {
+
+    if(e.target === updateModal){
+
+        updateModal.style.display = "none";
+
+    }
+
+});
