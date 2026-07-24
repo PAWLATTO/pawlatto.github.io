@@ -120,7 +120,18 @@ const closeModal = document.getElementById("closeModal");
 
 function openUpdateModal(orderId){
 
+    const order = allOrders.find(o => o["order id"] == orderId);
+
     document.getElementById("selectedOrderId").value = orderId;
+
+    document.getElementById("paymentStatus").value =
+    order["payment status"];
+
+    document.getElementById("orderStatus").value =
+    order["order status"];
+
+    document.getElementById("trackingNumber").value =
+    order["tracking number"] || "";
 
     updateModal.style.display = "flex";
 
@@ -137,6 +148,61 @@ window.addEventListener("click", (e) => {
     if(e.target === updateModal){
 
         updateModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// SAVE ORDER CHANGES
+// ===========================
+
+document.getElementById("saveOrderBtn").addEventListener("click", async () => {
+
+    const orderId = document.getElementById("selectedOrderId").value;
+
+    const paymentStatus =
+    document.getElementById("paymentStatus").value;
+
+    const orderStatus =
+    document.getElementById("orderStatus").value;
+
+    const trackingNumber =
+    document.getElementById("trackingNumber").value;
+
+    const response = await fetch(API, {
+
+        method: "POST",
+
+        body: JSON.stringify({
+
+            action: "updateOrder",
+
+            orderId,
+
+            paymentStatus,
+
+            orderStatus,
+
+            trackingNumber
+
+        })
+
+    });
+
+    const result = await response.json();
+
+    if(result.success){
+
+        alert("Order updated successfully.");
+
+        updateModal.style.display = "none";
+
+        loadOrders();
+
+    }else{
+
+        alert("Failed to update order.");
 
     }
 
