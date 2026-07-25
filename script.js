@@ -1455,3 +1455,49 @@ animalFilter.addEventListener("change", filterProducts);
 categoryFilter.addEventListener("change", filterProducts);
 
 sortProducts.addEventListener("change", filterProducts);
+
+function loadRelatedProducts(product){
+
+    const grid =
+    document.getElementById("relatedProductsGrid");
+
+    grid.innerHTML = "";
+
+    const related =
+    products.filter(p =>
+
+        p.name !== product.name &&
+
+        p.animal_type === product.animal_type &&
+
+        p.category === product.category
+
+    ).slice(0,4);
+
+    related.forEach(item=>{
+
+        const card=document.createElement("div");
+
+        card.className="related-card";
+
+        card.innerHTML=`
+
+            <img src="${item.image1}" alt="${item.name}">
+
+            <h4>${item.name}</h4>
+
+            <p>R${item.sale_price || item.price}</p>
+
+        `;
+
+        card.onclick=()=>{
+
+            openProductModal(item);
+
+        };
+
+        grid.appendChild(card);
+
+    });
+
+}
